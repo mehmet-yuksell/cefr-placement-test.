@@ -1,0 +1,196 @@
+[
+  {
+    "id": "B2-CLZ-001",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "Sara isn't answering her calls. She ___ her phone at home.",
+    "options": ["must have left", "must leave", "should have left", "can have left"],
+    "correct_answer": "must have left",
+    "skill_tested": "Modal verbs",
+    "explanation": "'Must have left' expresses a confident guess about the past. 'Must leave' refers to an obligation or to the present. 'Should have left' means it was the right thing to do, not a guess. 'Can have left' is not used for positive guesses about the past.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "must leave": "Keeps the deduction modal but forgets the perfect infinitive for past reference.",
+      "should have left": "Right structure, wrong meaning: criticism or expectation instead of deduction.",
+      "can have left": "Overgeneralises 'can't have' (negative deduction) to the positive."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: past deduction is lower B2.",
+    "version": 1
+  },
+  {
+    "id": "B2-CLZ-002",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "There has been a ___ increase in the number of people working from home.",
+    "options": ["significant", "significance", "significantly", "signified"],
+    "correct_answer": "significant",
+    "skill_tested": "Word formation",
+    "explanation": "Before a noun ('increase') we need an adjective: 'significant'. 'Significance' is a noun. 'Significantly' is an adverb, used with verbs or adjectives. 'Signified' is a past form of 'signify', which means 'show' or 'mean'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "significance": "Chooses the noun form without checking word class.",
+      "significantly": "Chooses the adverb, perhaps from the frequent phrase 'increased significantly'.",
+      "signified": "Recognises the word family but picks a verb form."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-ERR-001",
+    "cefr_level": "B2",
+    "type": "error_id",
+    "question": "I [had] my car [repair] last week, and it [has been running] [perfectly] since then.",
+    "options": ["had", "repair", "has been running", "perfectly"],
+    "correct_answer": "repair",
+    "skill_tested": "Passive & causative",
+    "explanation": "In the causative 'have something done', the verb is a past participle: 'had my car repaired'. 'Had' is correct for last week. 'Has been running' fits an activity from then until now. 'Perfectly' is an adverb that correctly describes 'running'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "had": "Learner expects 'had' to be followed by 'to' (had to) and marks it.",
+      "has been running": "Learner thinks the past time 'last week' rules out the present perfect later in the sentence.",
+      "perfectly": "Learner thinks an adjective ('perfect') is needed."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-ERR-002",
+    "cefr_level": "B2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "I wonder why she didn't come to the meeting.",
+      "I wonder why didn't she come to the meeting.",
+      "I wonder that why she didn't come to the meeting.",
+      "I wonder why she hasn't come to the meeting yesterday."
+    ],
+    "correct_answer": "I wonder why she didn't come to the meeting.",
+    "skill_tested": "Clause structure",
+    "explanation": "In an indirect question the word order is like a statement: 'why she didn't come'. Question order ('why didn't she') is wrong here. 'That' cannot be added before 'why'. The present perfect cannot be used with 'yesterday'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I wonder why didn't she come to the meeting.": "Keeps direct-question word order inside an indirect question.",
+      "I wonder that why she didn't come to the meeting.": "Overuses 'that' as a general connector after verbs of thinking.",
+      "I wonder why she hasn't come to the meeting yesterday.": "Uses the present perfect with a finished-time adverb."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: indirect question order is lower B2.",
+    "version": 1
+  },
+  {
+    "id": "B2-LEX-001",
+    "cefr_level": "B2",
+    "type": "lexical_pragmatic",
+    "question": "The city council has ___ measures to reduce air pollution near schools.",
+    "options": ["taken", "made", "done", "put"],
+    "correct_answer": "taken",
+    "skill_tested": "Collocations",
+    "explanation": "We 'take measures' to deal with a problem. 'Made' is common with plans or decisions, but not with 'measures'. 'Done' is a general verb that does not go with 'measures'. 'Put' needs 'in place': 'put measures in place'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "made": "make/take confusion, by analogy with 'make a decision'.",
+      "done": "Uses 'do' as a default action verb.",
+      "put": "Partial memory of 'put measures in place'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: abstract-noun collocation; 'measures' is B2 vocabulary.",
+    "version": 1
+  },
+  {
+    "id": "B2-LEX-002",
+    "cefr_level": "B2",
+    "type": "lexical_pragmatic",
+    "question": "The exam was a ___ of cake. I finished it in half the time.",
+    "options": ["piece", "slice", "bit", "part"],
+    "correct_answer": "piece",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'A piece of cake' is a fixed expression meaning 'very easy', and its words cannot be changed. 'A slice of cake' and 'a bit of cake' only describe real cake. 'Part' does not appear in this expression.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "slice": "Substitutes a near-synonym inside a fixed idiom.",
+      "bit": "Substitutes a general quantity word.",
+      "part": "Chooses a word meaning 'portion' by logic."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: idiom knowledge rather than grammar.",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-001",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What is the writer's main point about community gardens?",
+    "options": [
+      "Their social benefits last only if responsibility is shared.",
+      "They are mainly valuable for producing cheap, fresh food.",
+      "They usually fail because residents do not feel safe.",
+      "They succeed when a few enthusiastic people lead them."
+    ],
+    "correct_answer": "Their social benefits last only if responsibility is shared.",
+    "skill_tested": "Main idea",
+    "explanation": "The text praises the social benefits, then explains that gardens survive when new members take on responsibility. It says the benefits go 'beyond fresh vegetables', residents felt safer rather than less safe, and depending on a few enthusiastic people is the weak model.",
+    "domain": "reading",
+    "passage_id": "P-B2-01",
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "They are mainly valuable for producing cheap, fresh food.": "Contradicts 'well beyond fresh vegetables'; picks the obvious purpose of a garden.",
+      "They usually fail because residents do not feel safe.": "Reverses a finding (residents felt safer).",
+      "They succeed when a few enthusiastic people lead them.": "Reverses the final sentence; matches the words 'enthusiastic people'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: main point must be built from contrast across the text.",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-002",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What does the word 'plots' mean in the text?",
+    "options": ["areas of land for growing plants", "secret plans made by a group", "the main events of a story", "groups of local volunteers"],
+    "correct_answer": "areas of land for growing plants",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "'Plots' are the small areas of land in the garden, which are 'abandoned' when volunteers leave. 'Plot' can also mean a secret plan or the events of a story, but those meanings do not fit here. The volunteers are people, not the plots.",
+    "domain": "reading",
+    "passage_id": "P-B2-01",
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "secret plans made by a group": "Another meaning of 'plot', chosen without using the context.",
+      "the main events of a story": "The most familiar classroom meaning (the plot of a novel).",
+      "groups of local volunteers": "Links the word to the nearest noun phrase in the sentence."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: context (gardens, abandoned) strongly supports the key. The target word itself is the construct.",
+    "version": 1
+  }
+]

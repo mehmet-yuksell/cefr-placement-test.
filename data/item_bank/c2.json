@@ -1,0 +1,227 @@
+[
+  {
+    "id": "C2-CLZ-001",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "___ it not for the support of her family, she would never be able to manage two jobs.",
+    "options": [
+      "Were",
+      "Had",
+      "Was",
+      "If"
+    ],
+    "correct_answer": "Were",
+    "skill_tested": "Conditionals & hypotheticals",
+    "explanation": "'Were it not for...' is a formal inverted conditional meaning 'If it were not for...'. 'Had' would need 'been' ('Had it not been for'). 'Was' is not used in this inverted form. 'If' would need a verb: 'If it were not for'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Had": "Partial recall of the past form 'Had it not been for'.",
+      "Was": "Uses indicative 'was' from the informal 'If it wasn't for' in a subjunctive inversion.",
+      "If": "Keeps the conditional conjunction but drops the verb."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: formal inversion is a recognised C2 marker but the chunk is frequent.",
+    "version": 1
+  },
+  {
+    "id": "C2-CLZ-002",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "The evidence against him was purely ___: no one had actually seen him at the scene.",
+    "options": [
+      "circumstantial",
+      "coincidental",
+      "incidental",
+      "conditional"
+    ],
+    "correct_answer": "circumstantial",
+    "skill_tested": "Collocations",
+    "explanation": "'Circumstantial evidence' points to something indirectly, without anyone witnessing it, which matches 'no one had actually seen him'. 'Coincidental' means happening by chance. 'Incidental' means minor or secondary. 'Conditional' means depending on something else.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "coincidental": "Similar form and register; 'by chance' seems to fit doubt about guilt.",
+      "incidental": "Similar suffix; 'minor' seems to fit 'purely'.",
+      "conditional": "Associates evidence with conditions or uncertainty."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-001",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "The proposal, [together with] the two reports that [accompany] it, [are expected] to [be discussed] next week.",
+    "options": [
+      "together with",
+      "accompany",
+      "are expected",
+      "be discussed"
+    ],
+    "correct_answer": "are expected",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "The subject is 'the proposal'; a phrase with 'together with' does not make the subject plural, so 'are expected' should be 'is expected'. 'Together with' is a correct linking phrase. 'Accompany' agrees with 'reports'. 'Be discussed' is a correct passive after 'expected to'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "together with": "Learner expects 'and' and doubts the phrase.",
+      "accompany": "Learner thinks it should agree with 'proposal' (accompanies).",
+      "be discussed": "Learner expects an active or perfect form."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor. Agreement after 'together with' follows the grammatical subject in reference grammars of both major varieties; informal speech sometimes differs, so watch this item's statistics after calibration.",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-002",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "What surprised me most was how calm she remained.",
+      "What surprised me most was how calm did she remain.",
+      "What it surprised me most was how calm she remained.",
+      "That surprised me most was how calm she remained."
+    ],
+    "correct_answer": "What surprised me most was how calm she remained.",
+    "skill_tested": "Inversion & emphasis",
+    "explanation": "In this cleft sentence 'What' is the subject of 'surprised', and the clause after 'how calm' keeps statement order. 'How calm did she remain' wrongly uses question order. 'What it surprised' adds an extra subject. 'That' cannot replace 'What' at the start of this structure.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.2,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "What surprised me most was how calm did she remain.": "Applies question word order inside an embedded wh-clause.",
+      "What it surprised me most was how calm she remained.": "Inserts a dummy subject, mixing the cleft with 'It surprised me'.",
+      "That surprised me most was how calm she remained.": "Confuses the nominal relative 'what' with the relative pronoun 'that'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.3 from anchor: the cleft itself may be C1; kept at C2 for the subtlety of the distractors. Review after calibration.",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-001",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "question": "My grandmother never wasted food or money, yet she was always generous with others. She was ___.",
+    "options": [
+      "thrifty",
+      "stingy",
+      "miserly",
+      "greedy"
+    ],
+    "correct_answer": "thrifty",
+    "skill_tested": "Word choice",
+    "explanation": "'Thrifty' means careful with money in a positive way, which fits someone who is also generous. 'Stingy' and 'miserly' also describe careful spending but are negative and suggest unwillingness to give, which contradicts 'generous'. 'Greedy' means wanting more than you need.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "stingy": "Right meaning area (saving money), wrong connotation.",
+      "miserly": "Right meaning area, strongly negative connotation; tests sensitivity to 'yet ... generous'.",
+      "greedy": "General negative money word; confuses saving with wanting more."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-002",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate response.",
+    "question": "A colleague asks for your honest opinion of a presentation that went badly. Which reply is both honest and tactful?",
+    "options": [
+      "Parts of it worked, but the main argument needs tightening.",
+      "It was absolutely brilliant — I wouldn't change a thing.",
+      "Frankly, it was a complete mess from start to finish.",
+      "Does it really matter what I think? It's over now anyway."
+    ],
+    "correct_answer": "Parts of it worked, but the main argument needs tightening.",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "The best reply is honest about the problem but starts with something positive and gives a specific, useful point. Calling it 'brilliant' is not honest. Calling it 'a complete mess' is honest but not tactful. Asking whether your opinion matters avoids the question.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.2,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "It was absolutely brilliant — I wouldn't change a thing.": "Chooses politeness at the cost of honesty.",
+      "Frankly, it was a complete mess from start to finish.": "Chooses honesty at the cost of tact.",
+      "Does it really matter what I think? It's over now anyway.": "Avoids the face-threat by evading, which fails the request for an opinion."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.3 from anchor: pragmatic judgement items may be easier than their wording suggests; flagged for calibration.",
+    "version": 1
+  },
+  {
+    "id": "C2-RDG-001",
+    "cefr_level": "C2",
+    "type": "reading",
+    "question": "Which statement best reflects the writer's view of nostalgia?",
+    "options": [
+      "It is harmless unless its edited past is taken as fact.",
+      "It is a dishonest habit that should be resisted.",
+      "It is mainly useful in helping people cope with change.",
+      "It gives an accurate picture of how life used to be."
+    ],
+    "correct_answer": "It is harmless unless its edited past is taken as fact.",
+    "skill_tested": "Inference",
+    "explanation": "The writer calls nostalgia 'creative' rather than dishonest, and says the risk arises only when the edited past is 'mistaken for a record'. Coping with change is the psychologists' account, which the writer then qualifies with 'Yet'. The remembered past has been edited, so it is not accurate.",
+    "domain": "reading",
+    "passage_id": "P-C2-01",
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "It is a dishonest habit that should be resisted.": "Misses the concession 'This need not make nostalgia dishonest'.",
+      "It is mainly useful in helping people cope with change.": "Attributes a reported view to the writer, ignoring 'Yet'.",
+      "It gives an accurate picture of how life used to be.": "Contradicts the central claim that the remembered past is edited."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: the key paraphrases the final sentence closely.",
+    "version": 1
+  },
+  {
+    "id": "C2-RDG-002",
+    "cefr_level": "C2",
+    "type": "reading",
+    "question": "In the text, 'composed' is closest in meaning to ...",
+    "options": [
+      "created",
+      "calmed",
+      "consisted",
+      "recorded"
+    ],
+    "correct_answer": "created",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "Here 'composed' means 'put together' or 'created', as when someone composes music or a text. 'Calmed' comes from the adjective 'composed' (calm). 'Consisted' comes from 'composed of'. 'Recorded' contradicts the text, which contrasts the composed version with a record.",
+    "domain": "reading",
+    "passage_id": "P-C2-01",
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "calmed": "Another meaning of the same word form (composed = calm).",
+      "consisted": "Confuses it with 'be composed of'.",
+      "recorded": "Associates memory with recording and ignores the contrast with 'record'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: the 'record' contrast in the next sentence helps.",
+    "version": 1
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "A2-CLZ-001",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "Yesterday I ___ my keys, so I couldn't open the front door.",
+    "options": [
+      "lost",
+      "have lost",
+      "was losing",
+      "lose"
+    ],
+    "correct_answer": "lost",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "'Yesterday' is a finished time, so we use the past simple 'lost'. 'Have lost' is present perfect, which is not used with a finished time. 'Was losing' describes an action in progress, not a single event. 'Lose' is a present form.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "have lost": "Uses the present perfect with a finished-time adverb.",
+      "was losing": "Uses the past continuous for a completed single event.",
+      "lose": "Ignores the past time marker 'yesterday'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: past simple with a finished-time adverb is core A2.",
+    "version": 1
+  },
+  {
+    "id": "A2-CLZ-002",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "I can't hear the music. Can you make it ___, please?",
+    "options": [
+      "louder",
+      "higher",
+      "stronger",
+      "bigger"
+    ],
+    "correct_answer": "louder",
+    "skill_tested": "Word choice",
+    "explanation": "We use 'louder' for the volume of a sound. 'Higher' describes the pitch of a note, not its volume. 'Stronger' is used for things like coffee or wind. 'Bigger' describes size, not sound.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "higher": "L1 transfer: in Turkish and many other languages volume is 'raised' (sesi yükseltmek), suggesting 'higher'.",
+      "stronger": "Associates sound intensity with strength.",
+      "bigger": "Overgeneralises a basic size adjective."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-001",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "My new phone [is] [more] [cheaper] [than] my old one, but it works well.",
+    "options": [
+      "is",
+      "more",
+      "cheaper",
+      "than"
+    ],
+    "correct_answer": "more",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "'Cheaper' is already a comparative, so 'more' must go: 'is cheaper than'. 'Is' is correct with 'my new phone'. 'Cheaper' is the right form for a short adjective. 'Than' is the correct word after a comparative.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "is": "L1 transfer: Turkish has no present-tense 'be' in sentences like 'Telefonum ucuz', so 'is' can look unnecessary.",
+      "cheaper": "Learner believes the correct form is 'more cheap' and marks 'cheaper' instead of 'more'.",
+      "than": "L1 transfer: Turkish marks comparison with the suffix -den, suggesting 'from' instead of 'than'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-002",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "I enjoy playing tennis on Sundays.",
+      "I enjoy to play tennis on Sundays.",
+      "I enjoy play tennis on Sundays.",
+      "I am enjoy playing tennis on Sundays."
+    ],
+    "correct_answer": "I enjoy playing tennis on Sundays.",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "'Enjoy' is followed by the -ing form, as in 'enjoy playing'. 'Enjoy to play' wrongly uses 'to' + verb, 'enjoy play' uses the base form, and 'am enjoy' adds 'am' before a present simple verb.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I enjoy to play tennis on Sundays.": "Overgeneralises the 'want to do' pattern to 'enjoy'.",
+      "I enjoy play tennis on Sundays.": "Omits the -ing ending, treating 'enjoy' like a modal verb.",
+      "I am enjoy playing tennis on Sundays.": "Inserts 'be' as a present-tense marker before the main verb."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.2 from anchor: the verb pattern after 'enjoy' is upper A2.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-001",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "question": "It's cold outside, so ___ your jacket before you go.",
+    "options": [
+      "put on",
+      "take off",
+      "put off",
+      "get on"
+    ],
+    "correct_answer": "put on",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "'Put on' means start wearing clothes. 'Take off' is the opposite: remove clothes. 'Put off' means delay something. 'Get on' is used for buses and trains, or for relationships, not for clothes.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "take off": "Knows the clothes-related pair but picks the opposite meaning.",
+      "put off": "Right verb, wrong particle.",
+      "get on": "Chooses a common phrasal verb by its particle 'on' alone."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: 'put on' is among the first phrasal verbs learned.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-002",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most polite option.",
+    "question": "You are in a clothes shop and want to try on a sweater. What do you say to the shop assistant?",
+    "options": [
+      "Can I try this on, please?",
+      "I want to try this on now.",
+      "You must let me try this on.",
+      "Do you try this on?"
+    ],
+    "correct_answer": "Can I try this on, please?",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "'Can I ... please?' is the normal polite way to ask. 'I want ... now' sounds like an order. 'You must' is too strong when you ask for permission. 'Do you try this on?' asks about the assistant, not about you.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I want to try this on now.": "Direct translation of a statement of desire (e.g. Turkish 'Bunu denemek istiyorum'), which sounds demanding in English.",
+      "You must let me try this on.": "Uses a strong obligation modal where a request is needed.",
+      "Do you try this on?": "Question form chosen without checking who the subject is."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: politeness judgement adds a little difficulty.",
+    "version": 1
+  },
+  {
+    "id": "A2-RDG-001",
+    "cefr_level": "A2",
+    "type": "reading",
+    "question": "Why is Ella writing to Sam?",
+    "options": [
+      "To say she can't go to his party",
+      "To invite Sam to a wedding",
+      "To tell Sam about a new restaurant",
+      "To ask Sam to visit her family"
+    ],
+    "correct_answer": "To say she can't go to his party",
+    "skill_tested": "Main idea",
+    "explanation": "Ella's main message is that she cannot come to Sam's party. The wedding is her cousin's, and Sam is not invited. The restaurant is only a suggestion for next week, and she never asks Sam to visit her family.",
+    "domain": "reading",
+    "passage_id": "P-A2-01",
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "To invite Sam to a wedding": "Takes a prominent detail (the wedding) and reverses who is invited.",
+      "To tell Sam about a new restaurant": "Picks a secondary detail near the end.",
+      "To ask Sam to visit her family": "Misreads 'the whole family is going'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-RDG-002",
+    "cefr_level": "A2",
+    "type": "reading",
+    "question": "When does Ella want to meet Sam?",
+    "options": [
+      "On Tuesday next week",
+      "On Saturday",
+      "On Friday evening",
+      "On Sunday afternoon"
+    ],
+    "correct_answer": "On Tuesday next week",
+    "skill_tested": "Detail",
+    "explanation": "Ella writes, 'Can we meet next week instead? I'm free on Tuesday after work.' Saturday is the day of Sam's party, Friday evening is when her family leaves, and Sunday afternoon is when they come back.",
+    "domain": "reading",
+    "passage_id": "P-A2-01",
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "On Saturday": "The day of Sam's party, which Ella cannot go to.",
+      "On Friday evening": "The time Ella's family leaves for the wedding.",
+      "On Sunday afternoon": "The time Ella's family comes back."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: several competing times appear in the text.",
+    "version": 1
+  }
+]

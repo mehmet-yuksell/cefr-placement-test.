@@ -1,0 +1,227 @@
+[
+  {
+    "id": "B1-CLZ-001",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "I ___ in this city since 2019, and I still love it.",
+    "options": [
+      "have lived",
+      "live",
+      "lived",
+      "am living"
+    ],
+    "correct_answer": "have lived",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "With 'since' and a situation that continues now, English uses the present perfect: 'have lived'. 'Live' and 'am living' are present forms that cannot go with 'since'. 'Lived' is past simple, which suggests the situation has finished.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "live": "L1 transfer: Turkish uses a present form with 'since' (2019'dan beri burada yaşıyorum).",
+      "am living": "Maps the Turkish -iyor present onto the English present continuous.",
+      "lived": "Chooses a past form because 2019 is in the past."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: present perfect with 'since' is taught early in B1.",
+    "version": 1
+  },
+  {
+    "id": "B1-CLZ-002",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "It's raining ___, so take an umbrella and a warm coat.",
+    "options": [
+      "heavily",
+      "strongly",
+      "hardly",
+      "highly"
+    ],
+    "correct_answer": "heavily",
+    "skill_tested": "Collocations",
+    "explanation": "'Rain heavily' is the natural collocation. 'Strongly' is used with wind or opinions, not rain. 'Hardly' means 'almost not', the opposite of the intended meaning. 'Highly' means 'very' before some adjectives, as in 'highly likely'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "strongly": "L1 transfer: Turkish 'kuvvetli yağmur' suggests 'strong rain'.",
+      "hardly": "False friend: assumes 'hardly' is the adverb of 'hard' (it rains hard).",
+      "highly": "Treats 'highly' as a general intensifier."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: adverb collocations with weather verbs.",
+    "version": 1
+  },
+  {
+    "id": "B1-ERR-001",
+    "cefr_level": "B1",
+    "type": "error_id",
+    "question": "If it [will rain] tomorrow, we [will stay] at home and [watch] a movie [instead].",
+    "options": [
+      "will rain",
+      "will stay",
+      "watch",
+      "instead"
+    ],
+    "correct_answer": "will rain",
+    "skill_tested": "Conditionals & hypotheticals",
+    "explanation": "In a first conditional the if-clause uses the present simple: 'If it rains tomorrow'. 'Will stay' is correct in the main clause. 'Watch' correctly follows 'will' as a base form. 'Instead' is a correctly placed adverb.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "will stay": "Learner thinks only one 'will' is allowed and marks the second one.",
+      "watch": "Learner expects 'watching' or 'to watch' after 'and'.",
+      "instead": "Learner thinks 'instead' must be followed by 'of'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: first conditional is an early B1 point.",
+    "version": 1
+  },
+  {
+    "id": "B1-ERR-002",
+    "cefr_level": "B1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "The woman who lives next door is a doctor.",
+      "The woman who she lives next door is a doctor.",
+      "The woman which lives next door is a doctor.",
+      "The woman lives next door is a doctor."
+    ],
+    "correct_answer": "The woman who lives next door is a doctor.",
+    "skill_tested": "Clause structure",
+    "explanation": "'Who' is the subject of 'lives', so no extra pronoun is needed; adding 'she' repeats the subject. 'Which' is used for things, not people. Leaving out 'who' is not possible here, because the relative pronoun is the subject of its clause.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "The woman who she lives next door is a doctor.": "Resumptive pronoun: repeats the subject inside the relative clause.",
+      "The woman which lives next door is a doctor.": "Uses the relative pronoun for things with a person.",
+      "The woman lives next door is a doctor.": "L1 transfer: Turkish forms relative clauses with a participle and no pronoun, so the pronoun is dropped."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: three distinct relative-clause errors make it upper B1.",
+    "version": 1
+  },
+  {
+    "id": "B1-LEX-001",
+    "cefr_level": "B1",
+    "type": "lexical_pragmatic",
+    "question": "My doctor told me to ___ smoking, and I haven't had a cigarette since.",
+    "options": [
+      "give up",
+      "give in",
+      "give out",
+      "give away"
+    ],
+    "correct_answer": "give up",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "'Give up' means stop a habit. 'Give in' means accept defeat or agree after pressure, and it does not take an object like 'smoking'. 'Give out' means distribute. 'Give away' means give something to others for free.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "give in": "Closest in meaning (surrender), but wrong pattern and sense.",
+      "give out": "Same verb with a particle chosen by guesswork.",
+      "give away": "Associates getting rid of a habit with giving something away."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-LEX-002",
+    "cefr_level": "B1",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate option.",
+    "question": "You are writing your first email to a language school. Which first sentence is most appropriate?",
+    "options": [
+      "I am writing to ask about your English courses.",
+      "Hey! Tell me about your English courses.",
+      "I want info about your English courses now.",
+      "What's up with your English courses?"
+    ],
+    "correct_answer": "I am writing to ask about your English courses.",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "A first email to a school should be polite and neutral, and 'I am writing to ask about...' is a standard opening. 'Hey! Tell me...' is too casual and sounds like an order. 'I want info ... now' is demanding and informal. 'What's up with...?' is slang.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Hey! Tell me about your English courses.": "Transfers a spoken, friendly register to formal writing.",
+      "I want info about your English courses now.": "A direct statement of desire plus an informal abbreviation.",
+      "What's up with your English courses?": "Uses slang, which may also suggest something is wrong."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-001",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "Why was Daniel worried about cycling at first?",
+    "options": [
+      "He had not cycled for years and the road looked unsafe.",
+      "The river route was much longer than the bus route.",
+      "His colleague told him that cycling was dangerous.",
+      "He did not want to arrive at work tired."
+    ],
+    "correct_answer": "He had not cycled for years and the road looked unsafe.",
+    "skill_tested": "Detail",
+    "explanation": "The text says he 'had not ridden a bike for years, and the main road looked dangerous'. The river route was 'only a little longer'. The colleague suggested cycling and did not warn him. Feeling tired is mentioned only as something that improved later.",
+    "domain": "reading",
+    "passage_id": "P-B1-01",
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "The river route was much longer than the bus route.": "Distorts 'only a little longer'.",
+      "His colleague told him that cycling was dangerous.": "Misattributes: the colleague made the suggestion; the danger was Daniel's own view.",
+      "He did not want to arrive at work tired.": "Uses a later detail (feels less tired) out of its place in the story."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: answer is close to the wording of the text.",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-002",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "What does the text suggest about Daniel's new way of getting to work?",
+    "options": [
+      "It suits him better than taking the bus.",
+      "He still takes the bus most days.",
+      "He cycles because his company asked him to.",
+      "It takes him longer to get to work now."
+    ],
+    "correct_answer": "It suits him better than taking the bus.",
+    "skill_tested": "Inference",
+    "explanation": "He arrives earlier, feels less tired and even enjoys rainy days, so cycling suits him better. He cycles four days a week, so he does not take the bus most days. A colleague, not the company, suggested it. He arrives earlier, so the journey is not longer.",
+    "domain": "reading",
+    "passage_id": "P-B1-01",
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "He still takes the bus most days.": "Misreads or ignores 'four days a week'.",
+      "He cycles because his company asked him to.": "Confuses the company's move with the reason for cycling; a colleague made the suggestion.",
+      "It takes him longer to get to work now.": "Over-uses 'only a little longer' (route distance) and ignores 'arrives earlier'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: requires combining three details.",
+    "version": 1
+  }
+]

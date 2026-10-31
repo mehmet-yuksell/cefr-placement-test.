@@ -1,0 +1,50 @@
+[
+  {
+    "id": "P-A1-01",
+    "cefr_level": "A1",
+    "title": "Lena's week",
+    "text": "My name is Lena. I am twenty years old, and I live with my parents in a small town. From Monday to Friday, I work in a café. I start at seven in the morning and finish at three in the afternoon. I like my job because I meet a lot of people. On Saturdays, I visit my grandmother. She lives near the sea, and we often walk on the beach together. On Sundays, I stay at home and read.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-A2-01",
+    "cefr_level": "A2",
+    "title": "A message from Ella",
+    "text": "Hi Sam,\nThanks for your message. I'm sorry, but I can't come to your party on Saturday. My cousin is getting married that day, and the whole family is going to the wedding in another city. We're leaving on Friday evening and coming back on Sunday afternoon. Can we meet next week instead? I'm free on Tuesday after work. We could try the new Italian restaurant near the station. I've heard it's very good. Let me know!\nBest wishes,\nElla",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-B1-01",
+    "cefr_level": "B1",
+    "title": "A new way to work",
+    "text": "When Daniel's company moved to a new building on the other side of the city, he was worried that getting to work would become much harder. The bus took fifty minutes, and he often had to stand all the way. After two weeks, a colleague suggested cycling. Daniel was not sure at first: he had not ridden a bike for years, and the main road looked dangerous. Then he discovered a quiet route along the river that was only a little longer. Now he cycles to work four days a week. He arrives earlier than before, feels less tired in the afternoons, and says he has even started to enjoy rainy days.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-B2-01",
+    "cefr_level": "B2",
+    "title": "Gardens between buildings",
+    "text": "In many cities, empty land between buildings is being turned into community gardens. Supporters say the benefits go well beyond fresh vegetables. Residents who previously only nodded to each other in the street now share tools, swap advice and plan weekend events together. Researchers studying one such project found that people reported feeling safer and less isolated after its first year. Critics, however, point out that gardens rarely survive without a small group of hard-working volunteers, and when those people move away, the plots are often abandoned within months. The most successful projects, it seems, are those that train new members to take on responsibility from the start, rather than depending on the few enthusiastic people who started them.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-C1-01",
+    "cefr_level": "C1",
+    "title": "What gets counted",
+    "text": "Productivity is often measured by what can be counted: emails answered, tasks closed, hours logged. The appeal is obvious. Numbers are easy to compare and seem to remove personal bias from decisions about pay and promotion. Yet the most valuable work in many companies resists this kind of measurement. An engineer who spends a week rethinking a design may produce nothing visible, and then prevent months of costly errors. A manager who calmly settles a conflict leaves no record at all. When only countable output is rewarded, people sensibly shift their effort to it, and the harder, slower work of thinking is quietly squeezed out. The danger is not that the numbers are false, but that they are partial, and that we forget this.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-C2-01",
+    "cefr_level": "C2",
+    "title": "The edited past",
+    "text": "It is tempting to treat nostalgia as a harmless indulgence, a warm bath of memory into which we sink when the present disappoints. Psychologists have lately offered a more flattering account: recalling cherished moments, they argue, can strengthen a sense of meaning and connection, particularly in times of upheaval. Yet the comfort nostalgia provides is curiously selective. The past it serves up has been edited, its tedium and anxieties trimmed away, so that what we long for is less a period we actually lived through than a version of it we have quietly composed. This need not make nostalgia dishonest, merely creative. The risk arises only when that composition is mistaken for a record and offered as a blueprint for how the future ought to look.",
+    "status": "provisional",
+    "version": 1
+  }
+]

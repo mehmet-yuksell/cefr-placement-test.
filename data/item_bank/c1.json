@@ -1,0 +1,207 @@
+[
+  {
+    "id": "C1-CLZ-001",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "If I ___ that job offer last year, I would be living in another country now.",
+    "options": ["had accepted", "accepted", "would accept", "have accepted"],
+    "correct_answer": "had accepted",
+    "skill_tested": "Conditionals & hypotheticals",
+    "explanation": "This mixed conditional joins a past condition ('last year') to a present result ('would be living now'), so the if-clause needs 'had accepted'. 'Accepted' would describe an unreal present. 'Would accept' is not used in the if-clause. 'Have accepted' is not a conditional form.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "accepted": "Applies the second-conditional pattern because the result clause is about now.",
+      "would accept": "Puts 'would' in both clauses.",
+      "have accepted": "Uses the present perfect because the effect continues to the present."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: mixed conditionals are core C1.",
+    "version": 1
+  },
+  {
+    "id": "C1-CLZ-002",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "Her argument doesn't ___ water: the figures she quotes are ten years old.",
+    "options": ["hold", "carry", "keep", "bear"],
+    "correct_answer": "hold",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'Not hold water' is an idiom meaning that an argument or explanation is not convincing. 'Carry' is a blend with 'carry weight', a different idiom. 'Keep' and 'bear' do not form this expression, although both can mean 'hold' in other contexts.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "carry": "Blends with the related idiom 'carry weight'.",
+      "keep": "Chooses a synonym of 'hold' (keep = retain).",
+      "bear": "Chooses a synonym of 'hold' (bear = support a weight)."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-001",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "Having finished the report, she sent it to her manager.",
+      "Having finished the report, it was sent to her manager.",
+      "Had finished the report, she sent it to her manager.",
+      "Having finished the report, so she sent it to her manager."
+    ],
+    "correct_answer": "Having finished the report, she sent it to her manager.",
+    "skill_tested": "Clause structure",
+    "explanation": "A participle clause takes its subject from the main clause, so the person who finished must be 'she'. In the second sentence 'it' (the report) seems to finish itself. 'Had finished' is not a participle and cannot begin the clause alone. 'So' is not needed after a participle clause.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Having finished the report, it was sent to her manager.": "Dangling participle: the implied subject of 'having finished' does not match the main-clause subject.",
+      "Had finished the report, she sent it to her manager.": "Uses a finite past perfect without a subject instead of the perfect participle.",
+      "Having finished the report, so she sent it to her manager.": "Adds a conjunction as if the participle clause were a full clause (double linking)."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: participle clauses are core C1; the dangling option keeps it from being easier.",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-002",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "[Not until] the results [were published] [did] the team [understood] how serious the problem was.",
+    "options": ["Not until", "were published", "did", "understood"],
+    "correct_answer": "understood",
+    "skill_tested": "Inversion & emphasis",
+    "explanation": "After a negative opening such as 'Not until...', the main clause uses inversion with 'did' + base form, so 'understood' must be 'understand'. 'Not until' is a correct opening, 'were published' is a correct passive, and 'did' is needed for the inversion.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Not until": "Learner thinks the opening should be 'Until not' or 'Only until'.",
+      "were published": "Learner expects an active form or 'had been published'.",
+      "did": "Learner who does not know negative inversion thinks 'did' is unnecessary."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: negative inversion combined with a tense trap.",
+    "version": 1
+  },
+  {
+    "id": "C1-LEX-001",
+    "cefr_level": "C1",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate response.",
+    "question": "In a meeting, you want to disagree politely with a senior colleague's proposal. What do you say?",
+    "options": [
+      "I see your point, but I'm not sure the figures support that.",
+      "You're simply wrong — the figures clearly show the opposite.",
+      "With all due respect, that is a completely ridiculous idea.",
+      "I totally disagree with you, but do whatever you think best."
+    ],
+    "correct_answer": "I see your point, but I'm not sure the figures support that.",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "The best reply accepts the other view and then expresses doubt tentatively ('I'm not sure'). Saying someone is 'simply wrong' is too direct. 'With all due respect' does not soften an insult like 'ridiculous'. The last option is dismissive and gives up on the discussion.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "You're simply wrong — the figures clearly show the opposite.": "Unhedged contradiction; ignores the need for softening with a senior colleague.",
+      "With all due respect, that is a completely ridiculous idea.": "Believes a politeness formula neutralises any content that follows.",
+      "I totally disagree with you, but do whatever you think best.": "Mixes explicit disagreement with a dismissive close; sounds sarcastic."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: pragmatic choice with clear contrasts.",
+    "version": 1
+  },
+  {
+    "id": "C1-LEX-002",
+    "cefr_level": "C1",
+    "type": "lexical_pragmatic",
+    "question": "The negotiations ___ when neither side was willing to compromise.",
+    "options": ["broke down", "broke out", "fell out", "gave in"],
+    "correct_answer": "broke down",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "'Broke down' is used when talks fail. 'Broke out' is used for wars, fires or diseases that start suddenly. 'Fell out' describes people who argue. 'Gave in' describes people who stop resisting, and negotiations cannot do this.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "broke out": "Same verb with the particle of a different, frequent phrasal verb.",
+      "fell out": "Associates conflict between two sides with 'fall out' (argue).",
+      "gave in": "Associates 'compromise' with giving in, ignoring that the subject is 'negotiations'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: 'break down' (talks) is upper B2/C1; the abstract subject keeps it at C1.",
+    "version": 1
+  },
+  {
+    "id": "C1-RDG-001",
+    "cefr_level": "C1",
+    "type": "reading",
+    "question": "What is the writer's main concern?",
+    "options": [
+      "Relying on countable output can push aside valuable work.",
+      "Productivity numbers are usually calculated incorrectly.",
+      "Managers should stop measuring their teams' performance.",
+      "Engineers and managers are often unfairly paid."
+    ],
+    "correct_answer": "Relying on countable output can push aside valuable work.",
+    "skill_tested": "Main idea",
+    "explanation": "The writer argues that rewarding only what can be counted pushes out slower, valuable work. The text says the numbers are not false, only partial. It never says measurement should stop, and the engineer and manager are examples, not a claim about pay.",
+    "domain": "reading",
+    "passage_id": "P-C1-01",
+    "difficulty_b": 1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Productivity numbers are usually calculated incorrectly.": "Contradicts 'the danger is not that the numbers are false'.",
+      "Managers should stop measuring their teams' performance.": "Overgeneralises a criticism of partial measurement into rejecting all measurement.",
+      "Engineers and managers are often unfairly paid.": "Promotes an illustrative example (and the word 'pay') to the main point."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: the main point is stated only at the end, after a concession.",
+    "version": 1
+  },
+  {
+    "id": "C1-RDG-002",
+    "cefr_level": "C1",
+    "type": "reading",
+    "question": "The phrase 'quietly squeezed out' suggests that thinking work ...",
+    "options": [
+      "slowly disappears without anyone choosing to end it",
+      "is openly banned by senior managers in the company",
+      "becomes more efficient when people are under pressure",
+      "is done secretly, away from colleagues and the office"
+    ],
+    "correct_answer": "slowly disappears without anyone choosing to end it",
+    "skill_tested": "Inference",
+    "explanation": "'Squeezed out' means pushed out gradually by pressure from other things, and 'quietly' shows that no one notices or decides it. Nothing is openly banned. 'Squeezed' does not suggest greater efficiency here. 'Quietly' describes how the change happens, not where the work is done.",
+    "domain": "reading",
+    "passage_id": "P-C1-01",
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "is openly banned by senior managers in the company": "Reads 'squeezed out' as an active, deliberate decision.",
+      "becomes more efficient when people are under pressure": "Associates squeezing with pressure that improves output.",
+      "is done secretly, away from colleagues and the office": "Reads 'quietly' as 'secretly' and assumes a place."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  }
+]
