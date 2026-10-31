@@ -223,5 +223,118 @@
     "status": "provisional",
     "author_notes": "b -0.2 from anchor: the 'record' contrast in the next sentence helps.",
     "version": 1
+  },
+  {
+    "id": "C2-CLZ-003",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "___ the evidence, the jury had no option but to acquit him.",
+    "options": [
+      "Given",
+      "Giving",
+      "Having given",
+      "Provided"
+    ],
+    "correct_answer": "Given",
+    "skill_tested": "Clause structure",
+    "explanation": "'Given' can mean 'considering' and is followed directly by a noun phrase. 'Giving' and 'Having given' would mean the jury gave the evidence, which makes no sense. 'Provided' means 'on condition that' and needs a clause, not a noun phrase.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Giving": "Treats 'given' as an ordinary participle and changes it to the active form.",
+      "Having given": "Builds a perfect participle clause with the jury as the giver.",
+      "Provided": "Confuses two conjunction-like participles, 'given' and 'provided'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: prepositional 'given' is an advanced, formal use.",
+    "version": 1
+  },
+  {
+    "id": "C2-CLZ-004",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "The minister's latest gaffe was the final ___ for voters who had already lost patience.",
+    "options": [
+      "straw",
+      "drop",
+      "nail",
+      "stone"
+    ],
+    "correct_answer": "straw",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'The final straw' is the last problem that makes someone's patience run out. 'Drop' comes from a similar idiom in other languages ('the last drop'), but English uses 'straw'. 'Nail' belongs to 'the final nail in the coffin', which needs the whole phrase. 'Stone' forms no idiom here.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "drop": "L1 transfer: Turkish 'bardağı taşıran son damla' (the last drop that makes the glass overflow).",
+      "nail": "Partial recall of 'the final nail in the coffin'.",
+      "stone": "Chooses a concrete noun by guesswork."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-003",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "By the time the report [is published] next month, the team [will be working] on it for [over] two years, which [is] unusually long.",
+    "options": [
+      "is published",
+      "will be working",
+      "over",
+      "is"
+    ],
+    "correct_answer": "will be working",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "An action continuing up to a future point needs the future perfect continuous: 'will have been working'. 'Is published' is correct, because time clauses use a present form for the future. 'Over' correctly means 'more than'. 'Is' agrees with the clause about the length of time.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "is published": "Learner expects 'will be published' in the time clause.",
+      "over": "Learner thinks 'over' cannot mean 'more than' with periods of time.",
+      "is": "Learner expects 'will be' because the sentence is about the future."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: future perfect continuous is C1-C2; the time clause adds a second trap.",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-003",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate option.",
+    "question": "Which sentence is most appropriate in a formal letter turning down a job offer?",
+    "options": [
+      "I am grateful for the offer but have accepted another position.",
+      "I regret that your offer fails to meet my expectations.",
+      "I hereby decline your offer and request no further contact.",
+      "Thanks a lot for the offer, but I'll pass on this one."
+    ],
+    "correct_answer": "I am grateful for the offer but have accepted another position.",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "The key is polite, formal and gives a neutral reason. 'Fails to meet my expectations' is formal but insulting. 'Request no further contact' is formal but hostile. 'Thanks a lot ... I'll pass' is far too informal for a letter to an employer.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I regret that your offer fails to meet my expectations.": "Formal register, but the content is face-threatening.",
+      "I hereby decline your offer and request no further contact.": "Over-formal legal register that sounds hostile.",
+      "Thanks a lot for the offer, but I'll pass on this one.": "Informal spoken register in a formal letter."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: three formal-looking options require fine register judgement.",
+    "version": 1
   }
 ]

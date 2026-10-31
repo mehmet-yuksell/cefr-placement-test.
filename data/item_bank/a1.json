@@ -4,7 +4,12 @@
     "cefr_level": "A1",
     "type": "cloze",
     "question": "My brother ___ in a bank. He likes his job.",
-    "options": ["works", "work", "is work", "working"],
+    "options": [
+      "works",
+      "work",
+      "is work",
+      "working"
+    ],
     "correct_answer": "works",
     "skill_tested": "Verb patterns & agreement",
     "explanation": "Use 'works' for he/she/it in the present simple. 'Work' is missing the -s. 'Is work' wrongly puts 'is' before a simple verb. 'Working' needs 'is' before it, and the present simple fits a regular job better.",
@@ -27,7 +32,12 @@
     "cefr_level": "A1",
     "type": "cloze",
     "question": "The shop is ___ now. It opens again at nine tomorrow morning.",
-    "options": ["closed", "close", "open", "full"],
+    "options": [
+      "closed",
+      "close",
+      "open",
+      "full"
+    ],
     "correct_answer": "closed",
     "skill_tested": "Word choice",
     "explanation": "'Closed' means not open, so it matches a shop that opens again tomorrow. 'Close' as an adjective means 'near'. 'Open' contradicts 'opens again'. 'Full' means it has many people in it; it does not explain why it opens tomorrow.",
@@ -50,7 +60,12 @@
     "cefr_level": "A1",
     "type": "error_id",
     "question": "We [are] from Spain, but now we [live] [in] [the] Paris.",
-    "options": ["are", "live", "in", "the"],
+    "options": [
+      "are",
+      "live",
+      "in",
+      "the"
+    ],
     "correct_answer": "the",
     "skill_tested": "Articles & determiners",
     "explanation": "City names normally take no article, so 'the Paris' is wrong; say 'in Paris'. 'Are' is correct with 'we'. 'Live' is the correct present simple for where you live now. 'In' is the right preposition for cities.",
@@ -73,7 +88,12 @@
     "cefr_level": "A1",
     "type": "error_id",
     "question": "The lesson [starts] [at] nine o'clock [in] Monday, so I [can't] be late.",
-    "options": ["starts", "at", "in", "can't"],
+    "options": [
+      "starts",
+      "at",
+      "in",
+      "can't"
+    ],
     "correct_answer": "in",
     "skill_tested": "Prepositions",
     "explanation": "We use 'on' with days, so 'in Monday' should be 'on Monday'. 'Starts' is correct for 'the lesson'. 'At' is correct with clock times. 'Can't' is a correct modal form, followed by the base verb 'be'.",
@@ -97,7 +117,12 @@
     "type": "lexical_pragmatic",
     "instruction": "Choose the best reply.",
     "question": "Your friend says, \"Thank you for the flowers!\" What do you say?",
-    "options": ["You're welcome.", "Yes, please.", "No, thank you.", "Me too."],
+    "options": [
+      "You're welcome.",
+      "Yes, please.",
+      "No, thank you.",
+      "Me too."
+    ],
     "correct_answer": "You're welcome.",
     "skill_tested": "Register & pragmatics",
     "explanation": "'You're welcome.' is the normal answer to 'Thank you'. 'Yes, please.' and 'No, thank you.' answer an offer, like 'Do you want some tea?'. 'Me too.' agrees with something a person says about themselves.",
@@ -120,7 +145,12 @@
     "cefr_level": "A1",
     "type": "lexical_pragmatic",
     "question": "Excuse me, can I ___ you a question?",
-    "options": ["ask", "say", "tell", "speak"],
+    "options": [
+      "ask",
+      "say",
+      "tell",
+      "speak"
+    ],
     "correct_answer": "ask",
     "skill_tested": "Collocations",
     "explanation": "We 'ask' a question. 'Say' is not followed directly by a person. 'Tell' is used with information or a story, not a question. 'Speak' needs 'to' before a person and is not used with 'a question'.",
@@ -143,7 +173,12 @@
     "cefr_level": "A1",
     "type": "reading",
     "question": "Why does Lena like her job?",
-    "options": ["She meets a lot of people.", "She starts work early.", "She works near the sea.", "She can read at work."],
+    "options": [
+      "She meets a lot of people.",
+      "She starts work early.",
+      "She works near the sea.",
+      "She can read at work."
+    ],
     "correct_answer": "She meets a lot of people.",
     "skill_tested": "Detail",
     "explanation": "Lena says she likes her job 'because I meet a lot of people'. She does start early, but that is not the reason. The sea is near her grandmother's house, and she reads at home on Sundays.",
@@ -166,7 +201,12 @@
     "cefr_level": "A1",
     "type": "reading",
     "question": "What is the best title for the text?",
-    "options": ["A week in Lena's life", "Lena's grandmother", "How to work in a café", "A day at the beach"],
+    "options": [
+      "A week in Lena's life",
+      "Lena's grandmother",
+      "How to work in a café",
+      "A day at the beach"
+    ],
     "correct_answer": "A week in Lena's life",
     "skill_tested": "Main idea",
     "explanation": "The text tells us what Lena does on weekdays, on Saturdays and on Sundays, so it is about her week. Her grandmother, the café and the beach are each only one part of the text.",
@@ -182,6 +222,119 @@
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: main idea is slightly harder than detail at A1.",
+    "version": 1
+  },
+  {
+    "id": "A1-CLZ-003",
+    "cefr_level": "A1",
+    "type": "cloze",
+    "question": "How ___ brothers and sisters do you have?",
+    "options": [
+      "many",
+      "much",
+      "old",
+      "long"
+    ],
+    "correct_answer": "many",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "'Brothers and sisters' are things you can count, so we ask 'How many'. 'Much' is for things we cannot count, like water or time. 'How old' asks about age and 'How long' asks about time or length; neither goes before a noun like 'brothers'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "much": "Confuses countable and uncountable quantity words.",
+      "old": "Recalls 'How old...?' as a common question chunk.",
+      "long": "Recalls 'How long...?' as a common question chunk."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: count/non-count contrast.",
+    "version": 1
+  },
+  {
+    "id": "A1-CLZ-004",
+    "cefr_level": "A1",
+    "type": "cloze",
+    "question": "I'm ___. Can I have a glass of water, please?",
+    "options": [
+      "thirsty",
+      "hungry",
+      "tired",
+      "cold"
+    ],
+    "correct_answer": "thirsty",
+    "skill_tested": "Word choice",
+    "explanation": "We say 'thirsty' when we want a drink, so it matches 'a glass of water'. 'Hungry' means you want food. 'Tired' means you need rest or sleep. 'Cold' means you need warm clothes or a warm place, not water.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "hungry": "Closest everyday need word; confuses food and drink.",
+      "tired": "Picks a common 'how I feel' adjective without using the clue 'water'.",
+      "cold": "Picks a common 'how I feel' adjective without using the clue 'water'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-ERR-003",
+    "cefr_level": "A1",
+    "type": "error_id",
+    "question": "Look! The children [are] [play] [in] [the] garden.",
+    "options": [
+      "are",
+      "play",
+      "in",
+      "the"
+    ],
+    "correct_answer": "play",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "'Look!' shows the action is happening now, so we need the present continuous: 'are playing'. 'Are' is correct with 'the children'. 'In' is the right preposition for a garden. 'The' is correct because we know which garden.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "are": "Learner may expect 'is' because 'children' does not end in -s.",
+      "in": "Learner may expect 'on' or 'at' with a place.",
+      "the": "L1 transfer: Turkish has no definite article, so 'the' can look unnecessary."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.2 from anchor: the continuous form is signalled only by 'Look!'.",
+    "version": 1
+  },
+  {
+    "id": "A1-LEX-003",
+    "cefr_level": "A1",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the best option.",
+    "question": "It's 8 a.m. You meet your teacher at school. What do you say?",
+    "options": [
+      "Good morning!",
+      "Good night!",
+      "Goodbye!",
+      "Good evening!"
+    ],
+    "correct_answer": "Good morning!",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "At 8 a.m. you greet someone with 'Good morning!'. 'Good evening!' is a greeting for later in the day. 'Good night!' is said when you leave in the evening or go to bed. 'Goodbye!' is for leaving, not for meeting someone.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Good night!": "Treats 'Good night' as a greeting, as some languages' equivalents allow.",
+      "Goodbye!": "Confuses greeting with leave-taking.",
+      "Good evening!": "Knows the greeting pattern but ignores the time clue '8 a.m.'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: formulaic greeting.",
     "version": 1
   }
 ]

@@ -4,7 +4,12 @@
     "cefr_level": "B2",
     "type": "cloze",
     "question": "Sara isn't answering her calls. She ___ her phone at home.",
-    "options": ["must have left", "must leave", "should have left", "can have left"],
+    "options": [
+      "must have left",
+      "must leave",
+      "should have left",
+      "can have left"
+    ],
     "correct_answer": "must have left",
     "skill_tested": "Modal verbs",
     "explanation": "'Must have left' expresses a confident guess about the past. 'Must leave' refers to an obligation or to the present. 'Should have left' means it was the right thing to do, not a guess. 'Can have left' is not used for positive guesses about the past.",
@@ -27,7 +32,12 @@
     "cefr_level": "B2",
     "type": "cloze",
     "question": "There has been a ___ increase in the number of people working from home.",
-    "options": ["significant", "significance", "significantly", "signified"],
+    "options": [
+      "significant",
+      "significance",
+      "significantly",
+      "signified"
+    ],
     "correct_answer": "significant",
     "skill_tested": "Word formation",
     "explanation": "Before a noun ('increase') we need an adjective: 'significant'. 'Significance' is a noun. 'Significantly' is an adverb, used with verbs or adjectives. 'Signified' is a past form of 'signify', which means 'show' or 'mean'.",
@@ -50,7 +60,12 @@
     "cefr_level": "B2",
     "type": "error_id",
     "question": "I [had] my car [repair] last week, and it [has been running] [perfectly] since then.",
-    "options": ["had", "repair", "has been running", "perfectly"],
+    "options": [
+      "had",
+      "repair",
+      "has been running",
+      "perfectly"
+    ],
     "correct_answer": "repair",
     "skill_tested": "Passive & causative",
     "explanation": "In the causative 'have something done', the verb is a past participle: 'had my car repaired'. 'Had' is correct for last week. 'Has been running' fits an activity from then until now. 'Perfectly' is an adverb that correctly describes 'running'.",
@@ -101,7 +116,12 @@
     "cefr_level": "B2",
     "type": "lexical_pragmatic",
     "question": "The city council has ___ measures to reduce air pollution near schools.",
-    "options": ["taken", "made", "done", "put"],
+    "options": [
+      "taken",
+      "made",
+      "done",
+      "put"
+    ],
     "correct_answer": "taken",
     "skill_tested": "Collocations",
     "explanation": "We 'take measures' to deal with a problem. 'Made' is common with plans or decisions, but not with 'measures'. 'Done' is a general verb that does not go with 'measures'. 'Put' needs 'in place': 'put measures in place'.",
@@ -124,7 +144,12 @@
     "cefr_level": "B2",
     "type": "lexical_pragmatic",
     "question": "The exam was a ___ of cake. I finished it in half the time.",
-    "options": ["piece", "slice", "bit", "part"],
+    "options": [
+      "piece",
+      "slice",
+      "bit",
+      "part"
+    ],
     "correct_answer": "piece",
     "skill_tested": "Idioms & fixed expressions",
     "explanation": "'A piece of cake' is a fixed expression meaning 'very easy', and its words cannot be changed. 'A slice of cake' and 'a bit of cake' only describe real cake. 'Part' does not appear in this expression.",
@@ -175,7 +200,12 @@
     "cefr_level": "B2",
     "type": "reading",
     "question": "What does the word 'plots' mean in the text?",
-    "options": ["areas of land for growing plants", "secret plans made by a group", "the main events of a story", "groups of local volunteers"],
+    "options": [
+      "areas of land for growing plants",
+      "secret plans made by a group",
+      "the main events of a story",
+      "groups of local volunteers"
+    ],
     "correct_answer": "areas of land for growing plants",
     "skill_tested": "Vocabulary in context",
     "explanation": "'Plots' are the small areas of land in the garden, which are 'abandoned' when volunteers leave. 'Plot' can also mean a secret plan or the events of a story, but those meanings do not fit here. The volunteers are people, not the plots.",
@@ -191,6 +221,118 @@
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: context (gardens, abandoned) strongly supports the key. The target word itself is the construct.",
+    "version": 1
+  },
+  {
+    "id": "B2-CLZ-003",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "___ of the two candidates had the experience we needed, so we advertised the job again.",
+    "options": [
+      "Neither",
+      "None",
+      "Both",
+      "Either"
+    ],
+    "correct_answer": "Neither",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "'Neither' means 'not one and not the other' of two, which explains why the job was advertised again. 'None' is used for more than two. 'Both' contradicts advertising again. 'Either' means 'one or the other' and does not make the sentence negative.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "None": "Uses the negative for groups of three or more with only two people.",
+      "Both": "Ignores the logic of 'so we advertised the job again'.",
+      "Either": "Knows the 'of the two' pattern but misses the negative meaning."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-003",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What is the text mainly about?",
+    "options": [
+      "How expecting to teach can improve learning, within limits",
+      "Why teachers understand their subjects better than students",
+      "How students should prepare for difficult tests",
+      "Why teaching others makes most students anxious"
+    ],
+    "correct_answer": "How expecting to teach can improve learning, within limits",
+    "skill_tested": "Main idea",
+    "explanation": "The text explains that expecting to teach helps students remember more, then notes that the effect disappears with very difficult material. The teachers' joke is only an opening. Test preparation is not discussed, and anxiety affected only some students with hard material.",
+    "domain": "reading",
+    "passage_id": "P-B2-02",
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Why teachers understand their subjects better than students": "Takes the opening joke as the topic.",
+      "How students should prepare for difficult tests": "Builds advice the text never gives from the words 'test' and 'difficult'.",
+      "Why teaching others makes most students anxious": "Overgeneralises the limitation in the last sentence."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: clear topic sentence plus a stated limitation.",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-004",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "According to the text, how did expecting to teach change the way students studied?",
+    "options": [
+      "They looked for links between ideas.",
+      "They learned more facts by heart.",
+      "They spent more hours studying.",
+      "They explained the material to classmates."
+    ],
+    "correct_answer": "They looked for links between ideas.",
+    "skill_tested": "Detail",
+    "explanation": "The text says they 'arranged ideas more carefully and looked for links between them rather than learning isolated facts by heart'. Learning facts by heart is the opposite. Study time is not mentioned, and no one actually taught classmates.",
+    "domain": "reading",
+    "passage_id": "P-B2-02",
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "They learned more facts by heart.": "Reverses 'rather than learning isolated facts by heart'.",
+      "They spent more hours studying.": "A plausible assumption the text does not support.",
+      "They explained the material to classmates.": "Misses 'even though neither group actually taught anyone'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-005",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What does the final sentence suggest?",
+    "options": [
+      "Expecting to teach may not help with very hard material.",
+      "Difficult material should never be taught to students.",
+      "Anxious students always remember less than calm ones.",
+      "Teachers should stop asking students to explain ideas."
+    ],
+    "correct_answer": "Expecting to teach may not help with very hard material.",
+    "skill_tested": "Inference",
+    "explanation": "The last sentence says that with very difficult material some students became anxious 'and the advantage disappeared', so expecting to teach may not help there. It does not say hard material should never be taught, that anxious students always remember less, or that teachers should change their methods.",
+    "domain": "reading",
+    "passage_id": "P-B2-02",
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Difficult material should never be taught to students.": "Turns a limitation into an absolute rule.",
+      "Anxious students always remember less than calm ones.": "Overgeneralises from 'some students' to 'always'.",
+      "Teachers should stop asking students to explain ideas.": "Draws a practical conclusion the writer does not make."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: distractors are tempting overgeneralisations.",
     "version": 1
   }
 ]

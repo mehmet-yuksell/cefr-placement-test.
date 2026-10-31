@@ -223,5 +223,117 @@
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: requires combining three details.",
     "version": 1
+  },
+  {
+    "id": "B1-CLZ-003",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "This bridge ___ in 1890 and is still used today.",
+    "options": [
+      "was built",
+      "built",
+      "has built",
+      "was building"
+    ],
+    "correct_answer": "was built",
+    "skill_tested": "Passive & causative",
+    "explanation": "The bridge did not build itself, so we need the passive 'was built'. 'Built' alone makes the bridge the builder. 'Has built' is an active present perfect. 'Was building' is an active continuous form, and the date shows a finished event.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "built": "Omits 'be' in the passive because the verb already looks past.",
+      "has built": "Chooses a perfect form because the bridge still exists today.",
+      "was building": "Mixes up 'was' + -ing with the passive 'was' + past participle."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-003",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "What is the main purpose of the notice?",
+    "options": [
+      "To tell people about changes at the library",
+      "To ask people to take part in a survey",
+      "To explain why the library is closing",
+      "To invite adults to join a reading club"
+    ],
+    "correct_answer": "To tell people about changes at the library",
+    "skill_tested": "Main idea",
+    "explanation": "The notice describes several changes: Sunday opening, shorter Wednesday hours and a new club. The survey has already happened. The library is not closing; it closes an hour earlier on one day. The reading club is for teenagers, not adults.",
+    "domain": "reading",
+    "passage_id": "P-B1-02",
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "To ask people to take part in a survey": "The survey is mentioned, but it has already taken place.",
+      "To explain why the library is closing": "Over-reads 'close one hour earlier'.",
+      "To invite adults to join a reading club": "Picks one detail and changes who it is for."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: purpose is clear from the first sentence.",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-004",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "Why will the library close earlier on Wednesdays?",
+    "options": [
+      "To pay for opening on Sundays",
+      "Because few people visit then",
+      "Because of the new reading club",
+      "So staff can empty the book box"
+    ],
+    "correct_answer": "To pay for opening on Sundays",
+    "skill_tested": "Detail",
+    "explanation": "The notice says, 'To pay for the extra day, the library will close one hour earlier on Wednesdays.' It does not say Wednesdays are quiet, and the reading club and the book box are separate pieces of news.",
+    "domain": "reading",
+    "passage_id": "P-B1-02",
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Because few people visit then": "A sensible guess that the text does not support.",
+      "Because of the new reading club": "Links two nearby pieces of news that are not connected.",
+      "So staff can empty the book box": "Builds a reason from an unrelated detail."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-005",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "In the notice, 'help run the club' means help to ...",
+    "options": [
+      "plan and manage the club",
+      "take part in the club",
+      "go to the club quickly",
+      "pay for the club"
+    ],
+    "correct_answer": "plan and manage the club",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "Here 'run' means manage: the library wants people who will plan and lead the club. Taking part is what members do. 'Run' does not mean moving fast in this phrase, and paying is not mentioned in connection with the club.",
+    "domain": "reading",
+    "passage_id": "P-B1-02",
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "take part in the club": "Confuses running a club with being a member.",
+      "go to the club quickly": "Takes the most familiar, physical meaning of 'run'.",
+      "pay for the club": "Borrows 'to pay for' from an earlier sentence."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: common word with a less familiar meaning.",
+    "version": 1
   }
 ]

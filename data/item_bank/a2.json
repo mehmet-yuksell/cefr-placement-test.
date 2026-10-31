@@ -223,5 +223,117 @@
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: several competing times appear in the text.",
     "version": 1
+  },
+  {
+    "id": "A2-CLZ-003",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "All children in my country ___ go to school from the age of six. It is not optional.",
+    "options": [
+      "have to",
+      "can",
+      "might",
+      "would"
+    ],
+    "correct_answer": "have to",
+    "skill_tested": "Modal verbs",
+    "explanation": "'Have to' expresses an obligation, which matches 'It is not optional'. 'Can' only says that something is allowed or possible. 'Might' means it is possible but not certain. 'Would' is used for imagined situations or polite requests, not rules.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "can": "Confuses permission with obligation.",
+      "might": "Treats a modal of possibility as a general modal.",
+      "would": "Uses 'would' as a default modal."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: obligation must be inferred from the second sentence.",
+    "version": 1
+  },
+  {
+    "id": "A2-CLZ-004",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "I usually ___ my homework after dinner.",
+    "options": [
+      "do",
+      "make",
+      "take",
+      "have"
+    ],
+    "correct_answer": "do",
+    "skill_tested": "Collocations",
+    "explanation": "We 'do' homework, just as we do exercises or housework. 'Make' is used when we create something, such as a cake or a plan. 'Take' and 'have' do not go with 'homework' in this sentence.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "make": "L1 transfer: Turkish 'yapmak' covers both do and make.",
+      "take": "Analogy with 'take a test' or 'take a class'.",
+      "have": "Analogy with 'have homework' (be given homework), which does not fit 'after dinner'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: very frequent collocation.",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-003",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "I [usually] go to work [by] bus, but yesterday I went [on] [a] foot.",
+    "options": [
+      "usually",
+      "by",
+      "on",
+      "a"
+    ],
+    "correct_answer": "a",
+    "skill_tested": "Articles & determiners",
+    "explanation": "We say 'on foot' with no article, so 'a' is wrong. 'Usually' is in the right place, before the main verb. 'By' is correct in 'by bus'. 'On' is correct in 'on foot'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "usually": "Learner thinks frequency adverbs must go at the end of the sentence.",
+      "by": "L1 transfer: Turkish 'otobüsle' (with the bus) suggests 'with bus'.",
+      "on": "Learner expects 'by foot' by analogy with 'by bus'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: fixed phrase without article.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-003",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "question": "Could you ___ me your pen for a minute? I'll give it back.",
+    "options": [
+      "lend",
+      "borrow",
+      "keep",
+      "take"
+    ],
+    "correct_answer": "lend",
+    "skill_tested": "Word choice",
+    "explanation": "'Lend' means let someone use something of yours for a short time. 'Borrow' is what the other person does: 'Can I borrow your pen?'. 'Keep' means not give it back. 'Take' does not fit the pattern 'take me something'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "borrow": "Confuses the two directions of lending; Turkish uses 'ödünç' with both 'almak' and 'vermek'.",
+      "keep": "Ignores 'I'll give it back'.",
+      "take": "Uses a general verb of moving objects."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
   }
 ]

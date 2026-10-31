@@ -1,0 +1,65 @@
+# Simulation: n=2000, seed=42, length=40, mode=adaptive, true theta ~ N(0, 1.2), bank=72 items / 8 passages
+These figures describe the algorithm under idealised assumptions, not real-world validity.
+
+## ideal (n = 2000)
+mean test length         40.0
+exact CEFR agreement     65.0%
+within one level         99.3%
+mean SE                  0.447
+RMSE of theta            0.485
+mean bias of theta       +0.008
+labelled borderline      45.2%
+confusion matrix (rows = true level, columns = estimated level):
+            A1    A2    B1    B2    C1    C2   exact
+  A1        37    52     5     0     0     0   39.4%
+  A2        14   190   118     6     0     0   57.9%
+  B1         0    50   436   114     0     0   72.7%
+  B2         0     0   111   425    59     0   71.4%
+  C1         0     0     2    95   173    10   61.8%
+  C2         0     0     0     1    63    39   37.9%
+relaxation events (tests affected): band_fallback=2000
+
+## misspecified (n = 2000)
+mean test length         40.0
+exact CEFR agreement     62.9%
+within one level         99.5%
+mean SE                  0.447
+RMSE of theta            0.493
+mean bias of theta       -0.078
+labelled borderline      43.6%
+confusion matrix (rows = true level, columns = estimated level):
+            A1    A2    B1    B2    C1    C2   exact
+  A1        52    40     2     0     0     0   55.3%
+  A2        24   200   102     2     0     0   61.0%
+  B1         1    76   416   106     1     0   69.3%
+  B2         0     2   153   392    48     0   65.9%
+  C1         0     0     1   120   156     3   55.7%
+  C2         0     0     0     1    59    43   41.7%
+relaxation events (tests affected): band_fallback=2000
+
+## oracle ceiling (n = 2000)
+mean test length         40.0
+exact CEFR agreement     65.7%
+within one level         99.8%
+mean SE                  0.395
+RMSE of theta            0.431
+mean bias of theta       -0.011
+labelled borderline      39.9%
+confusion matrix (rows = true level, columns = estimated level):
+            A1    A2    B1    B2    C1    C2   exact
+  A1        49    43     2     0     0     0   52.1%
+  A2         8   205   115     0     0     0   62.5%
+  B1         0    64   423   113     0     0   70.5%
+  B2         0     0   141   404    50     0   67.9%
+  C1         0     0     1    96   177     6   63.2%
+  C2         0     0     0     1    46    56   54.4%
+
+## item exposure (ideal scenario)
+max exposure rate        100.0%
+median exposure rate     61.6%
+items never used         0.0%
+most exposed             A1-RDG-001 100%, A1-RDG-002 100%, B1-CLZ-002 94%, B1-ERR-002 92%, B1-ERR-001 91%
+
+GATE within-one-level >= 95% (ideal): 99.3% -> PASS
+exact agreement 65.0% vs oracle ceiling 65.7%
+exit40=0

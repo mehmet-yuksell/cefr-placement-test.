@@ -4,7 +4,12 @@
     "cefr_level": "C1",
     "type": "cloze",
     "question": "If I ___ that job offer last year, I would be living in another country now.",
-    "options": ["had accepted", "accepted", "would accept", "have accepted"],
+    "options": [
+      "had accepted",
+      "accepted",
+      "would accept",
+      "have accepted"
+    ],
     "correct_answer": "had accepted",
     "skill_tested": "Conditionals & hypotheticals",
     "explanation": "This mixed conditional joins a past condition ('last year') to a present result ('would be living now'), so the if-clause needs 'had accepted'. 'Accepted' would describe an unreal present. 'Would accept' is not used in the if-clause. 'Have accepted' is not a conditional form.",
@@ -27,7 +32,12 @@
     "cefr_level": "C1",
     "type": "cloze",
     "question": "Her argument doesn't ___ water: the figures she quotes are ten years old.",
-    "options": ["hold", "carry", "keep", "bear"],
+    "options": [
+      "hold",
+      "carry",
+      "keep",
+      "bear"
+    ],
     "correct_answer": "hold",
     "skill_tested": "Idioms & fixed expressions",
     "explanation": "'Not hold water' is an idiom meaning that an argument or explanation is not convincing. 'Carry' is a blend with 'carry weight', a different idiom. 'Keep' and 'bear' do not form this expression, although both can mean 'hold' in other contexts.",
@@ -78,7 +88,12 @@
     "cefr_level": "C1",
     "type": "error_id",
     "question": "[Not until] the results [were published] [did] the team [understood] how serious the problem was.",
-    "options": ["Not until", "were published", "did", "understood"],
+    "options": [
+      "Not until",
+      "were published",
+      "did",
+      "understood"
+    ],
     "correct_answer": "understood",
     "skill_tested": "Inversion & emphasis",
     "explanation": "After a negative opening such as 'Not until...', the main clause uses inversion with 'did' + base form, so 'understood' must be 'understand'. 'Not until' is a correct opening, 'were published' is a correct passive, and 'did' is needed for the inversion.",
@@ -130,7 +145,12 @@
     "cefr_level": "C1",
     "type": "lexical_pragmatic",
     "question": "The negotiations ___ when neither side was willing to compromise.",
-    "options": ["broke down", "broke out", "fell out", "gave in"],
+    "options": [
+      "broke down",
+      "broke out",
+      "fell out",
+      "gave in"
+    ],
     "correct_answer": "broke down",
     "skill_tested": "Phrasal verbs",
     "explanation": "'Broke down' is used when talks fail. 'Broke out' is used for wars, fires or diseases that start suddenly. 'Fell out' describes people who argue. 'Gave in' describes people who stop resisting, and negotiations cannot do this.",
@@ -199,6 +219,118 @@
       "is openly banned by senior managers in the company": "Reads 'squeezed out' as an active, deliberate decision.",
       "becomes more efficient when people are under pressure": "Associates squeezing with pressure that improves output.",
       "is done secretly, away from colleagues and the office": "Reads 'quietly' as 'secretly' and assumes a place."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-CLZ-003",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "The museum is thought ___ over a million visitors last year.",
+    "options": [
+      "to have attracted",
+      "to attract",
+      "having attracted",
+      "that it attracted"
+    ],
+    "correct_answer": "to have attracted",
+    "skill_tested": "Passive & causative",
+    "explanation": "With 'is thought', a past event needs a perfect infinitive: 'is thought to have attracted'. 'To attract' refers to the present or a general fact, not last year. 'Having attracted' does not follow 'is thought'. 'That it attracted' belongs to the pattern 'It is thought that...', not this one.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "to attract": "Keeps the reporting pattern but ignores the past time 'last year'.",
+      "having attracted": "Uses an -ing perfect form where the pattern needs an infinitive.",
+      "that it attracted": "Blends the personal passive with 'It is thought that...'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-CLZ-004",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "The committee's decision was greeted with widespread ___ by local people.",
+    "options": [
+      "disapproval",
+      "disapproving",
+      "unapproval",
+      "disapproved"
+    ],
+    "correct_answer": "disapproval",
+    "skill_tested": "Word formation",
+    "explanation": "After 'widespread' we need a noun, and the negative noun of 'approval' is 'disapproval'. 'Disapproving' is an adjective, 'disapproved' is a verb form, and 'unapproval' is not an English word: 'approve' takes the prefix dis-, not un-.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "disapproving": "Right prefix, wrong word class (adjective).",
+      "unapproval": "Overgeneralises the negative prefix un-.",
+      "disapproved": "Right prefix, wrong word class (verb form)."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: prefix and suffix choice, but a frequent word family.",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-003",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "Her research [focuses] [in] the effects of noise [on] sleep, a topic [few] people consider.",
+    "options": [
+      "focuses",
+      "in",
+      "on",
+      "few"
+    ],
+    "correct_answer": "in",
+    "skill_tested": "Prepositions",
+    "explanation": "'Focus' takes 'on', so 'focuses in' should be 'focuses on'. 'Focuses' agrees with 'her research'. 'On' is correct in 'the effects of noise on sleep'. 'Few' correctly means 'not many', which fits a topic that people seldom think about.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "focuses": "Learner may think an uncountable subject such as 'research' takes 'focus'.",
+      "on": "Learner sees two 'on' phrases close together and assumes one must be wrong.",
+      "few": "Confuses 'few' (not many) with 'a few' (some)."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: dependent preposition is B2, but two competing prepositions raise it to C1.",
+    "version": 1
+  },
+  {
+    "id": "C1-LEX-003",
+    "cefr_level": "C1",
+    "type": "lexical_pragmatic",
+    "question": "The company is facing ___ competition from cheaper online rivals.",
+    "options": [
+      "fierce",
+      "violent",
+      "angry",
+      "wild"
+    ],
+    "correct_answer": "fierce",
+    "skill_tested": "Collocations",
+    "explanation": "'Fierce competition' is a strong, natural collocation. 'Violent' describes physical force, not business rivalry. 'Angry' describes people's feelings, not competition. 'Wild' does not collocate with 'competition'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "violent": "L1 transfer: Turkish 'şiddetli rekabet' suggests 'violent competition'.",
+      "angry": "Personifies competition with an emotion adjective.",
+      "wild": "Chooses an intensifying adjective that collocates elsewhere (wild guess)."
     },
     "status": "provisional",
     "author_notes": "",

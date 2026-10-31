@@ -27,3 +27,36 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - Option-length balance: per item, the key may not exceed the longest distractor (or undercut the shortest) by more than max(3 chars, 25%); bank-wide, the key may be strictly longest or shortest in at most 40% of items. Reason: catches the "longest answer" cue without forbidding natural variation.
 - C2-ERR-001: the error segment was widened from "are" to "are expected". Reason: the validator flagged the key as conspicuously short, which is a test-wise cue.
 - Audit rewrites: A2-RDG-002 "suggest" → "want"; B1-RDG-001 "unsure" → "worried". Reason: both words are above the item's level.
+
+## Phase 2
+
+- Information-peak offset: targets use b = theta - 0.31 (the 3PL information peak for c = 0.25). Reason: aiming b at theta itself wastes information.
+- Stage 3 aims halfway between theta2 and the nearest cut score, not at the cut itself. Reason: the brief says "biased toward" the boundary, and halfway keeps items informative for the examinee's own ability as well.
+- Relaxation order: in-band unseen → any-distance unseen (`band_fallback`) → other kinds beyond quota (`content_relaxed`) → seen units from the oldest attempt (`repeat`) → end the test (`bank_exhausted`). Reason: the no-repeat promise to users outranks content balance, which outranks difficulty fit.
+- A reading passage must fit inside the current stage, and must leave a remaining reading quota of 0 or at least 2. Reason: siblings are served consecutively, and quotas must stay reachable with 2–3-question passages.
+- Each random draw uses `Random(f"{seed}:{position}")`. Reason: reproducible from the seed alone, with no RNG state to persist.
+- The fixed form ignores the seed and uses N = 1 (closest item). Reason: it exists for debugging and comparison, so every first-time taker should get the same form.
+- Level probabilities: a grid point lying exactly on a cut gives half its mass to each side. Reason: otherwise the grid biases probabilities upwards.
+- The headline (and the simulation's classification) is the most likely level, not the band of the EAP point. Reason: consistency with the result-card headline.
+- Ties in most-likely level go to the lower level. Reason: a conservative placement.
+- No result below 10 answers (`MIN_ITEMS_FOR_RESULT`). An abandoned session with at least 10 answers gets a partial result marked incomplete. Reason: EAP with very few answers mostly reflects the prior.
+- Retake study: the simulation runs 200 examinees × 3 attempts and reports repeats. The oracle ceiling is simulated with items at each examinee's own information peak. Reason: puts exact agreement next to the best achievable at this length (gate A).
+- Misspecification scenario: true b = stored b + U(-0.5, 0.5), true a ~ U(0.7, 1.4). Reason: shows robustness to provisional parameters being wrong.
+
+## Phase 3
+
+- The app keeps the engine state in `st.session_state` and writes every answer to SQLite immediately. Resuming an interrupted session is not supported; starting again marks the old session `abandoned`. Reason: simple and loss-free for the calibration log; resume was not required.
+- The soft timer is the elapsed time shown on each question (it refreshes per question, not every second). Reason: a live clock needs custom JavaScript, and timing is display-only.
+- Options are shuffled with `Random(f"{seed}:{item_id}")`. Reason: stable across reruns within a session; the key position is never stored.
+- `[segment]` markers are rendered underlined and bold, and gaps as escaped underscores. Reason: Markdown would otherwise turn `___` into formatting.
+- The result card is rebuilt in the current language on every render. Reason: the TR/EN switch works on the result screen too.
+- `PLACEMENT_DB`, `PLACEMENT_KEY` and `PLACEMENT_SEED` environment overrides were added. Reason: tests and the scripted run-through need an isolated database and a reproducible seed; normal use needs none of them.
+
+## Phase 4
+
+- Bank expanded to exactly 72 items (12 per level), with 18 reading items in 8 passages; two new 3-question passages sit at B1 and B2. Reason: 3-question passages make the 7-item reading quota reachable (2 + 2 + 3), and B1/B2 hold most examinees. Quality over count, as instructed.
+- Audit of the new items rewrote A2-CLZ-003 ('can' was arguably defensible) and B1-RDG-003 (key said 'members'). Reason: one defensible key.
+- The action plan has 4–5 steps: practice for up to 3 focus tags (topped up with the next-weakest tags), a level-appropriate reading habit, and the time estimate. Reason: always tied to the user's own weakest data.
+- Time estimate wording: "a widely used rough guide is about 200 hours of guided study per level", with no source link. Reason: commonly cited planning figure; the brief forbids fabricated links.
+- Can-do statements are original paraphrases, 2–3 per level, in both languages. Reason: no quoting of Council of Europe text.
+- Persona run-through: personas answer probabilistically at theta -1.5 / 0.5 / 1.5 through the real app (AppTest), with seed 42 fixed before running; variability across seeds 1–10 is reported too. Reason: a single scripted run is a sample, not evidence.
