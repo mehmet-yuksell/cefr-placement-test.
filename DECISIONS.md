@@ -16,7 +16,7 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 
 ## Phase 1
 
-- Project lives in `C:\Users\mehme\Desktop\placement_test`, its own git repo, outside the Obsidian vault. Reason: keeps code out of personal notes.
+- The project has its own git repo, outside the Obsidian vault. It started in `Desktop\placement_test` and moved to `Desktop\english` at the product owner's request. Reason: keeps code out of personal notes.
 - `requirements.txt` installs the package itself (`-e .`) next to Streamlit. Reason: `pip install -r requirements.txt` then `streamlit run app.py` works with no path hacks.
 - Added an optional `instruction` field (per-type default when omitted). Reason: the negative-stem rule needs to see the instruction separately from sentence text that may legitimately contain "not".
 - Error-identification items come in two styles: `[bracketed]` segments in the stem, or four whole-sentence rewrites. Reason: the brief allows both; brackets make "key = exact option text" safe.
@@ -74,3 +74,13 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - Theme in `.streamlit/config.toml` (indigo primary, light base). The font stack uses system fonts only. Reason: the app must work offline, so no Google Fonts.
 - Inline SVG icons were replaced by text glyphs. Reason: `st.html` sanitises SVG away.
 - The FAQ quotes simulation figures (about 99% within one level, about 60% exact) rather than a vague "reliable". Reason: honesty requirement.
+
+## Retakes and bank growth (product owner: "the same user must not see the same questions again")
+
+- Measured through the real app: with 72 items, attempt 2 had 0 repeats, attempt 3 had 12 of 28, and attempt 4 had 28 of 28. The selection logic was already correct (seen items are excluded first); the bank was too small. Reason: no algorithm can avoid repeats when 3 x 28 > 72.
+- The bank was doubled to 144 items (24 per level, 14 passages). Per-kind totals are sized for 5 full attempts against per-attempt quotas of 4/4/7/7/6. Reason: 5 attempts x 28 = 140, which is at most 144.
+- Verified through the real app ("Ali", an A2-like user, same email, 5 attempts): 0 repeats on every attempt, 140 distinct items. Regression tests: `test_real_bank_gives_five_attempts_without_repeats` (engine, A2/B2/C1 users) and `test_same_email_second_full_attempt_gets_new_questions` (end-to-end through the app).
+- Simulation on the 144-item bank (n = 2000, seed 42): exact 62.5% (was 60.4%), within one level 99.1%. Maximum item exposure fell from 100% to 61.6%, and no examinee saw a repeat in the 3-attempt study.
+- From the 6th attempt on, repeats are possible again. They are logged, the oldest-seen items are reused first, and the card shows a notice. Reason: unavoidable with a finite bank.
+- Identity is the normalised email: "Ali@Example.com " and "ali@example.com" are the same user, but a different email counts as a new user. Reason: no accounts, by design (brief section 2).
+- The timer uses `st.iframe` instead of the deprecated `st.components.v1.html`. Reason: deprecation warning in Streamlit 1.66.

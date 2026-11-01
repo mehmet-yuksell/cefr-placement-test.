@@ -83,7 +83,8 @@ def test_no_repeats_across_three_attempts(big_bank):
 
 def test_real_bank_repeats_only_through_logged_relaxation(real_bank):
     seen: dict[str, int] = {}
-    for attempt in (1, 2, 3):
+    repeats_seen = False
+    for attempt in range(1, 8):  # 7 x 28 > 144, so later attempts must reuse items
         state = run(real_bank, knows_up_to(0.5), seed=attempt, seen=seen)
         repeated = {i for i in state.selected if i in seen}
         logged = set()
@@ -93,9 +94,11 @@ def test_real_bank_repeats_only_through_logged_relaxation(real_bank):
                 logged |= {i.id for i in real_bank.passage_items(unit)} or {unit}
         assert repeated <= logged
         if repeated:
-            # Repeats come from the oldest attempt that still had unused items.
+            repeats_seen = True
+            # Reuse starts with the user's oldest attempt.
             assert min(seen[i] for i in repeated) == min(seen.values())
         seen.update(dict.fromkeys(state.selected, attempt))
+    assert repeats_seen
     assert len(state.answers) == 28
 
 
@@ -159,3 +162,14 @@ def test_replay_rebuilds_the_same_test(big_bank):
     assert rebuilt.selected[:15] == original.selected[:15]
     assert engine.current_item(rebuilt, big_bank).id == original.selected[15]
     assert engine.replay(big_bank, [("B1-CLZ-999", True)], seed=21, mode="adaptive") is None
+
+
+@pytest.mark.parametrize("theta", [-1.5, 0.5, 1.5])
+def test_real_bank_gives_five_attempts_without_repeats(real_bank, theta):
+    """A user retaking with the same email sees new items for 5 attempts (144-item bank)."""
+    seen: dict[str, int] = {}
+    for attempt in range(1, 6):
+        state = run(real_bank, knows_up_to(theta), seed=500 + attempt, seen=seen)
+        assert not set(state.selected) & set(seen), f"attempt {attempt} repeated items"
+        assert "repeat" not in state.flags
+        seen.update(dict.fromkeys(state.selected, attempt))

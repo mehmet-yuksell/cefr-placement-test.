@@ -335,5 +335,341 @@
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: common word with a less familiar meaning.",
     "version": 1
+  },
+  {
+    "id": "B1-CLZ-004",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "You ___ bring food into the museum; it's not allowed.",
+    "options": [
+      "mustn't",
+      "don't have to",
+      "needn't",
+      "can"
+    ],
+    "correct_answer": "mustn't",
+    "skill_tested": "Modal verbs",
+    "explanation": "'Mustn't' means it is not allowed, which matches the second half. 'Don't have to' and 'needn't' mean it is not necessary, but it is allowed. 'Can' means it is allowed, the opposite.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "don't have to": "Confuses lack of obligation with prohibition.",
+      "needn't": "Confuses lack of necessity with prohibition.",
+      "can": "Ignores the clue 'it's not allowed'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-CLZ-005",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "I'm looking forward to ___ you next week.",
+    "options": [
+      "seeing",
+      "see",
+      "saw",
+      "have seen"
+    ],
+    "correct_answer": "seeing",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "In 'look forward to', 'to' is a preposition, so it is followed by the -ing form: 'seeing'. 'See' treats 'to' as part of an infinitive. 'Saw' and 'have seen' are tense forms that cannot follow a preposition.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "see": "Treats 'to' as the infinitive marker.",
+      "saw": "Uses a past form after 'to'.",
+      "have seen": "Uses a perfect form after 'to'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: 'to' as a preposition.",
+    "version": 1
+  },
+  {
+    "id": "B1-CLZ-006",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "The ___ of the city has grown quickly in the last ten years.",
+    "options": [
+      "population",
+      "populate",
+      "popular",
+      "populated"
+    ],
+    "correct_answer": "population",
+    "skill_tested": "Word formation",
+    "explanation": "After 'the' and before 'of' we need a noun: 'population' means the number of people living somewhere. 'Populate' is a verb, 'popular' is an adjective meaning liked by many people, and 'populated' is a participle.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "populate": "Right word family, verb form.",
+      "popular": "Similar form with a different meaning.",
+      "populated": "Right word family, participle form."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-CLZ-007",
+    "cefr_level": "B1",
+    "type": "cloze",
+    "question": "She ___ a lot of mistakes in her first English essay.",
+    "options": [
+      "made",
+      "did",
+      "had",
+      "took"
+    ],
+    "correct_answer": "made",
+    "skill_tested": "Collocations",
+    "explanation": "We 'make' mistakes. 'Did' is common with tasks and homework, but not with 'mistakes'. 'Had' and 'took' do not go with 'mistakes'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "did": "L1 transfer: Turkish 'hata yapmak' (yapmak = do/make).",
+      "had": "Uses 'have' as a general verb.",
+      "took": "Analogy with 'take a test'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: very frequent collocation.",
+    "version": 1
+  },
+  {
+    "id": "B1-ERR-003",
+    "cefr_level": "B1",
+    "type": "error_id",
+    "question": "She [told] me that she [will] call me [the next day], but she [never] did.",
+    "options": [
+      "told",
+      "will",
+      "the next day",
+      "never"
+    ],
+    "correct_answer": "will",
+    "skill_tested": "Clause structure",
+    "explanation": "In reported speech after a past verb, 'will' usually becomes 'would': 'she would call me'. 'Told' is correct with an object. 'The next day' is the right reported form of 'tomorrow'. 'Never' fits the contrast with what she said.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "told": "Learner expects 'said' and thinks 'told' is wrong.",
+      "the next day": "Learner expects 'tomorrow' to stay unchanged.",
+      "never": "Learner expects 'didn't' and doubts 'never did'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: tense backshift in reported speech.",
+    "version": 1
+  },
+  {
+    "id": "B1-ERR-004",
+    "cefr_level": "B1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "This is the most interesting book I have ever read.",
+      "This is the more interesting book I have ever read.",
+      "This is the most interesting book I have never read.",
+      "This is the interestingest book I have ever read."
+    ],
+    "correct_answer": "This is the most interesting book I have ever read.",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "With 'ever' we need a superlative: 'the most interesting'. 'The more interesting' is a comparative. Long adjectives do not take -est. 'Have never read' makes no sense, because you cannot judge a book you have not read.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "This is the more interesting book I have ever read.": "Uses a comparative where a superlative is needed.",
+      "This is the most interesting book I have never read.": "Confuses 'ever' and 'never'.",
+      "This is the interestingest book I have ever read.": "Adds -est to a long adjective."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: familiar superlative pattern.",
+    "version": 1
+  },
+  {
+    "id": "B1-ERR-005",
+    "cefr_level": "B1",
+    "type": "error_id",
+    "question": "If I [would have] more free time, I [would learn] to play [the] guitar [properly].",
+    "options": [
+      "would have",
+      "would learn",
+      "the",
+      "properly"
+    ],
+    "correct_answer": "would have",
+    "skill_tested": "Conditionals & hypotheticals",
+    "explanation": "In the second conditional the if-clause uses the past simple: 'If I had more free time'. 'Would learn' is correct in the result clause. 'The' is normal with instruments. 'Properly' is an adverb describing how you play.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "would learn": "Learner thinks 'would' can appear only once.",
+      "the": "Learner thinks instruments take no article.",
+      "properly": "Learner expects the adjective 'proper'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: second conditional.",
+    "version": 1
+  },
+  {
+    "id": "B1-LEX-003",
+    "cefr_level": "B1",
+    "type": "lexical_pragmatic",
+    "question": "The plane ___ late because of the fog.",
+    "options": [
+      "took off",
+      "took out",
+      "took up",
+      "took over"
+    ],
+    "correct_answer": "took off",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "When a plane leaves the ground, it 'takes off'. 'Took out' means removed something from a place. 'Took up' means started a hobby. 'Took over' means took control of something.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "took out": "Same verb, wrong particle.",
+      "took up": "Same verb, particle with a hobby meaning.",
+      "took over": "Same verb, particle with a control meaning."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-LEX-004",
+    "cefr_level": "B1",
+    "type": "lexical_pragmatic",
+    "question": "Don't worry about the exam, just do your ___.",
+    "options": [
+      "best",
+      "most",
+      "better",
+      "good"
+    ],
+    "correct_answer": "best",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'Do your best' is a fixed expression meaning try as hard as you can. 'Most', 'better' and 'good' do not form this expression.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "most": "Chooses another superlative-like word.",
+      "better": "Uses the comparative instead of the superlative.",
+      "good": "Uses the base adjective."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-006",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "Why did Mia start working with animals as a volunteer?",
+    "options": [
+      "Pets were not allowed in her building.",
+      "She wanted to find a paid job.",
+      "Her friends worked there.",
+      "She needed a dog for her family."
+    ],
+    "correct_answer": "Pets were not allowed in her building.",
+    "skill_tested": "Detail",
+    "explanation": "The text says she loved animals, 'but pets were not allowed in her building', so volunteering was the solution. She is a volunteer, so the work is not paid. Friends and her family's needs are not mentioned.",
+    "domain": "reading",
+    "passage_id": "P-B1-03",
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "She wanted to find a paid job.": "Misses the meaning of 'volunteer'.",
+      "Her friends worked there.": "A common reason that the text does not give.",
+      "She needed a dog for her family.": "Mixes up her situation with the visitors who take animals home."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-007",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "What can we understand about the staff?",
+    "options": [
+      "They gave Mia more responsibility over time.",
+      "They did not like Mia at first.",
+      "They asked Mia to wash the dogs.",
+      "They took the animals home themselves."
+    ],
+    "correct_answer": "They gave Mia more responsibility over time.",
+    "skill_tested": "Inference",
+    "explanation": "At first Mia only cleaned cages, but after a month 'the staff trusted her' with dogs and visitors, so her responsibility grew. Simple first jobs do not mean they disliked her. She cleaned cages, not dogs, and visitors take the animals home.",
+    "domain": "reading",
+    "passage_id": "P-B1-03",
+    "difficulty_b": -0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "They did not like Mia at first.": "Over-reads 'At first, her jobs were simple'.",
+      "They asked Mia to wash the dogs.": "Mixes up 'cleaning cages' with washing dogs.",
+      "They took the animals home themselves.": "Misreads 'visitors who wanted to take an animal home'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: change over time must be inferred.",
+    "version": 1
+  },
+  {
+    "id": "B1-RDG-008",
+    "cefr_level": "B1",
+    "type": "reading",
+    "question": "In the text, 'looked after' means ...",
+    "options": [
+      "taken care of",
+      "searched for",
+      "watched from far away",
+      "said goodbye to"
+    ],
+    "correct_answer": "taken care of",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "'Look after' means take care of: Mia has cared for the dog. 'Searched for' is the meaning of 'look for'. Watching from far away is much weaker than caring, and saying goodbye happens later.",
+    "domain": "reading",
+    "passage_id": "P-B1-03",
+    "difficulty_b": -0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "searched for": "Confuses 'look after' with 'look for'.",
+      "watched from far away": "Takes 'look' literally.",
+      "said goodbye to": "Uses the nearby words 'saying goodbye'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
   }
 ]

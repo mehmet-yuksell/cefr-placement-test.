@@ -62,5 +62,53 @@
     "text": "Teachers often joke that they only truly understood their subject once they had to explain it to others. Research suggests there is some truth in this. In several studies, students who were told they would later teach the material to classmates remembered more of it than students who expected only to take a test, even though neither group actually taught anyone. The expectation alone seemed to change how they studied: they arranged ideas more carefully and looked for links between them rather than learning isolated facts by heart. The effect has limits, however. When the material was very difficult, the pressure of having to explain it appeared to make some students anxious, and the advantage disappeared.",
     "status": "provisional",
     "version": 1
+  },
+  {
+    "id": "P-A1-02",
+    "cefr_level": "A1",
+    "title": "My friend Maria",
+    "text": "This is my friend Maria. She is from Brazil, but now she lives in Rome with her husband and two children. Maria is a nurse. She works at a big hospital in the city. Her husband, Paolo, is a cook in a small restaurant. They have a dog called Bruno. On Sundays, the family goes to the park. The children play football, and Maria and Paolo walk with Bruno.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-A2-02",
+    "cefr_level": "A2",
+    "title": "City Bikes",
+    "text": "CITY BIKES – see the city on two wheels! You can rent a bike for one hour, half a day or a whole day. One hour costs 5 euros, and a whole day costs 20 euros. Children under 12 must wear a helmet, and we give helmets free to everyone. We are open every day from 8 a.m. to 8 p.m., but in winter we close at 5 p.m. Please bring your ID card when you rent a bike.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-B1-03",
+    "cefr_level": "B1",
+    "title": "A home for lost animals",
+    "text": "Last summer, Mia started working as a volunteer at a home for lost dogs and cats near where she lived. She had always loved animals, but pets were not allowed in her building, so this seemed like the perfect solution. At first, her jobs were simple: cleaning cages and filling water bowls. After a month, the staff trusted her to walk the dogs and to help visitors who wanted to take an animal home. Mia says the hardest part is saying goodbye when a dog she has looked after goes to a new family. Still, she thinks it is also the best part, because it means the animal finally has a home.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-B2-03",
+    "cefr_level": "B2",
+    "title": "Parking and local shops",
+    "text": "Shop owners often fight plans to remove parking spaces from busy streets, fearing that customers will disappear. The evidence, however, tells a more complicated story. Several studies have found that shop owners tend to overestimate how many of their customers arrive by car, sometimes by a factor of two. People who walk or cycle may spend less on each visit, but they usually come back more often, and over a month they can spend as much as drivers or more. That does not mean every street benefits. Where public transport is poor, removing parking can genuinely hurt local businesses. The lesson seems to be that such decisions should be based on local data rather than on assumptions.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-C1-02",
+    "cefr_level": "C1",
+    "title": "What translation apps cannot carry",
+    "text": "Free translation apps have become so accurate that some people now question whether learning a foreign language is worth the effort. The argument has a certain logic: if a phone can handle a menu or a business email, why spend years mastering grammar? Yet this view rests on a narrow idea of what language is for. Translation tools are designed to transfer information, and they do that remarkably well. What they cannot easily transfer is the trust that grows when someone makes the effort to speak your language, however imperfectly. Negotiators, doctors and teachers all report that a few sentences in a person's own language can change the tone of an entire conversation. In that sense, the apps may make language learning less necessary for transactions, but no less valuable for relationships.",
+    "status": "provisional",
+    "version": 1
+  },
+  {
+    "id": "P-C2-02",
+    "cefr_level": "C2",
+    "title": "The illusion of understanding",
+    "text": "Ask people whether they understand how a lock, a toilet or a bicycle works, and most will say yes with confidence. Ask them to explain it step by step, and that confidence tends to collapse. Psychologists call this gap the illusion of explanatory depth. It persists, they suggest, because everyday familiarity masquerades as comprehension: we have used these objects so often that their workings feel known. The illusion is largely harmless when it concerns household devices. It becomes more consequential when it extends to policy, where people often hold firm views on matters whose mechanisms they could not begin to describe. Intriguingly, asking people to explain a policy in detail, rather than to justify their position, tends to moderate their views, not because they are persuaded, but because they discover how little they knew.",
+    "status": "provisional",
+    "version": 1
   }
 ]

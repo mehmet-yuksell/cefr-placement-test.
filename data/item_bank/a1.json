@@ -336,5 +336,342 @@
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: formulaic greeting.",
     "version": 1
+  },
+  {
+    "id": "A1-CLZ-005",
+    "cefr_level": "A1",
+    "type": "cloze",
+    "question": "My birthday is ___ June.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "correct_answer": "in",
+    "skill_tested": "Prepositions",
+    "explanation": "We use 'in' with months: 'in June'. 'On' is for days and dates, such as 'on Monday'. 'At' is for clock times, such as 'at six'. 'To' shows movement towards a place, not time.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "on": "Generalises the day/date rule to months.",
+      "at": "Uses the clock-time preposition for all times.",
+      "to": "Chooses a common preposition without a time meaning."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-CLZ-006",
+    "cefr_level": "A1",
+    "type": "cloze",
+    "question": "I'm very ___. I want to go to bed.",
+    "options": [
+      "tired",
+      "hungry",
+      "happy",
+      "late"
+    ],
+    "correct_answer": "tired",
+    "skill_tested": "Word choice",
+    "explanation": "'Tired' means you need rest or sleep, so it fits 'go to bed'. 'Hungry' means you need food. 'Happy' describes a good feeling, not a need for sleep. 'Late' means not on time.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "hungry": "Another 'need' adjective; ignores the clue 'bed'.",
+      "happy": "Picks a frequent feeling adjective.",
+      "late": "Associates going to bed with a late hour."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-CLZ-007",
+    "cefr_level": "A1",
+    "type": "cloze",
+    "question": "Excuse me, what ___ is it? – It's three o'clock.",
+    "options": [
+      "time",
+      "hour",
+      "clock",
+      "watch"
+    ],
+    "correct_answer": "time",
+    "skill_tested": "Word choice",
+    "explanation": "We ask about the time with 'What time is it?'. 'Hour' means sixty minutes and is not used in this question. A 'clock' and a 'watch' are things that show the time; they are not used here.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "hour": "L1 transfer: Turkish 'Saat kaç?' uses 'saat', which can mean 'hour'.",
+      "clock": "L1 transfer: 'saat' also means 'clock'.",
+      "watch": "L1 transfer: 'saat' also means 'watch'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: strong L1 pull from 'saat'.",
+    "version": 1
+  },
+  {
+    "id": "A1-ERR-004",
+    "cefr_level": "A1",
+    "type": "error_id",
+    "question": "There [is] two [books] [on] [the] table.",
+    "options": [
+      "is",
+      "books",
+      "on",
+      "the"
+    ],
+    "correct_answer": "is",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "'Books' is plural, so we need 'There are two books'. 'Books' is the correct plural form. 'On' is right for things on a surface. 'The' is correct because we know which table.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "books": "Learner thinks a number already shows the plural, so -s is not needed.",
+      "on": "Learner expects 'in' or 'at'.",
+      "the": "L1 transfer: Turkish has no definite article."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-ERR-005",
+    "cefr_level": "A1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "Does your sister like coffee?",
+      "Do your sister like coffee?",
+      "Does your sister likes coffee?",
+      "Is your sister like coffee?"
+    ],
+    "correct_answer": "Does your sister like coffee?",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "In present simple questions with he, she or it we use 'Does' + the base verb. 'Do' is for I, you, we and they. 'Does ... likes' adds -s twice. 'Is ... like' uses 'be' instead of 'does'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Do your sister like coffee?": "Uses 'do' with a third-person subject.",
+      "Does your sister likes coffee?": "Marks third person twice (does + likes).",
+      "Is your sister like coffee?": "Builds the question with 'be' as a general question word."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.2 from anchor: question formation with do-support.",
+    "version": 1
+  },
+  {
+    "id": "A1-ERR-006",
+    "cefr_level": "A1",
+    "type": "error_id",
+    "question": "She [is] [an] [teacher] [at] my school.",
+    "options": [
+      "is",
+      "an",
+      "teacher",
+      "at"
+    ],
+    "correct_answer": "an",
+    "skill_tested": "Articles & determiners",
+    "explanation": "'Teacher' starts with a consonant sound, so we say 'a teacher'. 'Is' is correct with 'she'. 'Teacher' is the right noun. 'At' is correct for the place where someone works.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "is": "L1 transfer: Turkish 'O öğretmen' has no verb, so 'is' can look unnecessary.",
+      "teacher": "Learner thinks the noun needs a different form after the article.",
+      "at": "Learner expects 'in' with a workplace."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: a/an choice.",
+    "version": 1
+  },
+  {
+    "id": "A1-LEX-004",
+    "cefr_level": "A1",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the best reply.",
+    "question": "Your friend says, \"How are you?\" What do you say?",
+    "options": [
+      "Fine, thanks. And you?",
+      "I'm twenty years old.",
+      "Nice to meet you too.",
+      "I'm a student."
+    ],
+    "correct_answer": "Fine, thanks. And you?",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "'How are you?' asks how you feel, so 'Fine, thanks. And you?' is the natural reply. 'I'm twenty years old.' answers 'How old are you?', 'Nice to meet you too.' answers an introduction, and 'I'm a student.' answers 'What do you do?'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I'm twenty years old.": "Answers 'How old are you?'.",
+      "Nice to meet you too.": "Reply to a first introduction.",
+      "I'm a student.": "Answers 'What do you do?'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: formulaic exchange.",
+    "version": 1
+  },
+  {
+    "id": "A1-LEX-005",
+    "cefr_level": "A1",
+    "type": "lexical_pragmatic",
+    "question": "Please ___ down. The doctor will see you soon.",
+    "options": [
+      "sit",
+      "get",
+      "put",
+      "go"
+    ],
+    "correct_answer": "sit",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "'Sit down' means take a seat, which is what you do while you wait. 'Get down' means move to a lower place, for example off a chair. 'Put down' needs an object. 'Go down' means move to a lower level.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "get": "Picks a very common verb with 'down'.",
+      "put": "Knows 'put down' but ignores that it needs an object.",
+      "go": "Chooses a basic movement verb."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: phrasal verb at A1.",
+    "version": 1
+  },
+  {
+    "id": "A1-LEX-006",
+    "cefr_level": "A1",
+    "type": "lexical_pragmatic",
+    "question": "We usually ___ TV in the evening.",
+    "options": [
+      "watch",
+      "look",
+      "see",
+      "read"
+    ],
+    "correct_answer": "watch",
+    "skill_tested": "Collocations",
+    "explanation": "We 'watch' TV, films and games. 'Look' needs 'at' and is not used with TV this way. 'See' is for things you notice, not for following a show. 'Read' is for books and texts.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "look": "Confuses 'look at' with 'watch'.",
+      "see": "Treats 'see' and 'watch' as the same.",
+      "read": "Chooses an everyday activity verb without checking the noun."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-RDG-003",
+    "cefr_level": "A1",
+    "type": "reading",
+    "question": "What is Maria's job?",
+    "options": [
+      "She is a nurse.",
+      "She is a cook.",
+      "She is a doctor.",
+      "She is a student."
+    ],
+    "correct_answer": "She is a nurse.",
+    "skill_tested": "Detail",
+    "explanation": "The text says, 'Maria is a nurse.' Her husband is the cook. She works at a hospital, but as a nurse, not a doctor. Nothing in the text says she is a student.",
+    "domain": "reading",
+    "passage_id": "P-A1-02",
+    "difficulty_b": -2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "She is a cook.": "That is her husband's job.",
+      "She is a doctor.": "Associates 'hospital' with doctors.",
+      "She is a student.": "A common guess that the text does not support."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A1-RDG-004",
+    "cefr_level": "A1",
+    "type": "reading",
+    "question": "Where does Maria live now?",
+    "options": [
+      "In Rome",
+      "In Brazil",
+      "In a hospital",
+      "In a park"
+    ],
+    "correct_answer": "In Rome",
+    "skill_tested": "Detail",
+    "explanation": "The text says she 'now lives in Rome'. Brazil is where she is from. She works at a hospital, and the family goes to the park on Sundays.",
+    "domain": "reading",
+    "passage_id": "P-A1-02",
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "In Brazil": "Where she is from, not where she lives now.",
+      "In a hospital": "Where she works.",
+      "In a park": "Where the family goes on Sundays."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: 'from' vs 'lives in' contrast.",
+    "version": 1
+  },
+  {
+    "id": "A1-RDG-005",
+    "cefr_level": "A1",
+    "type": "reading",
+    "question": "What is the text about?",
+    "options": [
+      "Maria and her family",
+      "A day at the hospital",
+      "How to cook pasta",
+      "A football match"
+    ],
+    "correct_answer": "Maria and her family",
+    "skill_tested": "Main idea",
+    "explanation": "The text describes Maria, her job, her husband, their children and their dog, so it is about Maria and her family. The hospital, cooking and football are only small details.",
+    "domain": "reading",
+    "passage_id": "P-A1-02",
+    "difficulty_b": -2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "A day at the hospital": "Too narrow: one detail about her job.",
+      "How to cook pasta": "Builds a topic from the word 'cook'.",
+      "A football match": "Too narrow: one Sunday activity."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: main idea.",
+    "version": 1
   }
 ]

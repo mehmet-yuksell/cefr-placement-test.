@@ -139,3 +139,25 @@ def test_fresh_start_abandons_the_unfinished_test(isolated_storage):
     with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
         statuses = sorted(r[0] for r in conn.execute("SELECT status FROM sessions"))
     assert statuses == ["abandoned", "in_progress"]
+
+
+def test_same_email_second_full_attempt_gets_new_questions(isolated_storage):
+    """Ali finishes a test, comes back with the same email: no question repeats."""
+    from placement.bank import load_bank
+
+    bank = load_bank()
+    attempts = []
+    for _ in range(2):
+        at = AppTest.from_file(APP, default_timeout=30)
+        at.run()
+        at.text_input(key="email").input("Ali@Example.com ")  # case and spaces are normalised
+        at.button(key="start").click().run()
+        shown = []
+        while at.session_state["phase"] == "test":
+            item = bank.get(at.session_state["shown_item"])
+            shown.append(item.id)
+            answer_current(at, correct=item.cefr_level in ("A1", "A2"))
+        assert at.session_state["result"] is not None
+        attempts.append(set(shown))
+    assert len(attempts[0]) == len(attempts[1]) == 28
+    assert not attempts[0] & attempts[1]

@@ -334,5 +334,342 @@
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: distractors are tempting overgeneralisations.",
     "version": 1
+  },
+  {
+    "id": "B2-CLZ-004",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "By the time we got to the cinema, the film ___, so we missed the beginning.",
+    "options": [
+      "had started",
+      "would start",
+      "has started",
+      "was starting"
+    ],
+    "correct_answer": "had started",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "The film started before we arrived, so we need the past perfect: 'had started'. 'Would start' refers to a later time. 'Has started' is present perfect, which does not fit a past story. 'Was starting' would mean we arrived just in time.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "would start": "Uses a future-in-the-past form for an earlier event.",
+      "has started": "Uses the present perfect in a past narrative.",
+      "was starting": "Uses the continuous for a completed earlier event."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: 'by the time' strongly cues the past perfect.",
+    "version": 1
+  },
+  {
+    "id": "B2-CLZ-005",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "___ he had studied hard, he failed the exam.",
+    "options": [
+      "Although",
+      "Despite",
+      "However",
+      "Because"
+    ],
+    "correct_answer": "Although",
+    "skill_tested": "Clause structure",
+    "explanation": "'Although' introduces a contrast and is followed by a clause. 'Despite' must be followed by a noun or -ing form ('Despite studying hard'). 'However' links two separate sentences. 'Because' gives a reason, which contradicts 'he failed'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Despite": "Uses a preposition before a full clause.",
+      "However": "Uses a sentence adverb as a conjunction.",
+      "Because": "Ignores the contrast between studying and failing."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: frequent contrast connectors.",
+    "version": 1
+  },
+  {
+    "id": "B2-CLZ-006",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "The new law will ___ effect next month.",
+    "options": [
+      "take",
+      "come",
+      "make",
+      "get"
+    ],
+    "correct_answer": "take",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'Take effect' means start to work or apply, as laws and rules do. 'Come' needs 'into': 'come into effect'. 'Make' and 'get' do not form this expression with 'effect'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "come": "Partial recall of 'come into effect'.",
+      "make": "make/take confusion.",
+      "get": "Uses a general verb."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: fixed expression with a near-miss alternative.",
+    "version": 1
+  },
+  {
+    "id": "B2-CLZ-007",
+    "cefr_level": "B2",
+    "type": "cloze",
+    "question": "The company's profits have fallen ___ since the new manager arrived.",
+    "options": [
+      "sharply",
+      "heavily",
+      "deeply",
+      "strongly"
+    ],
+    "correct_answer": "sharply",
+    "skill_tested": "Collocations",
+    "explanation": "'Fall sharply' means decrease quickly and by a lot, a common collocation for numbers. 'Heavily' goes with rain or snow falling. 'Deeply' goes with feelings ('deeply sorry'). 'Strongly' goes with opinions ('strongly disagree').",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "heavily": "Transfers 'fall heavily' from weather.",
+      "deeply": "Intensifier that collocates with feelings.",
+      "strongly": "Intensifier that collocates with opinions."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-ERR-003",
+    "cefr_level": "B2",
+    "type": "error_id",
+    "question": "Everyone in my class [have] [already] [handed in] [their] essay.",
+    "options": [
+      "have",
+      "already",
+      "handed in",
+      "their"
+    ],
+    "correct_answer": "have",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "'Everyone' takes a singular verb: 'Everyone ... has already handed in'. 'Already' is correctly placed before the past participle. 'Handed in' is the right phrasal verb for giving work to a teacher. 'Their' is the normal pronoun after 'everyone'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "already": "Learner thinks 'already' must go at the end.",
+      "handed in": "Learner expects 'given' and doubts the phrasal verb.",
+      "their": "Learner thinks 'everyone' needs 'his' or 'her'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: 'everyone' looks plural in meaning.",
+    "version": 1
+  },
+  {
+    "id": "B2-ERR-004",
+    "cefr_level": "B2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "You should have told me you were coming.",
+      "You should told me you were coming.",
+      "You should have tell me you were coming.",
+      "You should had told me you were coming."
+    ],
+    "correct_answer": "You should have told me you were coming.",
+    "skill_tested": "Modal verbs",
+    "explanation": "Criticism of a past action uses 'should have' + past participle: 'should have told'. 'Should told' leaves out 'have', 'should have tell' uses the base form, and 'should had told' puts a past form after the modal.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "You should told me you were coming.": "Leaves out 'have' in the perfect modal.",
+      "You should have tell me you were coming.": "Uses the base form instead of the past participle.",
+      "You should had told me you were coming.": "Puts a past form directly after the modal."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: form errors in a familiar structure.",
+    "version": 1
+  },
+  {
+    "id": "B2-ERR-005",
+    "cefr_level": "B2",
+    "type": "error_id",
+    "question": "Two people [were injured] in the accident, which [was happened] [late] last night [on] the main road.",
+    "options": [
+      "were injured",
+      "was happened",
+      "late",
+      "on"
+    ],
+    "correct_answer": "was happened",
+    "skill_tested": "Passive & causative",
+    "explanation": "'Happen' cannot be used in the passive, so 'was happened' should be 'happened'. 'Were injured' is a correct passive. 'Late' correctly describes the time. 'On' is right with roads.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 0.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "were injured": "Learner over-corrects and doubts every passive.",
+      "late": "Learner expects 'lately'.",
+      "on": "Learner expects 'in' with roads."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: intransitive passive error is often taught at B1.",
+    "version": 1
+  },
+  {
+    "id": "B2-LEX-003",
+    "cefr_level": "B2",
+    "type": "lexical_pragmatic",
+    "question": "Our plans to buy a house ___ when the bank refused us a loan.",
+    "options": [
+      "fell through",
+      "fell out",
+      "fell down",
+      "fell behind"
+    ],
+    "correct_answer": "fell through",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "When plans 'fall through', they fail to happen. 'Fell out' means argued with someone. 'Fell down' means dropped to the ground. 'Fell behind' means failed to keep up.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "fell out": "Same verb, particle with a relationship meaning.",
+      "fell down": "Takes 'fall' literally.",
+      "fell behind": "Same verb, particle with a progress meaning."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: four phrasal verbs with the same verb.",
+    "version": 1
+  },
+  {
+    "id": "B2-LEX-004",
+    "cefr_level": "B2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate option.",
+    "question": "You need to ask your manager for a day off next week. Which request is most appropriate?",
+    "options": [
+      "Would it be possible for me to take Friday off?",
+      "I'm taking Friday off, just so you know.",
+      "Give me Friday off, I really need it.",
+      "I demand a day off on Friday."
+    ],
+    "correct_answer": "Would it be possible for me to take Friday off?",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "The key politely asks permission with 'Would it be possible...?'. 'I'm taking Friday off' informs instead of asking. 'Give me Friday off' sounds like an order. 'I demand' is aggressive in a request to a manager.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 0.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "I'm taking Friday off, just so you know.": "Informs instead of asking permission.",
+      "Give me Friday off, I really need it.": "Imperative where a request is needed.",
+      "I demand a day off on Friday.": "Over-strong verb in a request upwards."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: clear politeness contrast.",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-006",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What did several studies find about shop owners?",
+    "options": [
+      "They think more customers drive than really do.",
+      "They prefer customers who walk or cycle.",
+      "They usually agree with plans to remove parking.",
+      "They spend too much money on advertising."
+    ],
+    "correct_answer": "They think more customers drive than really do.",
+    "skill_tested": "Detail",
+    "explanation": "The studies found that shop owners 'overestimate how many of their customers arrive by car'. The text does not say they prefer walkers or cyclists, it says they often fight the plans, and advertising is not mentioned.",
+    "domain": "reading",
+    "passage_id": "P-B2-03",
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "They prefer customers who walk or cycle.": "Mixes up the owners' views with the findings about spending.",
+      "They usually agree with plans to remove parking.": "Contradicts 'often fight plans'.",
+      "They spend too much money on advertising.": "A plausible business topic that the text never raises."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-007",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What does the writer suggest about people who walk or cycle?",
+    "options": [
+      "Over time, they can be as valuable as drivers.",
+      "They always spend more on each visit than drivers.",
+      "They rarely return to the same shops.",
+      "They cause problems on busy streets."
+    ],
+    "correct_answer": "Over time, they can be as valuable as drivers.",
+    "skill_tested": "Inference",
+    "explanation": "They spend less per visit but come back more often, so 'over a month they can spend as much as drivers or more'. The text says they spend less on each visit, that they return more often, and nothing about causing problems.",
+    "domain": "reading",
+    "passage_id": "P-B2-03",
+    "difficulty_b": 0.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "They always spend more on each visit than drivers.": "Reverses 'may spend less on each visit'.",
+      "They rarely return to the same shops.": "Reverses 'come back more often'.",
+      "They cause problems on busy streets.": "Imports a common opinion not in the text."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "B2-RDG-008",
+    "cefr_level": "B2",
+    "type": "reading",
+    "question": "What is the writer's main conclusion?",
+    "options": [
+      "Decisions about parking should depend on local evidence.",
+      "Shop owners should stop worrying about customers.",
+      "Cities should build more parking for drivers.",
+      "Removing parking always helps local shops."
+    ],
+    "correct_answer": "Decisions about parking should depend on local evidence.",
+    "skill_tested": "Main idea",
+    "explanation": "The text ends: decisions 'should be based on local data rather than on assumptions'. It does not tell shop owners to stop worrying, it does not call for more parking, and it says that not every street benefits.",
+    "domain": "reading",
+    "passage_id": "P-B2-03",
+    "difficulty_b": 0.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Shop owners should stop worrying about customers.": "Overgeneralises the finding about overestimation.",
+      "Cities should build more parking for drivers.": "Reverses the direction of the text.",
+      "Removing parking always helps local shops.": "Ignores 'That does not mean every street benefits'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: the conclusion follows a concession.",
+    "version": 1
   }
 ]

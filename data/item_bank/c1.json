@@ -335,5 +335,341 @@
     "status": "provisional",
     "author_notes": "",
     "version": 1
+  },
+  {
+    "id": "C1-CLZ-005",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "You ___ have worried about the exam; it turned out to be very easy.",
+    "options": [
+      "needn't",
+      "can't",
+      "ought",
+      "hadn't"
+    ],
+    "correct_answer": "needn't",
+    "skill_tested": "Modal verbs",
+    "explanation": "'Needn't have worried' means you worried, but it was not necessary. 'Can't have worried' is a deduction that you did not worry, which does not fit. 'Ought' needs 'to': 'ought to have'. 'Hadn't have' is not a possible verb form.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "can't": "Uses a deduction modal for unnecessary past action.",
+      "ought": "Forgets 'to' after 'ought'.",
+      "hadn't": "Builds a double auxiliary from a past perfect pattern."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: past modals of necessity.",
+    "version": 1
+  },
+  {
+    "id": "C1-CLZ-006",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "___ what to do, she called her sister for advice.",
+    "options": [
+      "Not knowing",
+      "Knowing not",
+      "Not known",
+      "No knowing"
+    ],
+    "correct_answer": "Not knowing",
+    "skill_tested": "Clause structure",
+    "explanation": "A negative participle clause puts 'not' before the -ing form: 'Not knowing what to do'. 'Knowing not' has the wrong word order. 'Not known' is passive and changes the meaning. 'No knowing' only appears in 'There's no knowing'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Knowing not": "Puts 'not' after the participle, as in older English.",
+      "Not known": "Uses a passive participle for an active meaning.",
+      "No knowing": "Partial recall of 'There's no knowing'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: negative participle clause.",
+    "version": 1
+  },
+  {
+    "id": "C1-CLZ-007",
+    "cefr_level": "C1",
+    "type": "cloze",
+    "question": "It was a ___ decision, made in the heat of the moment.",
+    "options": [
+      "snap",
+      "clap",
+      "flash",
+      "crack"
+    ],
+    "correct_answer": "snap",
+    "skill_tested": "Collocations",
+    "explanation": "A 'snap decision' is made very quickly without careful thought, which matches 'in the heat of the moment'. 'Clap', 'flash' and 'crack' are also short, sudden sounds or actions, but they do not collocate with 'decision'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "clap": "Chooses another short, sudden sound word.",
+      "flash": "Associates speed with 'flash'.",
+      "crack": "Chooses another sudden-sound noun."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-004",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "[Had] the company [listened] to its customers, it [would avoid] [such] a costly mistake.",
+    "options": [
+      "Had",
+      "listened",
+      "would avoid",
+      "such"
+    ],
+    "correct_answer": "would avoid",
+    "skill_tested": "Conditionals & hypotheticals",
+    "explanation": "An inverted third conditional ('Had the company listened') needs a past result: 'would have avoided'. 'Had' correctly starts the inversion. 'Listened' is the past participle after 'had'. 'Such a costly mistake' is the correct word order.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Had": "Learner does not recognise inverted conditionals.",
+      "listened": "Learner expects 'listen' after the auxiliary.",
+      "such": "Learner expects 'so' before 'a costly mistake'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-005",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "She suggested that we take the earlier train.",
+      "She suggested us to take the earlier train.",
+      "She suggested to take the earlier train.",
+      "She suggested us taking the earlier train."
+    ],
+    "correct_answer": "She suggested that we take the earlier train.",
+    "skill_tested": "Verb patterns & agreement",
+    "explanation": "'Suggest' is followed by a that-clause ('that we take') or an -ing form ('taking'), not by an object + infinitive. Two options use the infinitive pattern of 'advise', and 'suggested us taking' wrongly adds an object before the -ing form.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "She suggested us to take the earlier train.": "Uses the 'advise somebody to do' pattern.",
+      "She suggested to take the earlier train.": "Uses the 'want to do' pattern.",
+      "She suggested us taking the earlier train.": "Adds an object pronoun before the -ing form."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: well-known verb pattern, but strong L1 pull.",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-006",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "[The] unemployment [has risen] sharply in [recent] years, [according to] official figures.",
+    "options": [
+      "The",
+      "has risen",
+      "recent",
+      "according to"
+    ],
+    "correct_answer": "The",
+    "skill_tested": "Articles & determiners",
+    "explanation": "Abstract nouns used in a general sense take no article, so 'The unemployment' should be 'Unemployment'. 'Has risen' fits a change up to now. 'Recent' correctly describes 'years'. 'According to' is the right phrase for a source.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "has risen": "Learner expects 'rose' with a time expression.",
+      "recent": "Learner expects 'last'.",
+      "according to": "Learner expects 'according with' or 'as to'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor. Article use with abstract nouns stays error-prone for Turkish L1 learners at high levels.",
+    "version": 1
+  },
+  {
+    "id": "C1-ERR-007",
+    "cefr_level": "C1",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "The harder you work, the more likely you are to succeed.",
+      "The harder you work, the most likely you are to succeed.",
+      "Harder you work, the more likely you are to succeed.",
+      "The harder you work, more likely you are to succeed."
+    ],
+    "correct_answer": "The harder you work, the more likely you are to succeed.",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "This double comparative needs 'the' + comparative in both halves: 'The harder ..., the more likely ...'. Using 'the most' turns the second half into a superlative, and leaving out 'the' in either half breaks the pattern.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 1.2,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "The harder you work, the most likely you are to succeed.": "Superlative in a comparative pattern.",
+      "Harder you work, the more likely you are to succeed.": "Drops 'the' in the first half.",
+      "The harder you work, more likely you are to succeed.": "Drops 'the' in the second half."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.3 from anchor: the pattern may be upper B2; kept at C1 for the parallel-structure distractors.",
+    "version": 1
+  },
+  {
+    "id": "C1-LEX-004",
+    "cefr_level": "C1",
+    "type": "lexical_pragmatic",
+    "question": "After weeks of arguing, the two sides finally agreed to ___ the hatchet.",
+    "options": [
+      "bury",
+      "hide",
+      "drop",
+      "break"
+    ],
+    "correct_answer": "bury",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'Bury the hatchet' means stop arguing and become friendly again. 'Hide', 'drop' and 'break' do not form this idiom, although 'drop' appears in other expressions such as 'drop the subject'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "hide": "Near-synonym of 'bury'.",
+      "drop": "Blends with 'drop the subject'.",
+      "break": "Associates ending a conflict with breaking something."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-LEX-005",
+    "cefr_level": "C1",
+    "type": "lexical_pragmatic",
+    "question": "Her apology seemed ___; she was clearly only sorry that she had been caught.",
+    "options": [
+      "insincere",
+      "unsincere",
+      "uncertain",
+      "unconscious"
+    ],
+    "correct_answer": "insincere",
+    "skill_tested": "Word formation",
+    "explanation": "'Insincere' means not really meant, which fits being sorry only about getting caught. 'Unsincere' is not an English word. 'Uncertain' means not sure. 'Unconscious' means not awake or not aware.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "unsincere": "Overgeneralises the prefix un-.",
+      "uncertain": "Similar-looking negative adjective.",
+      "unconscious": "Similar-looking negative adjective."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: prefix choice.",
+    "version": 1
+  },
+  {
+    "id": "C1-RDG-003",
+    "cefr_level": "C1",
+    "type": "reading",
+    "question": "What is the writer's main argument?",
+    "options": [
+      "Apps reduce the practical need for languages, not their social value.",
+      "Translation apps are still too inaccurate to be useful.",
+      "Learning grammar is the most important part of language study.",
+      "Professionals should rely on apps for important conversations."
+    ],
+    "correct_answer": "Apps reduce the practical need for languages, not their social value.",
+    "skill_tested": "Main idea",
+    "explanation": "The writer concludes that apps make learning 'less necessary for transactions, but no less valuable for relationships'. The text calls the apps accurate, never ranks grammar first, and argues that personal effort matters in important conversations.",
+    "domain": "reading",
+    "passage_id": "P-C1-02",
+    "difficulty_b": 1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Translation apps are still too inaccurate to be useful.": "Contradicts 'so accurate'.",
+      "Learning grammar is the most important part of language study.": "Builds a claim from 'mastering grammar'.",
+      "Professionals should rely on apps for important conversations.": "Reverses the point about negotiators and doctors."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: the argument is built against an opposing view.",
+    "version": 1
+  },
+  {
+    "id": "C1-RDG-004",
+    "cefr_level": "C1",
+    "type": "reading",
+    "question": "According to the text, what do negotiators, doctors and teachers report?",
+    "options": [
+      "A few words in someone's language can change a conversation.",
+      "Translation apps often cause misunderstandings at work.",
+      "They need to speak foreign languages perfectly.",
+      "Their clients prefer to communicate by email."
+    ],
+    "correct_answer": "A few words in someone's language can change a conversation.",
+    "skill_tested": "Detail",
+    "explanation": "They report that 'a few sentences in a person's own language can change the tone of an entire conversation'. Misunderstandings are not mentioned, the text stresses that imperfect speech still helps, and email appears only as an example of what apps can handle.",
+    "domain": "reading",
+    "passage_id": "P-C1-02",
+    "difficulty_b": 1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Translation apps often cause misunderstandings at work.": "A plausible claim the text never makes.",
+      "They need to speak foreign languages perfectly.": "Contradicts 'however imperfectly'.",
+      "Their clients prefer to communicate by email.": "Borrows 'email' from an earlier sentence."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C1-RDG-005",
+    "cefr_level": "C1",
+    "type": "reading",
+    "question": "In the text, 'however imperfectly' suggests that ...",
+    "options": [
+      "mistakes do not cancel out the effort",
+      "only fluent speakers earn real trust",
+      "translation apps are imperfect too",
+      "the speaker should study more first"
+    ],
+    "correct_answer": "mistakes do not cancel out the effort",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "'However imperfectly' means 'even if not perfectly': the trust comes from the effort, whatever the mistakes. That contradicts the idea that only fluent speakers earn trust. The phrase describes the speaker, not the apps, and gives no advice to study first.",
+    "domain": "reading",
+    "passage_id": "P-C1-02",
+    "difficulty_b": 1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "only fluent speakers earn real trust": "Reverses the concession.",
+      "translation apps are imperfect too": "Attaches the phrase to the wrong subject.",
+      "the speaker should study more first": "Reads the phrase as a criticism."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: concessive phrase.",
+    "version": 1
   }
 ]

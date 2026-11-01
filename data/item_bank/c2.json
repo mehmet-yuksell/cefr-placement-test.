@@ -336,5 +336,342 @@
     "status": "provisional",
     "author_notes": "b -0.2 from anchor: three formal-looking options require fine register judgement.",
     "version": 1
+  },
+  {
+    "id": "C2-CLZ-005",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "Should you ___ any further assistance, please contact our support team.",
+    "options": [
+      "require",
+      "required",
+      "requiring",
+      "to require"
+    ],
+    "correct_answer": "require",
+    "skill_tested": "Inversion & emphasis",
+    "explanation": "In this formal inverted conditional, 'Should you' is followed by the base form: 'Should you require'. 'Required' and 'requiring' are not base forms, and 'to require' adds an unnecessary 'to'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "required": "Uses a past form after the modal.",
+      "requiring": "Uses an -ing form after the modal.",
+      "to require": "Adds 'to' as if 'should' were a main verb."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: formulaic in formal letters.",
+    "version": 1
+  },
+  {
+    "id": "C2-CLZ-006",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "The negotiations reached an ___: neither side was prepared to make further concessions.",
+    "options": [
+      "impasse",
+      "impact",
+      "impulse",
+      "imposition"
+    ],
+    "correct_answer": "impasse",
+    "skill_tested": "Word choice",
+    "explanation": "An 'impasse' is a situation in which no progress is possible, which matches 'neither side was prepared'. 'Impact' means effect, 'impulse' means a sudden urge, and 'imposition' means an unfair demand.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "impact": "Similar form, frequent word.",
+      "impulse": "Similar form, different meaning.",
+      "imposition": "Similar form, meaning loosely linked to negotiations."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: low-frequency target word.",
+    "version": 1
+  },
+  {
+    "id": "C2-CLZ-007",
+    "cefr_level": "C2",
+    "type": "cloze",
+    "question": "The new evidence ___ doubt on the official version of events.",
+    "options": [
+      "casts",
+      "puts",
+      "makes",
+      "lays"
+    ],
+    "correct_answer": "casts",
+    "skill_tested": "Collocations",
+    "explanation": "To 'cast doubt on' something means to make it seem less certain or true. 'Puts', 'makes' and 'lays' do not form this collocation with 'doubt'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "puts": "Uses a general verb of placing.",
+      "makes": "Uses a general verb of creating.",
+      "lays": "Associates 'lay' with 'lay blame'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: collocation may be known at C1.",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-004",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "[Rarely] [has] a first novel [received] [so many] praise from critics.",
+    "options": [
+      "Rarely",
+      "has",
+      "received",
+      "so many"
+    ],
+    "correct_answer": "so many",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "'Praise' is uncountable, so 'so many praise' should be 'so much praise'. 'Rarely' correctly opens the sentence and triggers inversion, 'has' is the inverted auxiliary, and 'received' is the past participle.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Rarely": "Learner does not expect a negative adverb to open a sentence.",
+      "has": "Learner expects normal word order after 'Rarely'.",
+      "received": "Learner expects a passive form."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: the inversion distracts from a simple quantifier error.",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-005",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "The candidate who we believed would win came third.",
+      "The candidate whom we believed would win came third.",
+      "The candidate which we believed would win came third.",
+      "The candidate who we believed she would win came third."
+    ],
+    "correct_answer": "The candidate who we believed would win came third.",
+    "skill_tested": "Clause structure",
+    "explanation": "'Who' is the subject of 'would win', so it must be 'who', even with 'we believed' in between. 'Whom' is a common over-correction. 'Which' is for things, and adding 'she' repeats the subject.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "The candidate whom we believed would win came third.": "Hypercorrect 'whom' after an embedded clause.",
+      "The candidate which we believed would win came third.": "Uses the relative pronoun for things with a person.",
+      "The candidate who we believed she would win came third.": "Resumptive pronoun inside the relative clause."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-ERR-006",
+    "cefr_level": "C2",
+    "type": "error_id",
+    "question": "The building [is said] [to have designed] [by an architect] [who later became] famous.",
+    "options": [
+      "is said",
+      "to have designed",
+      "by an architect",
+      "who later became"
+    ],
+    "correct_answer": "to have designed",
+    "skill_tested": "Passive & causative",
+    "explanation": "The building did not design anything, so the infinitive must be passive: 'to have been designed'. 'Is said' correctly introduces the report. 'By an architect' names the agent. 'Who later became' correctly describes the architect.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "is said": "Learner expects 'It is said that...'.",
+      "by an architect": "Learner expects 'from an architect'.",
+      "who later became": "Learner expects 'which' or 'that'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: perfect passive infinitive.",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-004",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "question": "The report was full of errors and simply did not ___ muster with the board.",
+    "options": [
+      "pass",
+      "make",
+      "hold",
+      "meet"
+    ],
+    "correct_answer": "pass",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'Pass muster' means be accepted as good enough. 'Make', 'hold' and 'meet' do not form this idiom, although 'meet the standard' expresses a similar idea.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "make": "Analogy with 'make the grade'.",
+      "hold": "Analogy with 'hold up'.",
+      "meet": "Analogy with 'meet the standard'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-005",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the most appropriate option.",
+    "question": "In an academic essay, which sentence best qualifies a claim?",
+    "options": [
+      "These results suggest, though do not prove, a causal link.",
+      "These results totally prove there is a causal link.",
+      "These results kind of show a causal link, I think.",
+      "These results prove nothing whatsoever about anything."
+    ],
+    "correct_answer": "These results suggest, though do not prove, a causal link.",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "The key hedges appropriately: it presents the evidence as suggestive without claiming proof. 'Totally prove' overclaims, 'kind of show ..., I think' is too informal for academic writing, and 'prove nothing whatsoever' overstates in the opposite direction.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.3,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "These results totally prove there is a causal link.": "Overclaims in informal register.",
+      "These results kind of show a causal link, I think.": "Hedges, but in a spoken, informal style.",
+      "These results prove nothing whatsoever about anything.": "Overstates the opposite position."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.2 from anchor: register contrast is fairly clear.",
+    "version": 1
+  },
+  {
+    "id": "C2-LEX-006",
+    "cefr_level": "C2",
+    "type": "lexical_pragmatic",
+    "question": "Critics praised the novel's ___ prose, which conveys complex ideas in remarkably few words.",
+    "options": [
+      "economical",
+      "economic",
+      "frugal",
+      "scarce"
+    ],
+    "correct_answer": "economical",
+    "skill_tested": "Word choice",
+    "explanation": "'Economical' prose uses few words effectively, which matches 'remarkably few words'. 'Economic' relates to the economy. 'Frugal' describes people or meals that use little money or food. 'Scarce' means in short supply.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "economic": "Confuses economic/economical.",
+      "frugal": "Right idea of using little, wrong collocation.",
+      "scarce": "Associates 'few' with scarcity."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: classic confusable pair.",
+    "version": 1
+  },
+  {
+    "id": "C2-RDG-003",
+    "cefr_level": "C2",
+    "type": "reading",
+    "question": "Why, according to the text, does the illusion persist?",
+    "options": [
+      "Frequent use makes objects feel understood.",
+      "People are too proud to admit ignorance.",
+      "Household devices are genuinely simple.",
+      "People are seldom asked to explain things."
+    ],
+    "correct_answer": "Frequent use makes objects feel understood.",
+    "skill_tested": "Detail",
+    "explanation": "The text says 'everyday familiarity masquerades as comprehension': we have used the objects so often that they feel known. Pride is not mentioned, the devices are not called simple, and how often people are asked to explain is not discussed.",
+    "domain": "reading",
+    "passage_id": "P-C2-02",
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "People are too proud to admit ignorance.": "A common explanation the text does not give.",
+      "Household devices are genuinely simple.": "Contradicts the point that explanations collapse.",
+      "People are seldom asked to explain things.": "A plausible inference the text does not make."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: answer is a paraphrase of one sentence.",
+    "version": 1
+  },
+  {
+    "id": "C2-RDG-004",
+    "cefr_level": "C2",
+    "type": "reading",
+    "question": "What does the writer imply about views on policy?",
+    "options": [
+      "Strong opinions may rest on shallow understanding.",
+      "People's policy views are usually well informed.",
+      "Explaining a policy makes people more extreme.",
+      "Policy debates should avoid technical detail."
+    ],
+    "correct_answer": "Strong opinions may rest on shallow understanding.",
+    "skill_tested": "Inference",
+    "explanation": "People 'hold firm views on matters whose mechanisms they could not begin to describe', so strong opinions may be poorly grounded. The text implies the opposite of 'well informed', says explaining makes views more moderate, and gives no advice about detail.",
+    "domain": "reading",
+    "passage_id": "P-C2-02",
+    "difficulty_b": 2.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "People's policy views are usually well informed.": "Reverses the writer's implication.",
+      "Explaining a policy makes people more extreme.": "Reverses 'tends to moderate their views'.",
+      "Policy debates should avoid technical detail.": "Draws a recommendation the writer does not make."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "C2-RDG-005",
+    "cefr_level": "C2",
+    "type": "reading",
+    "question": "In the text, 'masquerades as' is closest in meaning to ...",
+    "options": [
+      "passes itself off as",
+      "turns gradually into",
+      "competes with",
+      "depends on"
+    ],
+    "correct_answer": "passes itself off as",
+    "skill_tested": "Vocabulary in context",
+    "explanation": "Something that 'masquerades as' something else pretends to be it: familiarity looks like understanding but is not. It does not slowly become understanding, compete with it, or depend on it.",
+    "domain": "reading",
+    "passage_id": "P-C2-02",
+    "difficulty_b": 2.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "turns gradually into": "Reads the phrase as a change over time.",
+      "competes with": "Reads the two ideas as rivals.",
+      "depends on": "Reads the phrase as a causal link."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: idiomatic verb in context.",
+    "version": 1
   }
 ]

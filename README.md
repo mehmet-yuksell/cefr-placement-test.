@@ -2,7 +2,7 @@
 
 A web-based English placement test that gives a **CEFR-aligned estimate** (A1–C2) in about 15 minutes. It measures grammar, vocabulary and reading, and ends with a diagnostic result card in Turkish (default) or English.
 
-> This is a CEFR-aligned estimate, not an official certification. All item parameters are provisional expert estimates until they are calibrated with real response data. All 72 items are original.
+> This is a CEFR-aligned estimate, not an official certification. All item parameters are provisional expert estimates until they are calibrated with real response data. All 144 items are original.
 
 ## Quick start
 
@@ -36,7 +36,7 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 | `bank.py` | Loads `data/item_bank/*.json`, validates every rule, and offers queries by level, type, domain or skill. |
 | `engine.py` | On-the-fly multistage adaptive test (routing → targeted → refinement) plus a fixed-form fallback. |
 | `scoring.py` | 3PL with fixed parameters, EAP on an 81-point grid with an N(0, 1) prior, CEFR mapping, level probabilities, borderline rule, sub-scores and tag residuals. Pure functions only. |
-| `exposure.py` | No repeats per user, oldest-seen-first reuse, randomesque selection (N = 5), exposure summaries. |
+| `exposure.py` | No repeats per user (5 full attempts per email fit in the 144-item bank), oldest-seen-first reuse, randomesque selection (N = 5), exposure summaries. |
 | `storage.py` | SQLite sessions, per-answer response log (with response time) and exposure counts. The email is stored only as an HMAC-SHA256 hash. |
 | `report.py` / `i18n.py` | Result card in TR or EN: headline level, can-do statements, confidence, sub-skills, strengths and focus areas, action plan, missed-item review, disclaimer. |
 | `web.py` | Stylesheet and pure HTML builders for the landing page, the test screen and the result page (unit-tested). |
@@ -58,40 +58,41 @@ Judgement calls are recorded in [DECISIONS.md](DECISIONS.md), the item-by-item a
 
 ## Validation
 
-These outputs come from the final 72-item bank on 2026-11-01. The simulation figures describe **the algorithm under idealised assumptions, not real-world validity**.
+These outputs come from the 144-item bank on 2026-11-01. The simulation figures describe **the algorithm under idealised assumptions, not real-world validity**.
 
 ### Gate 1: item bank validation (`python tools/validate_bank.py`)
 
 ```
 level      cloze   error_id    reading  lexical_p  total
-A1             4          3          2          3     12
-A2             4          3          2          3     12
-B1             3          2          5          2     12
-B2             3          2          5          2     12
-C1             4          3          2          3     12
-C2             4          3          2          3     12
-total  72 items, 8 passages
-domains: grammar=28, reading=18, vocabulary=26
-key is strictly longest option in 33% of items, shortest in 4%
+A1             7          6          5          6     24
+A2             7          6          5          6     24
+B1             7          5          8          4     24
+B2             7          5          8          4     24
+C1             7          7          5          5     24
+C2             7          6          5          6     24
+total  144 items, 14 passages
+domains: grammar=56, reading=36, vocabulary=52
+key is strictly longest option in 32% of items, shortest in 6%
 
 OK: item bank passed all checks.
 ```
 
 ### Gate 2: tests (`pytest --cov=placement`)
 
-104 tests pass. Coverage:
+116 tests pass. Coverage:
 
 ```
 src\placement\bank.py         323      4    99%
 src\placement\config.py        56      0   100%
-src\placement\engine.py       161      0   100%
+src\placement\engine.py       169      0   100%
 src\placement\exposure.py      33      0   100%
-src\placement\i18n.py          19      0   100%
-src\placement\models.py       110      0   100%
+src\placement\i18n.py          28      0   100%
+src\placement\models.py       111      0   100%
 src\placement\report.py       100      0   100%
 src\placement\scoring.py      103      0   100%
-src\placement\storage.py       69      0   100%
-TOTAL                         974      4    99%
+src\placement\storage.py       78      0   100%
+src\placement\web.py          117      0   100%
+TOTAL                        1118      4    99%
 ```
 
 The tests cover:
@@ -107,32 +108,32 @@ The tests cover:
 Abridged below; the bracketed notes are added. The full output is in `docs/simulation_28.txt`.
 
 ```
-# Simulation: n=2000, seed=42, length=28, mode=adaptive, true theta ~ N(0, 1.2), bank=72 items / 8 passages
+# Simulation: n=2000, seed=42, length=28, mode=adaptive, true theta ~ N(0, 1.2), bank=144 items / 14 passages
 
 ## ideal (n = 2000)
 mean test length         28.0
-exact CEFR agreement     60.4%
-within one level         98.9%
-mean SE                  0.494
-RMSE of theta            0.524
+exact CEFR agreement     62.5%
+within one level         99.1%
+mean SE                  0.483
+RMSE of theta            0.512
 mean bias of theta       +0.003
-labelled borderline      47.7%
+labelled borderline      48.9%
 confusion matrix (rows = true level, columns = estimated level):
             A1    A2    B1    B2    C1    C2   exact
-  A1        36    48    10     0     0     0   38.3%
-  A2         7   189   128     4     0     0   57.6%
-  B1         0    64   398   137     1     0   66.3%
-  B2         0     0   127   413    53     2   69.4%
-  C1         0     0     3   133   129    15   46.1%
-  C2         0     0     0     3    58    42   40.8%
-relaxation events (tests affected): band_fallback=1806
+  A1        38    50     6     0     0     0   40.4%
+  A2         9   187   128     4     0     0   57.0%
+  B1         1    46   420   132     1     0   70.0%
+  B2         0     0   122   411    62     0   69.1%
+  C1         0     0     2   115   150    13   53.6%
+  C2         0     0     0     5    54    44   42.7%
+relaxation events (tests affected): band_fallback=622
 
 ## misspecified (n = 2000)      [true b = stored b + U(-0.5, 0.5), true a ~ U(0.7, 1.4)]
-exact CEFR agreement     60.7%
-within one level         98.9%
-mean SE                  0.494
-RMSE of theta            0.550
-mean bias of theta       -0.068
+exact CEFR agreement     60.1%
+within one level         98.7%
+mean SE                  0.483
+RMSE of theta            0.541
+mean bias of theta       -0.072
 
 ## oracle ceiling (n = 2000)    [every item exactly at the examinee's information peak]
 exact CEFR agreement     63.9%
@@ -140,25 +141,25 @@ within one level         99.4%
 mean SE                  0.468
 
 ## item exposure (ideal scenario)
-max exposure rate        100.0%
-median exposure rate     40.6%
-items never used         0.0%
-most exposed             B1-CLZ-002 100%, B1-LEX-001 88%, B1-LEX-002 86%, B1-CLZ-001 83%, B1-CLZ-003 83%
+max exposure rate        61.6%
+median exposure rate     13.6%
+items never used         3.5%
+most exposed             B1-LEX-001 62%, B1-CLZ-006 62%, B1-LEX-002 61%, B1-CLZ-007 60%, B1-CLZ-002 60%
 
 ## retakes: 200 examinees x 3 consecutive attempts
 attempt 1: mean repeated items 0.0, examinees with any repeat 0%
 attempt 2: mean repeated items 0.0, examinees with any repeat 0%
-attempt 3: mean repeated items 12.0, examinees with any repeat 100%
+attempt 3: mean repeated items 0.0, examinees with any repeat 0%
 
-GATE within-one-level >= 95% (ideal): 98.9% -> PASS
-exact agreement 60.4% vs oracle ceiling 63.9%
+GATE within-one-level >= 95% (ideal): 99.1% -> PASS
+exact agreement 62.5% vs oracle ceiling 63.9%
 ```
 
-A 40-item run (`--length 40`, no code change) gives 65.0% exact and 99.3% within one level, against a 65.7% oracle ceiling (`docs/simulation_40.txt`).
+A 40-item run on the earlier 72-item bank (`--length 40`, no code change) gave 65.0% exact and 99.3% within one level, against a 65.7% oracle ceiling (`docs/simulation_40.txt`).
 
 **Reading the numbers:**
 - **Length, not routing, limits accuracy.** With a = 1 and c = 0.25, 28 items give an SE of about 0.47 even with perfect targeting (the oracle). Each CEFR band is 1.0 wide, so about 40% of results land in a neighbouring band.
-- **The 3.5-point gap to the oracle is bank coverage.** With 12 items per level, the engine often has no unseen item of the required kind within ±0.75 logits and falls back to the nearest band (90% of tests log at least one band fallback).
+- **The remaining 1.4-point gap to the oracle is bank coverage.** Even with 24 items per level, about 31% of tests log at least one band fallback (no unseen item of the required kind within ±0.75 logits). With the old 72-item bank this was 90%, and the gap was 3.5 points.
 - **The extremes are weakest.** A1 and C2 have the lowest exact agreement because the N(0, 1) prior shrinks extreme estimates towards the centre while the simulated population has SD 1.2.
 
 ### Gate 4: run-through of the real app (`python tools/run_personas.py --seed 42`)
@@ -173,7 +174,7 @@ C1-like: true theta +1.5 -> headline C1 (28 answers)
 
 The three full result cards are in [docs/run_through_en.md](docs/run_through_en.md) and [docs/run_through_tr.md](docs/run_through_tr.md).
 
-The seed-42 run is one sample. Across seeds 1–10 the headlines were:
+These persona runs were made on the earlier 72-item bank. The seed-42 run is one sample. Across seeds 1–10 the headlines were:
 
 | Persona | Exact level | One level off |
 |---|---|---|
@@ -188,7 +189,7 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 - **Provisional parameters.** Every difficulty is an expert estimate (CEFR anchor ± 0.3), and every item uses a = 1.0 and c = 0.25. Nothing has been calibrated against real responses, so the cut scores and level labels are not empirically validated.
 - **Simulation-only evidence.** The accuracy figures come from simulated examinees who answer according to the same model used for scoring. This is the best case; real examinees, real item behaviour and testlet effects will lower agreement.
 - **Precision.** 28 four-option items cannot reach 70% exact CEFR agreement even in theory (oracle ceiling 63.9%). About half of all results are flagged as borderline, honestly.
-- **Small bank (72 items).** One item (B1-CLZ-002) was shown to every simulated examinee because few same-kind items sit near the B1 routing target. A user's third attempt repeats about 12 items (logged, oldest-seen first, with a notice on the card). Reaching at least 5 same-kind items per level band (roughly 25 items per level) would fix both.
+- **Bank size (144 items).** A user who retakes with the same email gets entirely new questions for 5 attempts: verified through the real app, and covered by regression tests. From the 6th attempt on, items are reused (oldest-seen first, logged, with a notice on the card). The most-used item still appears in about 62% of first attempts, because B1-centred routing draws on few items per kind.
 - **Vocabulary levels** were judged without access to English Vocabulary Profile data; see [docs/ITEM_AUDIT.md](docs/ITEM_AUDIT.md).
 - **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. There is no Back button, because the test is adaptive.
 - **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used.

@@ -335,5 +335,343 @@
     "status": "provisional",
     "author_notes": "",
     "version": 1
+  },
+  {
+    "id": "A2-CLZ-005",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "I'm interested ___ learning Spanish.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "correct_answer": "in",
+    "skill_tested": "Prepositions",
+    "explanation": "'Interested' is followed by 'in': 'interested in learning Spanish'. 'On', 'at' and 'to' do not follow 'interested'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "on": "Guesses a common preposition.",
+      "at": "Analogy with 'good at'.",
+      "to": "L1 transfer: Turkish dative ('-e ilgi duymak') suggests 'to'."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: dependent preposition.",
+    "version": 1
+  },
+  {
+    "id": "A2-CLZ-006",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "Can you ___ me the way to the station, please?",
+    "options": [
+      "tell",
+      "say",
+      "speak",
+      "explain"
+    ],
+    "correct_answer": "tell",
+    "skill_tested": "Word choice",
+    "explanation": "We 'tell' someone the way. 'Say' is not followed directly by a person. 'Speak' does not take an object like 'the way'. 'Explain' needs 'to' before the person: 'explain the way to me'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "say": "Overuses 'say' as the general speaking verb.",
+      "speak": "Chooses a speaking verb without checking its pattern.",
+      "explain": "L1 transfer: Turkish 'bana anlat' maps to 'explain me'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-CLZ-007",
+    "cefr_level": "A2",
+    "type": "cloze",
+    "question": "It's my birthday next week, and I'm going to ___ a party.",
+    "options": [
+      "have",
+      "make",
+      "get",
+      "take"
+    ],
+    "correct_answer": "have",
+    "skill_tested": "Collocations",
+    "explanation": "We 'have' (or 'give') a party. 'Make a party' is a common mistake; English uses 'make' for things like a cake or a plan. 'Get' and 'take' do not go with 'party' here.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "make": "L1 transfer: Turkish 'parti yapmak'.",
+      "get": "General verb chosen by guessing.",
+      "take": "Analogy with 'take a break'."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-004",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "When I [was] a child, I [use to] [play] in the street [every] evening.",
+    "options": [
+      "was",
+      "use to",
+      "play",
+      "every"
+    ],
+    "correct_answer": "use to",
+    "skill_tested": "Tenses & aspect",
+    "explanation": "For past habits we say 'used to': 'I used to play'. 'Was' is correct for 'I' in the past. 'Play' is the base form after 'used to'. 'Every' is correct before a singular noun such as 'evening'.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "was": "Learner expects 'were' after 'when'.",
+      "play": "Learner expects 'playing' after 'to'.",
+      "every": "Learner expects 'all' or 'each' with time expressions."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: the missing -d is hard to hear.",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-005",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "Which sentence is correct?",
+    "options": [
+      "There isn't much milk in the fridge.",
+      "There aren't much milk in the fridge.",
+      "There isn't many milk in the fridge.",
+      "There isn't any milks in the fridge."
+    ],
+    "correct_answer": "There isn't much milk in the fridge.",
+    "skill_tested": "Comparatives & quantifiers",
+    "explanation": "'Milk' is uncountable, so we use 'isn't much milk'. 'Aren't' is for plural nouns, 'many' is for things you can count, and 'milks' is not a normal plural.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "There aren't much milk in the fridge.": "Plural verb with an uncountable noun.",
+      "There isn't many milk in the fridge.": "Uses the countable quantifier 'many'.",
+      "There isn't any milks in the fridge.": "Makes an uncountable noun plural."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-ERR-006",
+    "cefr_level": "A2",
+    "type": "error_id",
+    "question": "We [arrived] [to] London [on] Friday [and] stayed for a week.",
+    "options": [
+      "arrived",
+      "to",
+      "on",
+      "and"
+    ],
+    "correct_answer": "to",
+    "skill_tested": "Prepositions",
+    "explanation": "We 'arrive in' a city or country, so 'arrived to London' should be 'arrived in London'. 'Arrived' is the correct past form. 'On' is right with days. 'And' correctly joins the two actions.",
+    "domain": "grammar",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "arrived": "Learner thinks 'arrive' is irregular.",
+      "on": "Learner expects 'in' with days.",
+      "and": "Learner expects 'then' to link actions in order."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor. Key targets L1 transfer: Turkish 'Londra'ya vardık' (dative) suggests 'to'.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-004",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "question": "Can you ___ the music? I'm trying to study.",
+    "options": [
+      "turn down",
+      "turn up",
+      "turn on",
+      "turn over"
+    ],
+    "correct_answer": "turn down",
+    "skill_tested": "Phrasal verbs",
+    "explanation": "'Turn down' means make quieter, which helps when you study. 'Turn up' means make louder. 'Turn on' means start a machine. 'Turn over' means move something so the other side faces up.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.4,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "turn up": "Knows the pair but picks the opposite.",
+      "turn on": "Picks the most frequent 'turn' phrasal verb.",
+      "turn over": "Particle chosen by guesswork."
+    },
+    "status": "provisional",
+    "author_notes": "b +0.1 from anchor: opposite-pair confusion.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-005",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the best reply.",
+    "question": "A waiter asks, \"Are you ready to order?\" You need more time. What do you say?",
+    "options": [
+      "Not yet, could we have a minute?",
+      "Yes, we would like to order now.",
+      "Go away, we are still thinking.",
+      "No, we do not want any food."
+    ],
+    "correct_answer": "Not yet, could we have a minute?",
+    "skill_tested": "Register & pragmatics",
+    "explanation": "'Not yet, could we have a minute?' politely asks for more time. Saying you want to order now is not true. 'Go away' is rude. Saying you want no food is not what you mean.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Yes, we would like to order now.": "Ignores the situation (you need more time).",
+      "Go away, we are still thinking.": "Right meaning, rude register.",
+      "No, we do not want any food.": "Answers the literal question and refuses the meal."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: situation strongly signals the answer.",
+    "version": 1
+  },
+  {
+    "id": "A2-LEX-006",
+    "cefr_level": "A2",
+    "type": "lexical_pragmatic",
+    "instruction": "Choose the best reply.",
+    "question": "Your friend says, \"Have a nice weekend!\" What do you say?",
+    "options": [
+      "You too!",
+      "Me too!",
+      "Yes, please!",
+      "I'm fine!"
+    ],
+    "correct_answer": "You too!",
+    "skill_tested": "Idioms & fixed expressions",
+    "explanation": "'You too!' wishes the same thing back to the other person. 'Me too!' would mean you also have a nice weekend. 'Yes, please!' answers an offer. 'I'm fine!' answers 'How are you?'.",
+    "domain": "vocabulary",
+    "passage_id": null,
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "Me too!": "Confuses 'you too' and 'me too'.",
+      "Yes, please!": "Treats the wish as an offer.",
+      "I'm fine!": "Answers a different greeting."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: formulaic reply.",
+    "version": 1
+  },
+  {
+    "id": "A2-RDG-003",
+    "cefr_level": "A2",
+    "type": "reading",
+    "question": "How much does it cost to rent a bike for a whole day?",
+    "options": [
+      "20 euros",
+      "5 euros",
+      "12 euros",
+      "8 euros"
+    ],
+    "correct_answer": "20 euros",
+    "skill_tested": "Detail",
+    "explanation": "The text says 'a whole day costs 20 euros'. 5 euros is the price for one hour. 12 is the age in the helmet rule, and 8 is the opening time.",
+    "domain": "reading",
+    "passage_id": "P-A2-02",
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "5 euros": "The price for one hour.",
+      "12 euros": "Takes a number from the helmet rule.",
+      "8 euros": "Takes a number from the opening hours."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-RDG-004",
+    "cefr_level": "A2",
+    "type": "reading",
+    "question": "What must you bring when you rent a bike?",
+    "options": [
+      "Your ID card",
+      "A helmet",
+      "A bike lock",
+      "A city map"
+    ],
+    "correct_answer": "Your ID card",
+    "skill_tested": "Detail",
+    "explanation": "The text says 'Please bring your ID card'. Helmets are given free, so you do not need to bring one. A lock and a map are not mentioned.",
+    "domain": "reading",
+    "passage_id": "P-A2-02",
+    "difficulty_b": -1.5,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "A helmet": "Helmets are mentioned, but the shop gives them free.",
+      "A bike lock": "A sensible guess that the text does not support.",
+      "A city map": "A sensible guess that the text does not support."
+    },
+    "status": "provisional",
+    "author_notes": "",
+    "version": 1
+  },
+  {
+    "id": "A2-RDG-005",
+    "cefr_level": "A2",
+    "type": "reading",
+    "question": "What kind of text is this?",
+    "options": [
+      "An advert for renting bikes",
+      "A letter to a friend",
+      "A news story about a race",
+      "A list of city hotels"
+    ],
+    "correct_answer": "An advert for renting bikes",
+    "skill_tested": "Main idea",
+    "explanation": "The text tells readers what the shop offers, the prices and the opening times, so it is an advert. It is not written to a friend, it reports no race, and it lists no hotels.",
+    "domain": "reading",
+    "passage_id": "P-A2-02",
+    "difficulty_b": -1.6,
+    "discrimination_a": 1.0,
+    "guessing_c": 0.25,
+    "distractor_rationale": {
+      "A letter to a friend": "Misreads the friendly tone.",
+      "A news story about a race": "Builds a topic from the word 'bike'.",
+      "A list of city hotels": "Builds a topic from the word 'city'."
+    },
+    "status": "provisional",
+    "author_notes": "b -0.1 from anchor: text type is clear from the layout.",
+    "version": 1
   }
 ]

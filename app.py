@@ -19,7 +19,6 @@ import uuid
 from pathlib import Path
 
 import streamlit as st
-import streamlit.components.v1 as components
 
 from placement import engine, storage, web
 from placement.bank import ItemBank, load_bank
@@ -254,7 +253,7 @@ def screen_test() -> None:
         finish_test(abandoned=True)
         st.rerun()
     with right:
-        components.html(web.timer_widget(st.session_state.started_ms, t("timer_label", lg)), height=34)
+        st.iframe(web.timer_widget(st.session_state.started_ms, t("timer_label", lg)), height=34)
 
     with st.container(key="qcard"):
         st.html(web.test_header(lg, position=position, total=state.length, stage=engine.stage_of(state, position),
