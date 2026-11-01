@@ -267,6 +267,21 @@ p, li { color: var(--ink-2); }
 .pt-review .you { color: #b91c1c; }
 .pt-review .key { color: var(--ok); }
 
+.stApp .stButton > button[kind="secondary"]:disabled { opacity: .45; cursor: not-allowed; }
+.st-key-navbtns [data-testid="stHorizontalBlock"] { flex-wrap: nowrap !important; gap: .6rem !important; }
+.st-key-navbtns [data-testid="stColumn"] { min-width: 0 !important; width: auto !important; flex: 1 1 0 !important; }
+.pt-legend { display: flex; flex-wrap: wrap; gap: .35rem .9rem; margin-top: .55rem; font-size: .78rem; color: var(--muted); }
+.pt-legend-item { display: inline-flex; align-items: center; gap: .35rem; }
+.pt-sw { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.pt-sw.current { background: var(--brand); }
+.pt-sw.answered { background: var(--brand-soft); border: 1.5px solid #c7d2fe; }
+.pt-sw.next { border: 1.5px dashed var(--brand); }
+.pt-sw.locked { background: #f1f5f9; border: 1.5px solid #e2e8f0; }
+.pt-sw.upcoming { border: 1.5px dashed #d6d9e4; }
+.pt-confirm { background: var(--warn-soft); color: var(--warn); border: 1px solid #fde68a; border-radius: 12px;
+  padding: .7rem .9rem; font-size: .92rem; font-weight: 600; margin: .2rem 0 .6rem; }
+.pt-navtitle { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; color: var(--muted); margin-top: .9rem; }
+
 @media (max-width: 720px) {
   .pt-stats, .pt-grid.c4 { grid-template-columns: repeat(2, 1fr); }
   .pt-grid.c3, .pt-subs, .pt-twocol { grid-template-columns: 1fr; }
@@ -552,3 +567,75 @@ def review_items(card: ResultCard, lang: str) -> str:
             f'<div class="pt-muted">{_e(m.explanation)}</div></div>'
         )
     return "".join(blocks)
+
+
+# ---- Question navigator ----------------------------------------------------------------
+
+NAV_CLICKABLE = ("answered", "current", "next")
+
+_NAV_STYLES = {
+    "answered": "background: var(--brand-soft) !important; border: 1.5px solid #c7d2fe !important; color: var(--brand) !important;",
+    "current": ("background: var(--brand) !important; border: 1.5px solid var(--brand) !important; color: #fff !important;"
+                " box-shadow: 0 0 0 3px rgba(79,70,229,.25) !important;"),
+    "next": "background: #fff !important; border: 1.5px dashed var(--brand) !important; color: var(--brand) !important;",
+    "locked": ("background: #f1f5f9 !important; border: 1.5px solid #e2e8f0 !important; color: #94a3b8 !important;"
+               " opacity: 1 !important;"),
+    "upcoming": ("background: transparent !important; border: 1.5px dashed #d6d9e4 !important; color: #b6bccb !important;"
+                 " opacity: 1 !important;"),
+}
+
+
+def navigator_states(length: int, answered: int, editable: range, view_pos: int) -> list[str]:
+    """State of each question box: current, answered (editable), next, locked or upcoming."""
+    states = []
+    for i in range(length):
+        if i == view_pos:
+            states.append("current")
+        elif i in editable:
+            states.append("answered")
+        elif i < answered:
+            states.append("locked")
+        elif i == answered:
+            states.append("next")
+        else:
+            states.append("upcoming")
+    return states
+
+
+def navigator_css(states: Sequence[str]) -> str:
+    """Per-box styles for the navigator buttons (keys ``nav_0`` ... ``nav_{N-1}``)."""
+    rules = [
+        ".st-key-navigator { flex-wrap: wrap !important; gap: 6px !important; margin-top: .4rem; }",
+        '[class*="st-key-nav_"] { width: auto !important; flex: 0 0 auto !important; }',
+        ('[class*="st-key-nav_"] button { width: 40px; min-width: 40px; height: 40px; min-height: 40px !important;'
+        " padding: 0 !important; border-radius: 10px !important; position: relative; }"),
+        '[class*="st-key-nav_"] button p { font-weight: 700; font-size: .85rem; }',
+        '[class*="st-key-nav_"] button:disabled { cursor: not-allowed; }',
+    ]
+    for state, style in _NAV_STYLES.items():
+        selectors = ", ".join(f".st-key-nav_{i} button" for i, s in enumerate(states) if s == state)
+        if selectors:
+            rules.append(f"{selectors} {{ {style} }}")
+    locked = ", ".join(f".st-key-nav_{i} button::after" for i, s in enumerate(states) if s == "locked")
+    if locked:
+        rules.append(f'{locked} {{ content: "🔒"; position: absolute; top: -7px; right: -6px; font-size: 11px; }}')
+    return "<style>\n" + "\n".join(rules) + "\n</style>"
+
+
+def nav_legend(lang: str) -> str:
+    """Key to the navigator box styles (shape and text, not colour alone)."""
+    samples = [
+        ("current", "nav_current"), ("answered", "nav_answered"), ("next", "nav_next"),
+        ("locked", "nav_locked"), ("upcoming", "nav_upcoming"),
+    ]
+    items = []
+    for state, key in samples:
+        label = t(key, lang, n="").split(":", 1)[-1].strip()
+        lock = " 🔒" if state == "locked" else ""
+        items.append(f'<span class="pt-legend-item"><i class="pt-sw {state}"></i>{_e(label)}{lock}</span>')
+    return f'<div class="pt-legend">{"".join(items)}</div>'
+
+
+def confirm_box(text: str) -> str:
+    """Warning shown before an answer that ends a part (or the test)."""
+    return f'<div class="pt-confirm" role="alert">{_e(text)}</div>'

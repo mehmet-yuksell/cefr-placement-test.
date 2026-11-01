@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS responses (
     is_correct      INTEGER NOT NULL,
     response_time_s REAL NOT NULL,
     answered_at     TEXT NOT NULL,
+    changes         INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (session_id, position)
 );
 CREATE TABLE IF NOT EXISTS item_exposure (
@@ -105,7 +106,16 @@ def connect(path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
     conn = sqlite3.connect(path_str, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    _migrate(conn)
     return conn
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    """Bring databases created by older versions up to the current schema."""
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(responses)")}
+    if "changes" not in columns:
+        with conn:
+            conn.execute("ALTER TABLE responses ADD COLUMN changes INTEGER NOT NULL DEFAULT 0")
 
 
 def mark_abandoned(conn: sqlite3.Connection, user_hash: str) -> int:
@@ -210,6 +220,33 @@ def record_response(conn: sqlite3.Connection, session_id: str, response: Respons
                ON CONFLICT (item_id) DO UPDATE SET count = count + 1""",
             (response.item_id,),
         )
+        conn.execute("UPDATE sessions SET last_activity_at = ? WHERE session_id = ?", (stamp, session_id))
+
+
+def update_response(
+    conn: sqlite3.Connection,
+    session_id: str,
+    position: int,
+    chosen_option: str,
+    is_correct: bool,
+    extra_time_s: float,
+) -> None:
+    """Change a stored answer in place (the user went back and changed it).
+
+    The time spent on the revisit is added to ``response_time_s``. Exposure is
+    not counted again: the item was already shown. Raises KeyError if there
+    is no such answer.
+    """
+    stamp = now_iso()
+    with conn:
+        cur = conn.execute(
+            """UPDATE responses SET chosen_option = ?, is_correct = ?, response_time_s = response_time_s + ?,
+                      answered_at = ?, changes = changes + 1
+               WHERE session_id = ? AND position = ?""",
+            (chosen_option, int(is_correct), max(0.0, extra_time_s), stamp, session_id, position),
+        )
+        if cur.rowcount != 1:
+            raise KeyError(f"no stored answer at position {position} of session {session_id}")
         conn.execute("UPDATE sessions SET last_activity_at = ? WHERE session_id = ?", (stamp, session_id))
 
 

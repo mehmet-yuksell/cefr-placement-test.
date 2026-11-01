@@ -161,3 +161,167 @@ def test_same_email_second_full_attempt_gets_new_questions(isolated_storage):
         attempts.append(set(shown))
     assert len(attempts[0]) == len(attempts[1]) == 28
     assert not attempts[0] & attempts[1]
+
+
+# ---- Going back within a part ----------------------------------------------------------
+
+
+def current_item_of(at):
+    from placement.bank import load_bank
+
+    return load_bank().get(at.session_state["shown_item"])
+
+
+def answer_radio(at, item, correct=True):
+    radio = next(r for r in at.radio if r.key and r.key.endswith(item.id))
+    radio.set_value(item.correct_answer if correct else item.distractors[0]).run()
+    return radio
+
+
+def answer_confirmed(at, correct=True):
+    """Answer the question on screen; confirm when it ends a part."""
+    item = current_item_of(at)
+    answer_radio(at, item, correct)
+    at.button(key="next").click().run()
+    if at.session_state["confirm_for"] == item.id:
+        at.button(key="next").click().run()
+
+
+def test_back_and_change_updates_state_and_database(isolated_storage):
+    at = start()
+    first = current_item_of(at)
+    answer_confirmed(at, correct=True)
+    answer_confirmed(at, correct=True)
+    third = at.session_state["shown_item"]
+    at.button(key="back").click().run()
+    at.button(key="back").click().run()
+    assert at.session_state["view_pos"] == 0 and at.session_state["shown_item"] == first.id
+    radio = next(r for r in at.radio if r.key and r.key.endswith(first.id))
+    assert radio.value == first.correct_answer  # the stored answer is pre-selected
+    radio.set_value(first.distractors[0]).run()
+    at.button(key="next").click().run()
+    assert at.session_state["engine"].answers[0] is False
+    assert at.session_state["answered"][0] == (first.id, first.distractors[0])
+    assert at.session_state["view_pos"] == 1
+    with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
+        row = conn.execute("SELECT chosen_option, is_correct, changes FROM responses WHERE position = 0").fetchone()
+        exposure = conn.execute("SELECT count FROM item_exposure WHERE item_id = ?", (first.id,)).fetchone()[0]
+    assert row == (first.distractors[0], 0, 1)
+    assert exposure == 1
+    at.button(key="nav_2").click().run()
+    assert at.session_state["shown_item"] == third
+    assert not at.exception
+
+
+def test_unsaved_selection_is_lost_when_navigating_away():
+    at = start()
+    answer_confirmed(at)
+    answer_confirmed(at)
+    frontier_item = current_item_of(at)
+    answer_radio(at, frontier_item)  # chosen but not saved with «Next»
+    at.button(key="back").click().run()
+    at.button(key="nav_2").click().run()
+    radio = next(r for r in at.radio if r.key and r.key.endswith(frontier_item.id))
+    assert radio.value is None
+    assert len(at.session_state["engine"].answers) == 2
+
+
+def test_future_questions_are_not_clickable():
+    at = start()
+    assert not at.button(key="nav_0").disabled
+    assert all(at.button(key=f"nav_{i}").disabled for i in range(1, 28))
+    assert at.button(key="back").disabled
+
+
+def test_part_end_asks_for_confirmation_and_review_keeps_it_open():
+    at = start()
+    for _ in range(9):
+        answer_confirmed(at)
+    tenth = current_item_of(at)
+    answer_radio(at, tenth)
+    at.button(key="next").click().run()
+    assert at.session_state["confirm_for"] == tenth.id
+    assert len(at.session_state["engine"].answers) == 9
+    at.button(key="review").click().run()
+    assert at.session_state["confirm_for"] is None
+    assert not at.button(key="back").disabled  # the part is still open
+    at.button(key="back").click().run()
+    assert at.session_state["view_pos"] == 8
+    at.button(key="nav_9").click().run()
+    answer_radio(at, tenth)
+    at.button(key="next").click().run()
+    at.button(key="next").click().run()  # «Finish this part»
+    state = at.session_state["engine"]
+    assert len(state.answers) == 10
+    from placement import engine
+
+    assert engine.editable_range(state) == range(10, 10)
+    assert all(at.button(key=f"nav_{i}").disabled for i in range(10))
+    assert at.button(key="back").disabled
+    with pytest.raises(ValueError):
+        engine.change_answer(state, _bank(), 0, True)
+
+
+def _bank():
+    from placement.bank import load_bank
+
+    return load_bank()
+
+
+def test_last_question_asks_to_finish_the_test():
+    at = start()
+    for _ in range(27):
+        answer_confirmed(at)
+    last = current_item_of(at)
+    answer_radio(at, last)
+    at.button(key="next").click().run()
+    assert at.session_state["phase"] == "test" and at.session_state["confirm_for"] == last.id
+    at.button(key="next").click().run()
+    assert at.session_state["phase"] == "result"
+
+
+def test_changed_answers_survive_reload_and_resume():
+    first = start(email="change@example.org")
+    for _ in range(4):
+        answer_confirmed(first)
+    first.button(key="back").click().run()
+    first.button(key="back").click().run()
+    item = current_item_of(first)
+    answer_radio(first, item, correct=False)
+    first.button(key="next").click().run()
+    expected_answers = list(first.session_state["engine"].answers)
+    expected_selected = list(first.session_state["engine"].selected)
+    first.button(key="nav_4").click().run()
+    expected_next = first.session_state["shown_item"]
+
+    reloaded = AppTest.from_file(APP, default_timeout=30)
+    reloaded.run()
+    reloaded.text_input(key="email").input("change@example.org")
+    reloaded.button(key="start").click().run()
+    reloaded.button(key="resume").click().run()
+    state = reloaded.session_state["engine"]
+    assert state.answers == expected_answers
+    assert state.selected[: len(expected_answers)] == expected_selected[: len(expected_answers)]
+    assert reloaded.session_state["shown_item"] == expected_next
+
+
+def test_result_uses_the_changed_answers():
+    from placement.report import build_card
+
+    at = start()
+    for _ in range(9):
+        answer_confirmed(at)
+    at.button(key="nav_0").click().run()
+    first = current_item_of(at)
+    answer_radio(at, first, correct=False)
+    at.button(key="next").click().run()
+    at.button(key="nav_9").click().run()
+    answer_radio(at, current_item_of(at))
+    at.button(key="next").click().run()  # asks for confirmation
+    at.button(key="quit").click().run()  # quitting keeps the confirmed choice
+    result = at.session_state["result"]
+    assert result is not None and result.n_answered == 10
+    answers = [(_bank().get(i), c) for i, c in at.session_state["answered"]]
+    card = build_card(result, answers, lang="en", test_length=28)
+    assert [m.item_id for m in card.missed] == [first.id]
+    assert sum(at.session_state["engine"].answers) == 9

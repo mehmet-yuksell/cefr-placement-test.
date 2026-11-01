@@ -83,6 +83,8 @@ def begin(state: engine.TestState, *, session_id: str, attempt: int, email: str,
         result=None,
         answered_count=len(answered),
         pending_resume=None,
+        view_pos=len(answered),
+        confirm_for=None,
     )
 
 
@@ -167,10 +169,31 @@ def submit_answer(item: Item, chosen: str) -> None:
         item_version=item.version,
     )
     st.session_state.answered.append((item.id, chosen))
+    st.session_state.view_pos = len(state.answers)
+    st.session_state.confirm_for = None
     if state.finished:
         finish_test(abandoned=False)
     elif engine.stage_of(state, position + 1) != stage:
-        st.session_state.toast = f"stage_toast_{stage + 1}"
+        first = engine.stage_start(state, position) + 1
+        st.session_state.toast = (f"stage_toast_{stage + 1}", {"a": first, "b": position + 1})
+
+
+def change_answer(position: int, item: Item, chosen: str) -> None:
+    """Store a changed answer to an earlier question of the current part."""
+    state: engine.TestState = st.session_state.engine
+    correct = item.is_correct(chosen)
+    engine.change_answer(state, get_bank(), position, correct)
+    storage.update_response(
+        get_conn(), st.session_state.session_id, position, chosen, correct,
+        extra_time_s=round(time.monotonic() - st.session_state.shown_at, 2),
+    )
+    st.session_state.answered[position] = (item.id, chosen)
+
+
+def go_to(position: int) -> None:
+    """Show another question. Navigating never saves an unsaved selection."""
+    st.session_state.view_pos = position
+    st.session_state.confirm_for = None
 
 
 def current_card() -> ResultCard | None:
@@ -237,26 +260,47 @@ def screen_test() -> None:
     lg = lang()
     state: engine.TestState = st.session_state.engine
     bank = get_bank()
-    item = engine.current_item(state, bank)
-    if item is None:
-        finish_test(abandoned=False)
-        st.rerun()
-        return
+    frontier = len(state.answers)
+    editable = engine.editable_range(state)
+    view = st.session_state.get("view_pos", frontier)
+    if view != frontier and view not in editable:
+        view = frontier
+    st.session_state.view_pos = view
+    if view == frontier:
+        item = engine.current_item(state, bank)
+        if item is None:
+            finish_test(abandoned=False)
+            st.rerun()
+            return
+    else:
+        item = bank.get(state.selected[view])
     if st.session_state.shown_item != item.id:
         st.session_state.shown_item = item.id
         st.session_state.shown_at = time.monotonic()
 
-    position = len(state.answers)
+    key = f"answer_{st.session_state.session_id}_{item.id}"
+    radio_kwargs: dict = {"index": None}
+    if view < frontier:
+        # Pre-select the stored answer through session state only (never together with ``index``).
+        if key not in st.session_state:
+            st.session_state[key] = st.session_state.answered[view][1]
+        radio_kwargs = {}
+    confirming = st.session_state.get("confirm_for") == item.id and view == frontier
+
     left, right = st.columns([1, 1], vertical_alignment="center")
     if left.button("← " + t("quit_button", lg), type="tertiary", key="quit",
                    help=t("quit_help", lg, min=MIN_ITEMS_FOR_RESULT)):
-        finish_test(abandoned=True)
+        pending = st.session_state.get(key)
+        if confirming and pending is not None:
+            submit_answer(item, pending)  # the user already confirmed a choice with «Next»
+        if st.session_state.phase != "result":
+            finish_test(abandoned=True)
         st.rerun()
     with right:
         st.iframe(web.timer_widget(st.session_state.started_ms, t("timer_label", lg)), height=34)
 
     with st.container(key="qcard"):
-        st.html(web.test_header(lg, position=position, total=state.length, stage=engine.stage_of(state, position),
+        st.html(web.test_header(lg, position=view, total=state.length, stage=engine.stage_of(state, view),
                                 stage_sizes=state.stage_sizes, item=item))
         passage = bank.passage(item.passage_id) if item.passage_id else None
         st.html(web.question_block(item, passage))
@@ -264,17 +308,51 @@ def screen_test() -> None:
             chosen = st.radio(
                 t("choose_option", lg),
                 answer_options(item, state.seed),
-                index=None,
-                key=f"answer_{st.session_state.session_id}_{item.id}",
+                key=key,
                 label_visibility="collapsed",
                 format_func=lambda o: t("unsure_label", lg) if o == UNSURE else o,
+                **radio_kwargs,
             )
-        note_col, button_col = st.columns([3, 2], vertical_alignment="center")
-        note_col.html(web.note(t("no_back_note", lg)))
-        if button_col.button(t("next_button", lg) + "  →", type="primary", disabled=chosen is None, key="next",
-                             width="stretch"):
-            submit_answer(item, chosen)
+        if confirming:
+            last = frontier + 1 == state.length
+            text = t("confirm_test", lg) if last else t(
+                "confirm_stage", lg, a=engine.stage_start(state, frontier) + 1, b=frontier + 1)
+            st.html(web.confirm_box(text))
+        with st.container(key="navbtns"):
+            back_col, next_col = st.columns(2)
+        if confirming:
+            if back_col.button(t("review_button", lg), key="review", width="stretch"):
+                st.session_state.confirm_for = None
+                st.rerun()
+            label = t("finish_test_button" if frontier + 1 == state.length else "finish_stage_button", lg)
+        else:
+            if back_col.button("← " + t("back_button", lg), key="back", width="stretch",
+                               disabled=(view - 1) not in editable):
+                go_to(view - 1)
+                st.rerun()
+            label = t("next_button", lg) + "  →"
+        if next_col.button(label, type="primary", disabled=chosen is None, key="next", width="stretch"):
+            if view < frontier:
+                if chosen != st.session_state.answered[view][1]:
+                    change_answer(view, item, chosen)
+                go_to(view + 1)
+            elif (frontier + 1) in state.stage_ends and not confirming:
+                st.session_state.confirm_for = item.id
+            else:
+                submit_answer(item, chosen)
             st.rerun()
+        st.html(web.note(t("no_back_note", lg)))
+
+        states = web.navigator_states(state.length, frontier, editable, view)
+        st.html(web.navigator_css(states))
+        st.html(f'<div class="pt-navtitle">{t("nav_label", lg)}</div>')
+        with st.container(horizontal=True, key="navigator"):
+            for i, box in enumerate(states):
+                if st.button(str(i + 1), key=f"nav_{i}", disabled=box not in web.NAV_CLICKABLE,
+                             help=t(f"nav_{box}", lg, n=i + 1)) and i != view:
+                    go_to(i)
+                    st.rerun()
+        st.html(web.nav_legend(lg))
 
 
 def screen_result() -> None:
@@ -327,7 +405,8 @@ def main() -> None:
                  format_func=lambda code: code.upper())
     toast = st.session_state.pop("toast", None)
     if toast:
-        st.toast(t(toast, lang()))
+        key, values = toast if isinstance(toast, tuple) else (toast, {})
+        st.toast(t(key, lang(), **values))
     phase = st.session_state.setdefault("phase", "start")
     {"start": screen_start, "test": screen_test, "result": screen_result}[phase]()
 

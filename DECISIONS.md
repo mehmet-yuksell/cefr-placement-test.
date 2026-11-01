@@ -84,3 +84,17 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - From the 6th attempt on, repeats are possible again. They are logged, the oldest-seen items are reused first, and the card shows a notice. Reason: unavoidable with a finite bank.
 - Identity is the normalised email: "Ali@Example.com " and "ali@example.com" are the same user, but a different email counts as a new user. Reason: no accounts, by design (brief section 2).
 - The timer uses `st.iframe` instead of the deprecated `st.components.v1.html`. Reason: deprecation warning in Streamlit 1.66.
+
+## Going back within a part (product owner request, supersedes "No Back button")
+
+- Users may go back and change answers only inside the current part. Reason: inside a part, item selection depends on the part's targets, content quotas, exposure and the seed, never on correctness (`_select_unit` reads no answers). So changes there cannot change which items appear, and `engine.replay` still rebuilds the same sequence. Theta is re-estimated at a part boundary and drives the next part, so earlier parts lock.
+- One helper, `engine.editable_range(state)`, defines what is editable; the engine, app, navigator and tests all use it. It returns an empty range when the test is finished or when early stop is on, because a changed answer could reverse a stopping decision already taken.
+- `engine.change_answer` only flips `state.answers[position]`. It never selects items, crosses a boundary or re-estimates theta.
+- `storage.update_response` updates the stored answer in place, adds the revisit time to `response_time_s` and counts `changes`. It does not count exposure again. A safe `ALTER TABLE` migration adds `changes` to older databases.
+- Navigating (Back, a navigator box) never saves an unsaved selection; only «Next» saves. Reason: auto-saving on Back from the front question would submit it, which can end a part and lock it without the user confirming. This behaviour is covered by `test_unsaved_selection_is_lost_when_navigating_away`.
+- Part-end confirmation is implemented by relabelling the same `next` button («Finish this part» / «Finish the test») and adding a «Review answers» button. Reason: the existing tests and the persona tool click `next` repeatedly, so they keep working unchanged, and the user still has to confirm explicitly.
+- «Finish the test» (quit) while a part-end confirmation is pending first saves the confirmed choice. Reason: the user already chose it and pressed «Next»; dropping it would silently lose an answer.
+- Navigator box states are current, answered (editable), next, locked and not reached yet. Each state differs in fill and border style and in text (tooltip `help`), and locked boxes also show a lock badge, so colour is never the only cue. A legend explains them. Boxes are 40 px squares in a wrapping horizontal container: 6 per row at 375 px, with no horizontal scroll (verified: `scrollWidth` 375).
+- Back/Next stay side by side on phones (CSS on the `navbtns` container), as the request put Back on the left and Next on the right.
+- Response time: `shown_at` resets whenever the displayed question changes, so time on an earlier visit to the front question is not added when it is finally answered. Revisit time on an edited answer is added to that answer.
+- The persona tool and the 116 earlier tests pass unchanged. The persona tool now draws a second random answer at each part end (it clicks «Next» twice), so its seed-42 headlines changed; the README reports the new values.

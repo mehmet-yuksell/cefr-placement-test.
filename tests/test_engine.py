@@ -173,3 +173,72 @@ def test_real_bank_gives_five_attempts_without_repeats(real_bank, theta):
         assert not set(state.selected) & set(seen), f"attempt {attempt} repeated items"
         assert "repeat" not in state.flags
         seen.update(dict.fromkeys(state.selected, attempt))
+
+
+# ---- Going back within a part ----------------------------------------------------------
+
+
+def answer_n(bank, n, answer=None, **kwargs):
+    answer = answer or knows_up_to(0.0)
+    state = engine.new_test(bank, **kwargs)
+    for _ in range(n):
+        item = engine.current_item(state, bank)
+        engine.record_answer(state, bank, item.id, answer(item))
+    return state
+
+
+def test_editable_range_covers_only_the_current_part(big_bank):
+    assert engine.editable_range(answer_n(big_bank, 0, seed=1)) == range(0)
+    assert engine.editable_range(answer_n(big_bank, 3, seed=1)) == range(3)
+    assert engine.editable_range(answer_n(big_bank, 10, seed=1)) == range(10, 10)  # part 1 just locked
+    assert engine.editable_range(answer_n(big_bank, 13, seed=1)) == range(10, 13)
+    assert engine.editable_range(answer_n(big_bank, 25, seed=1)) == range(20, 25)
+    assert engine.editable_range(run(big_bank, knows_up_to(0.0), seed=1)) == range(0)  # finished
+    assert engine.stage_start(answer_n(big_bank, 0, seed=1), 27) == 20
+
+
+def test_change_answer_updates_only_that_answer(big_bank):
+    state = answer_n(big_bank, 13, seed=2)
+    before = (list(state.selected), list(state.targets), list(state.events))
+    old = state.answers[11]
+    engine.change_answer(state, big_bank, 11, not old)
+    assert state.answers[11] is (not old)
+    assert (state.selected, state.targets, state.events) == before
+    for bad in (9, 0, 13, 14, -1):  # previous part, not yet answered, nonsense
+        with pytest.raises(ValueError):
+            engine.change_answer(state, big_bank, bad, True)
+
+
+def test_changing_answers_inside_a_part_never_changes_its_items(big_bank):
+    flip = {2, 5, 8}
+    a = answer_n(big_bank, 10, seed=4)
+    b = engine.new_test(big_bank, seed=4)
+    for pos in range(10):
+        item = engine.current_item(b, big_bank)
+        engine.record_answer(b, big_bank, item.id, knows_up_to(0.0)(item) ^ (pos in flip))
+    assert a.selected[:10] == b.selected[:10]
+
+
+def test_replay_after_changed_answers_rebuilds_the_same_test(big_bank):
+    state = answer_n(big_bank, 15, seed=6)
+    engine.change_answer(state, big_bank, 11, not state.answers[11])
+    engine.change_answer(state, big_bank, 14, not state.answers[14])
+    rebuilt = engine.replay(big_bank, list(zip(state.selected[:15], state.answers)), seed=6, mode="adaptive")
+    assert rebuilt.answers == state.answers
+    assert rebuilt.selected[:15] == state.selected[:15]
+    assert engine.current_item(rebuilt, big_bank).id == engine.current_item(state, big_bank).id
+
+
+def test_no_going_back_when_early_stop_is_on(big_bank):
+    state = answer_n(big_bank, 3, seed=1, early_stop=True)
+    assert engine.editable_range(state) == range(0)
+    with pytest.raises(ValueError):
+        engine.change_answer(state, big_bank, 1, True)
+
+
+def test_fixed_form_follows_the_same_rule(big_bank):
+    state = answer_n(big_bank, 12, seed=1, mode="fixed")
+    assert engine.editable_range(state) == range(10, 12)
+    engine.change_answer(state, big_bank, 10, False)
+    with pytest.raises(ValueError):
+        engine.change_answer(state, big_bank, 9, False)

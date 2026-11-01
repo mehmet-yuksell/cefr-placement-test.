@@ -59,3 +59,34 @@ def test_no_plaintext_email_in_database(tmp_path):
     storage.create_session(conn, session_id="s", user_hash=user, attempt_no=1, mode="fixed", seed=1, test_length=28)
     conn.close()
     assert b"someone@example.org" not in (tmp_path / "t.db").read_bytes()
+
+
+def test_update_response_changes_the_row_in_place(conn):
+    storage.create_session(conn, session_id="s", user_hash="u", attempt_no=1, mode="adaptive", seed=1, test_length=28)
+    storage.record_response(conn, "s", Response("A1-CLZ-001", "work", False, 4.0, 1, 0), item_version=1)
+    before = storage.session_row(conn, "s")["last_activity_at"]
+    storage.update_response(conn, "s", 0, "works", True, extra_time_s=2.5)
+    row = conn.execute("SELECT chosen_option, is_correct, response_time_s, changes FROM responses").fetchone()
+    assert tuple(row) == ("works", 1, 6.5, 1)
+    assert storage.exposure_counts(conn) == {"A1-CLZ-001": 1}  # not counted twice
+    assert storage.session_row(conn, "s")["last_activity_at"] >= before
+    storage.update_response(conn, "s", 0, "work", False, extra_time_s=-3)  # negative time is ignored
+    assert tuple(conn.execute("SELECT response_time_s, changes FROM responses").fetchone()) == (6.5, 2)
+    with pytest.raises(KeyError):
+        storage.update_response(conn, "s", 5, "x", False, extra_time_s=1)
+
+
+def test_old_database_gets_the_changes_column(tmp_path):
+    import sqlite3
+
+    path = tmp_path / "old.db"
+    old = sqlite3.connect(path)
+    old.executescript(storage.SCHEMA.replace("    changes         INTEGER NOT NULL DEFAULT 0,\n", ""))
+    old.execute("INSERT INTO responses VALUES ('s', 0, 'A1-CLZ-001', 1, 1, 'work', 0, 3.0, 'now')")
+    old.commit()
+    old.close()
+    for _ in range(2):  # migrating twice is harmless
+        conn = storage.connect(path)
+        row = conn.execute("SELECT chosen_option, changes FROM responses").fetchone()
+        assert tuple(row) == ("work", 0)
+        conn.close()

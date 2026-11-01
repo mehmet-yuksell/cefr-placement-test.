@@ -47,6 +47,7 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 - **Re-estimation:** theta is re-estimated by EAP after the routing stage. The targeted stage then aims at `theta − 0.31`, where an item with c = 0.25 is most informative. The refinement stage aims halfway between theta and the nearest cut score.
 - **Content balance:** every position first picks the slot kind (type/domain) furthest behind its quota. Content balance wins over difficulty. When the preferred choice is impossible, the engine relaxes in a fixed, logged order: band fallback → other kind → oldest-seen repeat.
 - **Passages:** a passage's questions are always served consecutively within one stage.
+- **Going back:** Back/Next buttons and a numbered navigator let the user revisit and change answers in the current part only (`engine.editable_range`). Item choice inside a part never depends on correctness, so changes cannot alter which items appear. The user confirms before a part (or the test) ends, and the part's answers then lock. Going back is disabled when the optional early stop is on.
 
 **Scoring.**
 - **Headline level:** the level with the highest posterior probability. The level probabilities and any borderline note appear beneath it.
@@ -164,11 +165,11 @@ A 40-item run on the earlier 72-item bank (`--length 40`, no code change) gave 6
 
 ### Gate 4: run-through of the real app (`python tools/run_personas.py --seed 42`)
 
-The script drives `app.py` itself through Streamlit's AppTest: email entry, 28 question screens, the result card and database writes. Personas answer correctly with the 3PL probability for their true ability. The seed was fixed at 42 before running.
+The script drives `app.py` itself through Streamlit's AppTest: email entry, 28 question screens, the result card and database writes. Personas answer correctly with the 3PL probability for their true ability. The seed was fixed at 42 before running. This run used the 144-item bank and the part-end confirmation. At a part end the tool answers the same question twice: the first «Next» asks for confirmation, and the second confirms with a freshly drawn answer. So its random sequence differs from earlier runs, which gave A2/B2/C1 on the 72-item bank. Two of three headlines are one level low here, consistent with about 60% exact agreement.
 
 ```
-A2-like: true theta -1.5 -> headline A2 (28 answers)
-B2-like: true theta +0.5 -> headline B2 (28 answers)
+A2-like: true theta -1.5 -> headline A1 (28 answers)
+B2-like: true theta +0.5 -> headline B1 (28 answers)
 C1-like: true theta +1.5 -> headline C1 (28 answers)
 ```
 
@@ -191,7 +192,7 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 - **Precision.** 28 four-option items cannot reach 70% exact CEFR agreement even in theory (oracle ceiling 63.9%). About half of all results are flagged as borderline, honestly.
 - **Bank size (144 items).** A user who retakes with the same email gets entirely new questions for 5 attempts: verified through the real app, and covered by regression tests. From the 6th attempt on, items are reused (oldest-seen first, logged, with a notice on the card). The most-used item still appears in about 62% of first attempts, because B1-centred routing draws on few items per kind.
 - **Vocabulary levels** were judged without access to English Vocabulary Profile data; see [docs/ITEM_AUDIT.md](docs/ITEM_AUDIT.md).
-- **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. There is no Back button, because the test is adaptive.
+- **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. You can go back and change answers within the current part (10 / 10 / 8 questions). When a part ends, its answers lock, because the next part is chosen from the re-estimated ability.
 - **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used.
 - **Not an official certificate.** The result is a CEFR-aligned estimate.
 

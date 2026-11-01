@@ -179,6 +179,42 @@ def stage_of(state: TestState, position: int) -> int:
     return next(i for i, end in enumerate(state.stage_ends, start=1) if position < end)
 
 
+def stage_start(state: TestState, position: int) -> int:
+    """First position of the stage that contains ``position``."""
+    starts = [0, *state.stage_ends[:-1]]
+    return starts[stage_of(state, position) - 1]
+
+
+def editable_range(state: TestState) -> range:
+    """Answered positions whose answers may still be changed.
+
+    Only the current stage's earlier answers are editable: item selection
+    inside a stage depends on the stage's targets and content quotas, never
+    on whether an answer was right, so changing them cannot change which
+    items were shown. Theta is re-estimated at a stage boundary, so the
+    previous stage's answers are locked from then on. Editing is disabled
+    entirely when the optional early stop is on (a changed answer could
+    change a stopping decision already taken) and once the test is over.
+    """
+    answered = len(state.answers)
+    if state.early_stop or state.finished or answered >= state.length:
+        return range(0)
+    return range(stage_start(state, answered), answered)
+
+
+def change_answer(state: TestState, bank: ItemBank, position: int, correct: bool) -> None:
+    """Change the correctness of an earlier answer in the current stage.
+
+    Raises ValueError outside :func:`editable_range`. Only
+    ``state.answers[position]`` changes: no item is selected, no stage
+    boundary is crossed and theta is not re-estimated.
+    """
+    if position not in editable_range(state):
+        raise ValueError(f"position {position} is not editable")
+    bank.get(state.selected[position])  # the item must still exist in the bank
+    state.answers[position] = correct
+
+
 def current_item(state: TestState, bank: ItemBank) -> Item | None:
     """Return the item to show now, selecting a new unit if needed.
 

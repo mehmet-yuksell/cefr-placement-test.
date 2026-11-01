@@ -38,7 +38,7 @@ STRINGS: dict[str, dict[str, str]] = {
         "elapsed": "Geçen süre: {minutes:02d}:{seconds:02d} · önerilen süre yaklaşık 15 dakika (süre sınırı yok)",
         "passage_label": "Metni okuyun",
         "choose_option": "Seçenekler",
-        "next_button": "Sonraki",
+        "next_button": "İleri",
         "quit_button": "Testi bitir",
         "quit_help": "Yanıtladığınız sorular kaydedilir. En az {min} soru yanıtladıysanız kısmi bir sonuç gösterilir.",
         "no_result": "{n} soru yanıtlandı. Sonuç gösterebilmek için en az {min} yanıt gerekir.",
@@ -413,6 +413,19 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "resumed_toast": "Testiniz kaldığı yerden geri yüklendi.",
         "resume_failed": "Yarım kalan test geri yüklenemedi (soru havuzu değişmiş); yeni bir test başlatıldı.",
         "unsure_label": "Emin değilim",
+        "back_button": "Geri",
+        "review_button": "Gözden geçir",
+        "finish_stage_button": "Bölümü bitir",
+        "finish_test_button": "Testi bitir",
+        "confirm_stage": "Bu bölümü bitiriyorsun; {a}–{b}. sorulara artık dönemeyeceksin.",
+        "confirm_test": "Testi bitiriyorsun; cevapların artık değiştirilemeyecek.",
+        "nav_label": "Sorular",
+        "nav_answered": "Soru {n}: cevaplandı, değiştirilebilir",
+        "nav_current": "Soru {n}: şu an ekranda",
+        "nav_next": "Soru {n}: sıradaki soru",
+        "nav_locked": "Soru {n}: kilitli, bölümü bitti",
+        "nav_upcoming": "Soru {n}: henüz gelmedi",
+        "unsure_note": "«Emin değilim» yanlış sayılır; tahmin etmek şans eseri doğru çıkabilir.",
         "type_cloze": "Boşluk doldurma",
         "type_error_id": "Hatayı bulun",
         "type_reading": "Okuma",
@@ -420,10 +433,10 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "stage_1": "Isınma",
         "stage_2": "Uyarlama",
         "stage_3": "İnce ayar",
-        "stage_toast_2": "Isınma tamamlandı. Sorular artık seviyenize göre seçiliyor.",
-        "stage_toast_3": "Son bölüm: iki seviye arasındaki sınırı netleştiriyoruz.",
+        "stage_toast_2": "Isınma bitti; {a}–{b}. soruların cevapları kilitlendi. Sorular artık seviyenize göre seçiliyor.",
+        "stage_toast_3": "Uyarlama bitti; {a}–{b}. soruların cevapları kilitlendi. Son bölüm: iki seviye arasındaki sınırı netleştiriyoruz.",
         "timer_label": "Süre",
-        "no_back_note": "Uyarlamalı testte önceki sorulara dönülemez. Bilmiyorsanız «Emin değilim»i seçin.",
+        "no_back_note": "Bu bölümdeki sorulara dönebilirsin; bölüm bitince cevaplar kilitlenir.",
         "result_eyebrow": "Tahmini CEFR seviyeniz",
         "result_correct": "{c} / {n} doğru",
         "result_time": "{minutes} dk {seconds} sn",
@@ -488,6 +501,19 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "resumed_toast": "Your test has been restored where you left off.",
         "resume_failed": "The unfinished test could not be restored (the question bank changed); a new test has started.",
         "unsure_label": "I'm not sure",
+        "back_button": "Back",
+        "review_button": "Review answers",
+        "finish_stage_button": "Finish this part",
+        "finish_test_button": "Finish the test",
+        "confirm_stage": "You are finishing this part; you will not be able to return to questions {a}–{b}.",
+        "confirm_test": "You are finishing the test; your answers can no longer be changed.",
+        "nav_label": "Questions",
+        "nav_answered": "Question {n}: answered, can be changed",
+        "nav_current": "Question {n}: on screen now",
+        "nav_next": "Question {n}: next question",
+        "nav_locked": "Question {n}: locked, its part is finished",
+        "nav_upcoming": "Question {n}: not reached yet",
+        "unsure_note": "“I'm not sure” counts as wrong; a guess might be right by luck.",
         "type_cloze": "Fill the gap",
         "type_error_id": "Find the error",
         "type_reading": "Reading",
@@ -495,10 +521,10 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "stage_1": "Warm-up",
         "stage_2": "Adapt",
         "stage_3": "Fine-tune",
-        "stage_toast_2": "Warm-up done. Questions are now chosen for your level.",
-        "stage_toast_3": "Last part: sharpening the boundary between two levels.",
+        "stage_toast_2": "Warm-up done; answers to questions {a}–{b} are now locked. Questions are now chosen for your level.",
+        "stage_toast_3": "Adapt done; answers to questions {a}–{b} are now locked. Last part: sharpening the boundary between two levels.",
         "timer_label": "Time",
-        "no_back_note": "In an adaptive test you cannot go back. If you don't know, choose “I'm not sure”.",
+        "no_back_note": "You can go back to questions in this part; answers lock when the part ends.",
         "result_eyebrow": "Your estimated CEFR level",
         "result_correct": "{c} / {n} correct",
         "result_time": "{minutes} min {seconds} s",
@@ -544,9 +570,10 @@ FAQ: dict[str, tuple[tuple[str, str], ...]] = {
          ("Her sorunun zorluğu CEFR seviyelerine göre tahmin edilmiştir. Yanıtlarınızdan madde tepki kuramına "
          "dayanan bir modelle yetenek tahmini yapılır ve bu tahmin A1–C2 ölçeğine yerleştirilir. Ne kadar emin "
          "olduğumuz da ayrıca gösterilir.")),
-        ("Neden önceki soruya dönemiyorum?",
-         ("Test uyarlamalıdır: sonraki sorular önceki yanıtlarınıza göre seçilir. Geri dönüp yanıt değiştirmek bu "
-         "seçimi bozar.")),
+        ("Önceki sorulara dönebilir miyim?",
+         ("Evet, içinde bulunduğun bölümün içinde. Test üç bölümden oluşur (10 / 10 / 8 soru). Bir bölüm bitince "
+         "seviyen yeniden hesaplanır ve sonraki sorular buna göre seçilir; bu yüzden biten bölümün cevapları "
+         "kilitlenir. Bölüm sonunda «İleri»ye bastığında senden onay istenir.")),
         ("Sonuç ne kadar güvenilir?",
          ("Bu bir tahmindir. Simülasyonlarda sonuç vakaların yaklaşık %99'unda doğru seviyede ya da bir komşu "
          "seviyede çıkıyor; tam isabet yaklaşık %60. Bu yüzden olasılıkları ve sınırda olup olmadığınızı açıkça "
@@ -571,9 +598,10 @@ FAQ: dict[str, tuple[tuple[str, str], ...]] = {
          ("Each question's difficulty has been estimated on the CEFR scale. An item response theory model turns "
          "your answers into an ability estimate, which is placed on the A1–C2 scale. How sure we are is shown "
          "as well.")),
-        ("Why can't I go back to a previous question?",
-         ("The test is adaptive: each question is chosen from your earlier answers. Going back and changing them "
-         "would break that choice.")),
+        ("Can I go back to earlier questions?",
+         ("Yes, within the part you are in. The test has three parts (10 / 10 / 8 questions). When a part ends, "
+         "your level is re-estimated and the next questions are chosen from it, so that part's answers lock. "
+         "You are asked to confirm before a part ends.")),
         ("How reliable is the result?",
          ("It is an estimate. In simulations the result is the right level or a neighbouring one in about 99% of "
          "cases, and exactly right in about 60%. That is why we show the probabilities and tell you when you are "
