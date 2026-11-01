@@ -37,7 +37,7 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 | `engine.py` | On-the-fly multistage adaptive test (routing → targeted → refinement) plus a fixed-form fallback. |
 | `scoring.py` | 3PL with fixed parameters, EAP on an 81-point grid with an N(0, 1) prior, CEFR mapping, level probabilities, borderline rule, sub-scores and tag residuals. Pure functions only. |
 | `exposure.py` | No repeats per user (5 full attempts per email fit in the 144-item bank), oldest-seen-first reuse, randomesque selection (N = 5), exposure summaries. |
-| `storage.py` | SQLite sessions, per-answer response log (with response time) and exposure counts. The email is stored only as an HMAC-SHA256 hash. |
+| `storage.py` | SQLite sessions, per-answer response log (with response time and change count) and exposure counts. WAL mode, a busy timeout and one lock around every statement make concurrent sessions safe. The email is stored only as an HMAC-SHA256 hash, and the resume token only as a SHA-256 hash. |
 | `report.py` / `i18n.py` | Result card in TR or EN: headline level, can-do statements, confidence, sub-skills, strengths and focus areas, action plan, missed-item review, disclaimer. |
 | `web.py` | Stylesheet and pure HTML builders for the landing page, the test screen and the result page (unit-tested). |
 | `app.py` | Streamlit UI only: wires screens to the modules above. Includes resume-after-reload, an "I'm not sure" option (scored as wrong) and a live timer. |
@@ -80,7 +80,7 @@ OK: item bank passed all checks.
 
 ### Gate 2: tests (`pytest --cov=placement`)
 
-137 tests pass. Coverage:
+142 tests pass. Coverage:
 
 ```
 src\placement\bank.py         323      4    99%
@@ -193,7 +193,7 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 - **Bank size (144 items).** A user who retakes with the same email gets entirely new questions for 5 attempts: verified through the real app, and covered by regression tests. From the 6th attempt on, items are reused (oldest-seen first, logged, with a notice on the card). The most-used item still appears in about 62% of first attempts, because B1-centred routing draws on few items per kind.
 - **Vocabulary levels** were judged without access to English Vocabulary Profile data; see [docs/ITEM_AUDIT.md](docs/ITEM_AUDIT.md).
 - **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. You can go back and change answers within the current part (10 / 10 / 8 questions). When a part ends, its answers lock, because the next part is chosen from the re-estimated ability.
-- **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used.
+- **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used. The email is not verified. An unfinished test can be resumed only in the browser that started it, which holds a random token in the URL (`?resume=...`). Anyone who gets that URL can also resume it, and someone who types another person's email can still start a new test, which ends that person's unfinished one, although they cannot see its answers.
 - **Not an official certificate.** The result is a CEFR-aligned estimate.
 
 ## Repository layout

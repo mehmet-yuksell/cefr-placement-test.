@@ -409,6 +409,10 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "footer": "CEFR uyumlu bir tahmindir; resmi bir sınav veya sertifika değildir.",
         "resume_found": "Yarım kalan bir testiniz var: {n} / {total} soru yanıtlanmış.",
         "resume_button": "Kaldığım yerden devam et",
+        "resume_other_browser": (
+            "Bu e-postayla başka bir tarayıcıda başlatılmış yarım bir test var. Güvenlik için o test yalnızca "
+            "başlatıldığı tarayıcıdan sürdürülebilir; buradan yeni bir test başlatabilirsin."
+        ),
         "fresh_button": "Yeni test başlat",
         "resumed_toast": "Testiniz kaldığı yerden geri yüklendi.",
         "resume_failed": "Yarım kalan test geri yüklenemedi (soru havuzu değişmiş); yeni bir test başlatıldı.",
@@ -497,6 +501,10 @@ _WEB_STRINGS: dict[str, dict[str, str]] = {
         "footer": "A CEFR-aligned estimate, not an official exam or certificate.",
         "resume_found": "You have an unfinished test: {n} of {total} questions answered.",
         "resume_button": "Continue where I left off",
+        "resume_other_browser": (
+            "There is an unfinished test for this email that was started in another browser. For security it can "
+            "only be continued in that browser; you can start a new test here."
+        ),
         "fresh_button": "Start a new test",
         "resumed_toast": "Your test has been restored where you left off.",
         "resume_failed": "The unfinished test could not be restored (the question bank changed); a new test has started.",

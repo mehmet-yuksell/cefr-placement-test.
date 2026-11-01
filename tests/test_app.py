@@ -115,7 +115,8 @@ def test_unfinished_test_resumes_after_reload():
         answer_current(first)
     expected_next = first.session_state["shown_item"]
 
-    reloaded = AppTest.from_file(APP, default_timeout=30)  # a new browser session
+    reloaded = AppTest.from_file(APP, default_timeout=30)  # same browser after a reload
+    reloaded.query_params["resume"] = first.query_params["resume"]
     reloaded.run()
     reloaded.text_input(key="email").input("resume@example.org")
     reloaded.button(key="start").click().run()
@@ -294,7 +295,8 @@ def test_changed_answers_survive_reload_and_resume():
     first.button(key="nav_4").click().run()
     expected_next = first.session_state["shown_item"]
 
-    reloaded = AppTest.from_file(APP, default_timeout=30)
+    reloaded = AppTest.from_file(APP, default_timeout=30)  # same browser after a reload
+    reloaded.query_params["resume"] = first.query_params["resume"]
     reloaded.run()
     reloaded.text_input(key="email").input("change@example.org")
     reloaded.button(key="start").click().run()
@@ -336,7 +338,8 @@ def test_resume_ignores_item_version_changes(isolated_storage):
     with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
         conn.execute("UPDATE responses SET item_version = 0")
         conn.commit()
-    again = AppTest.from_file(APP, default_timeout=30)
+    again = AppTest.from_file(APP, default_timeout=30)  # same browser after a reload
+    again.query_params["resume"] = first.query_params["resume"]
     again.run()
     again.text_input(key="email").input("version@example.org")
     again.button(key="start").click().run()
@@ -351,3 +354,25 @@ def test_unsure_note_is_shown_in_both_languages():
         at = start(email=f"note-{lang}@example.org", lang=lang)
         bodies = [h.proto.body for h in at.get("html")]
         assert any(text in body or text.replace("'", "&#x27;") in body for body in bodies)
+
+
+def test_other_browser_cannot_resume_someone_elses_test():
+    """Knowing the email is not enough: the resume token lives only in the starting browser."""
+    victim = start(email="owner@example.org")
+    for _ in range(3):
+        answer_confirmed(victim)
+    other = AppTest.from_file(APP, default_timeout=30)  # different browser, no token in the URL
+    other.run()
+    other.text_input(key="email").input("owner@example.org")
+    other.button(key="start").click().run()
+    assert other.session_state["pending_resume"]["can_resume"] is False
+    assert not [b for b in other.button if b.key == "resume"]
+    other.button(key="fresh").click().run()
+    assert other.session_state["attempt"] == 2  # a new test, not the owner's answers
+    assert other.session_state["answered"] == []
+    stranger = AppTest.from_file(APP, default_timeout=30)  # a forged token does not help either
+    stranger.query_params["resume"] = "forged-token"
+    stranger.run()
+    stranger.text_input(key="email").input("owner@example.org")
+    stranger.button(key="start").click().run()
+    assert stranger.session_state["pending_resume"]["can_resume"] is False

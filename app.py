@@ -28,6 +28,9 @@ from placement.models import UNSURE, Item, Response
 from placement.report import ResultCard, build_card, to_markdown
 from placement.scoring import InsufficientDataError, score_responses
 
+# URL query parameter that carries this browser's resume token.
+RESUME_PARAM = "resume"
+
 
 @st.cache_resource
 def get_bank() -> ItemBank:
@@ -97,10 +100,13 @@ def start_new_test(email: str, mode: str) -> None:
     fixed_seed = os.environ.get("PLACEMENT_SEED")
     seed = int(fixed_seed) + attempt if fixed_seed else secrets.randbelow(2**31)
     session_id = uuid.uuid4().hex
+    token = storage.new_resume_token()
     storage.create_session(
         conn, session_id=session_id, user_hash=user_hash, attempt_no=attempt, mode=mode, seed=seed,
-        test_length=TEST_LENGTH,
+        test_length=TEST_LENGTH, resume_token=token,
     )
+    # Only this browser (which keeps the token in its URL) may resume the test later.
+    st.query_params[RESUME_PARAM] = token
     state = engine.new_test(get_bank(), seed=seed, mode=mode, seen=storage.seen_items(conn, user_hash))
     begin(state, session_id=session_id, attempt=attempt, email=email, answered=[], spent_s=0.0)
 
@@ -110,6 +116,10 @@ def resume_test(email: str, mode: str) -> None:
     conn, bank = get_conn(), get_bank()
     user_hash = storage.hash_email(email, get_key())
     row = storage.latest_in_progress(conn, user_hash)
+    if row is None or not storage.token_matches(row, st.query_params.get(RESUME_PARAM)):
+        start_new_test(email, mode)
+        st.session_state.toast = "resume_failed"
+        return
     answered = storage.session_answers(conn, row["session_id"])
     known = {item.id for item in bank.items}
     state = None
@@ -220,13 +230,18 @@ def screen_start() -> None:
             placeholder="ornek@eposta.com" if lg == "tr" else "you@example.com", help=t("email_help", lg),
         )
         pending = st.session_state.get("pending_resume")
-        if pending and pending["email"] == email:
+        if pending and pending["email"] == email and pending["can_resume"]:
             st.html(web.note(t("resume_found", lg, n=pending["answered"], total=pending["length"])))
             left, right = st.columns(2)
             if left.button(t("resume_button", lg), type="primary", key="resume", width="stretch"):
                 resume_test(email, st.session_state.get("mode", "adaptive"))
                 st.rerun()
             if right.button(t("fresh_button", lg), key="fresh", width="stretch"):
+                start_new_test(email, st.session_state.get("mode", "adaptive"))
+                st.rerun()
+        elif pending and pending["email"] == email:
+            st.html(web.note(t("resume_other_browser", lg)))
+            if st.button(t("fresh_button", lg), type="primary", key="fresh", width="stretch"):
                 start_new_test(email, st.session_state.get("mode", "adaptive"))
                 st.rerun()
         elif st.button(t("start_button", lg) + "  →", type="primary", key="start", width="stretch"):
@@ -238,7 +253,10 @@ def screen_start() -> None:
             row = storage.latest_in_progress(get_conn(), storage.hash_email(email, get_key()))
             if row is not None:
                 answered = len(storage.session_answers(get_conn(), row["session_id"]))
-                st.session_state.pending_resume = {"email": email, "answered": answered, "length": row["test_length"]}
+                st.session_state.pending_resume = {
+                    "email": email, "answered": answered, "length": row["test_length"],
+                    "can_resume": storage.token_matches(row, st.query_params.get(RESUME_PARAM)),
+                }
             else:
                 start_new_test(email, st.session_state.get("mode", "adaptive"))
             st.rerun()

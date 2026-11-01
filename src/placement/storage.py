@@ -18,9 +18,12 @@ import json
 import re
 import secrets
 import sqlite3
+import threading
+from collections.abc import Callable
 from datetime import UTC, datetime
+from functools import wraps
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeVar
 
 from placement.models import Response, Result
 
@@ -29,6 +32,24 @@ DEFAULT_DB_PATH = DATA_DIR / "placement.db"
 DEFAULT_KEY_PATH = DATA_DIR / "secret.key"
 
 _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+# One lock serialises every use of a connection made through this module.
+# Streamlit runs each user session in its own thread and the app shares one
+# connection, so statements and transactions must not interleave. WAL mode and
+# a busy timeout additionally let separate connections (other processes,
+# tools) wait for each other instead of failing with "database is locked".
+_DB_LOCK = threading.RLock()
+BUSY_TIMEOUT_MS = 5000
+F = TypeVar("F", bound=Callable[..., Any])
+
+
+def _locked(func: F) -> F:
+    @wraps(func)
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        with _DB_LOCK:
+            return func(*args, **kwargs)
+
+    return wrapper  # type: ignore[return-value]
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS sessions (
@@ -47,7 +68,8 @@ CREATE TABLE IF NOT EXISTS sessions (
     level            TEXT,
     scaled_score     INTEGER,
     flags_json       TEXT NOT NULL DEFAULT '[]',
-    engine_json      TEXT
+    engine_json      TEXT,
+    resume_token_hash TEXT
 );
 CREATE INDEX IF NOT EXISTS sessions_user ON sessions (user_hash);
 CREATE TABLE IF NOT EXISTS responses (
@@ -93,6 +115,22 @@ def load_or_create_key(path: Path = DEFAULT_KEY_PATH) -> bytes:
     return key
 
 
+def new_resume_token() -> str:
+    """Random token that lets only the browser that started a test resume it."""
+    return secrets.token_urlsafe(18)
+
+
+def hash_token(token: str) -> str:
+    """SHA-256 of a resume token (only the hash is stored)."""
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def token_matches(row: sqlite3.Row, token: str | None) -> bool:
+    """Whether ``token`` is the resume token of the session ``row``."""
+    stored = row["resume_token_hash"]
+    return bool(token) and stored is not None and hmac.compare_digest(stored, hash_token(token))
+
+
 def hash_email(email: str, key: bytes) -> str:
     """Keyed hash (HMAC-SHA256) of the normalised email."""
     return hmac.new(key, normalise_email(email).encode("utf-8"), hashlib.sha256).hexdigest()
@@ -103,10 +141,14 @@ def connect(path: Path = DEFAULT_DB_PATH) -> sqlite3.Connection:
     path_str = str(path)
     if path_str != ":memory:":
         Path(path_str).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path_str, check_same_thread=False)
+    conn = sqlite3.connect(path_str, check_same_thread=False, timeout=BUSY_TIMEOUT_MS / 1000)
     conn.row_factory = sqlite3.Row
-    conn.executescript(SCHEMA)
-    _migrate(conn)
+    with _DB_LOCK:
+        conn.execute(f"PRAGMA busy_timeout = {BUSY_TIMEOUT_MS}")
+        if path_str != ":memory:":
+            conn.execute("PRAGMA journal_mode = WAL")
+        conn.executescript(SCHEMA)
+        _migrate(conn)
     return conn
 
 
@@ -116,8 +158,13 @@ def _migrate(conn: sqlite3.Connection) -> None:
     if "changes" not in columns:
         with conn:
             conn.execute("ALTER TABLE responses ADD COLUMN changes INTEGER NOT NULL DEFAULT 0")
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(sessions)")}
+    if "resume_token_hash" not in columns:
+        with conn:
+            conn.execute("ALTER TABLE sessions ADD COLUMN resume_token_hash TEXT")
 
 
+@_locked
 def mark_abandoned(conn: sqlite3.Connection, user_hash: str) -> int:
     """Mark the user's unfinished sessions as abandoned; return how many."""
     with conn:
@@ -128,12 +175,14 @@ def mark_abandoned(conn: sqlite3.Connection, user_hash: str) -> int:
     return cur.rowcount
 
 
+@_locked
 def next_attempt_no(conn: sqlite3.Connection, user_hash: str) -> int:
     """Attempt number for the user's next session (1 for a new user)."""
     row = conn.execute("SELECT MAX(attempt_no) FROM sessions WHERE user_hash = ?", (user_hash,)).fetchone()
     return (row[0] or 0) + 1
 
 
+@_locked
 def seen_items(conn: sqlite3.Connection, user_hash: str, before_attempt: int | None = None) -> dict[str, int]:
     """Items the user has been shown: item id -> latest attempt number.
 
@@ -150,6 +199,7 @@ def seen_items(conn: sqlite3.Connection, user_hash: str, before_attempt: int | N
     return {item_id: attempt for item_id, attempt in rows}
 
 
+@_locked
 def latest_in_progress(conn: sqlite3.Connection, user_hash: str) -> sqlite3.Row | None:
     """The user's most recent unfinished session, if any."""
     return conn.execute(
@@ -159,6 +209,7 @@ def latest_in_progress(conn: sqlite3.Connection, user_hash: str) -> sqlite3.Row 
     ).fetchone()
 
 
+@_locked
 def session_answers(conn: sqlite3.Connection, session_id: str) -> list[tuple[str, str]]:
     """(item id, chosen option) for every stored answer of a session, in order."""
     rows = conn.execute(
@@ -168,12 +219,14 @@ def session_answers(conn: sqlite3.Connection, session_id: str) -> list[tuple[str
     return [(item_id, chosen) for item_id, chosen in rows]
 
 
+@_locked
 def session_time_spent(conn: sqlite3.Connection, session_id: str) -> float:
     """Total seconds spent on a session's answered items."""
     row = conn.execute("SELECT SUM(response_time_s) FROM responses WHERE session_id = ?", (session_id,)).fetchone()
     return float(row[0] or 0.0)
 
 
+@_locked
 def create_session(
     conn: sqlite3.Connection,
     *,
@@ -183,18 +236,21 @@ def create_session(
     mode: str,
     seed: int,
     test_length: int,
+    resume_token: str | None = None,
 ) -> None:
-    """Insert a new in-progress session."""
+    """Insert a new in-progress session (storing only a hash of the resume token)."""
     stamp = now_iso()
+    token_hash = hash_token(resume_token) if resume_token else None
     with conn:
         conn.execute(
             """INSERT INTO sessions (session_id, user_hash, attempt_no, mode, seed, test_length,
-                                     status, started_at, last_activity_at)
-               VALUES (?, ?, ?, ?, ?, ?, 'in_progress', ?, ?)""",
-            (session_id, user_hash, attempt_no, mode, seed, test_length, stamp, stamp),
+                                     status, started_at, last_activity_at, resume_token_hash)
+               VALUES (?, ?, ?, ?, ?, ?, 'in_progress', ?, ?, ?)""",
+            (session_id, user_hash, attempt_no, mode, seed, test_length, stamp, stamp, token_hash),
         )
 
 
+@_locked
 def record_response(conn: sqlite3.Connection, session_id: str, response: Response, item_version: int) -> None:
     """Store one answer and count the item's exposure."""
     stamp = now_iso()
@@ -223,6 +279,7 @@ def record_response(conn: sqlite3.Connection, session_id: str, response: Respons
         conn.execute("UPDATE sessions SET last_activity_at = ? WHERE session_id = ?", (stamp, session_id))
 
 
+@_locked
 def update_response(
     conn: sqlite3.Connection,
     session_id: str,
@@ -250,6 +307,7 @@ def update_response(
         conn.execute("UPDATE sessions SET last_activity_at = ? WHERE session_id = ?", (stamp, session_id))
 
 
+@_locked
 def finish_session(
     conn: sqlite3.Connection,
     session_id: str,
@@ -281,11 +339,13 @@ def finish_session(
         )
 
 
+@_locked
 def session_row(conn: sqlite3.Connection, session_id: str) -> sqlite3.Row | None:
     """Return a session's row, or None."""
     return conn.execute("SELECT * FROM sessions WHERE session_id = ?", (session_id,)).fetchone()
 
 
+@_locked
 def exposure_counts(conn: sqlite3.Connection) -> dict[str, int]:
     """How many times each item has been shown across all sessions."""
     return {row[0]: row[1] for row in conn.execute("SELECT item_id, count FROM item_exposure")}

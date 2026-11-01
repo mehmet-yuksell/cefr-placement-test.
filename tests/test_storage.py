@@ -90,3 +90,76 @@ def test_old_database_gets_the_changes_column(tmp_path):
         row = conn.execute("SELECT chosen_option, changes FROM responses").fetchone()
         assert tuple(row) == ("work", 0)
         conn.close()
+
+
+# ---- Concurrency and resume tokens -----------------------------------------------------
+
+
+def _write_answers(conn_factory, session_id, n):
+    conn = conn_factory()
+    for pos in range(n):
+        storage.record_response(conn, session_id, Response(f"A1-CLZ-{pos % 7 + 1:03d}", "x", pos % 2 == 0, 1.0, 1, pos),
+                                item_version=1)
+    return conn
+
+
+@pytest.mark.parametrize("shared", [True, False])
+def test_parallel_writes_lose_nothing(tmp_path, shared):
+    """8 threads x 50 answers, through one shared connection or one connection each."""
+    import threading
+
+    path = tmp_path / "par.db"
+    main = storage.connect(path)
+    assert main.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
+    for t in range(8):
+        storage.create_session(main, session_id=f"s{t}", user_hash=f"u{t}", attempt_no=1, mode="adaptive",
+                               seed=t, test_length=50)
+    errors: list[BaseException] = []
+    opened: list = []
+
+    def worker(t: int) -> None:
+        try:
+            conn = _write_answers((lambda: main) if shared else (lambda: storage.connect(path)), f"s{t}", 50)
+            if not shared:
+                opened.append(conn)
+        except BaseException as exc:  # noqa: BLE001 - surface any failure in the main thread
+            errors.append(exc)
+
+    threads = [threading.Thread(target=worker, args=(t,)) for t in range(8)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    for conn in opened:
+        conn.close()
+    assert errors == []
+    assert main.execute("SELECT COUNT(*) FROM responses").fetchone()[0] == 400
+    assert sum(storage.exposure_counts(main).values()) == 400
+    main.close()
+
+
+def test_resume_token_is_stored_only_as_a_hash(conn):
+    token = storage.new_resume_token()
+    storage.create_session(conn, session_id="s", user_hash="u", attempt_no=1, mode="adaptive", seed=1,
+                           test_length=28, resume_token=token)
+    row = storage.session_row(conn, "s")
+    assert row["resume_token_hash"] != token and len(row["resume_token_hash"]) == 64
+    assert storage.token_matches(row, token)
+    assert not storage.token_matches(row, token + "x")
+    assert not storage.token_matches(row, None)
+    storage.create_session(conn, session_id="old", user_hash="u", attempt_no=2, mode="adaptive", seed=1,
+                           test_length=28)
+    assert not storage.token_matches(storage.session_row(conn, "old"), token)
+
+
+def test_old_database_gets_the_token_column(tmp_path):
+    import sqlite3
+
+    path = tmp_path / "old.db"
+    old = sqlite3.connect(path)
+    old.executescript(storage.SCHEMA.replace(",\n    resume_token_hash TEXT\n", "\n"))
+    old.close()
+    conn = storage.connect(path)
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(sessions)")}
+    assert "resume_token_hash" in columns
+    conn.close()
