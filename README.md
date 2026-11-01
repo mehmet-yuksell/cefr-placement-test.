@@ -39,7 +39,8 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 | `exposure.py` | No repeats per user, oldest-seen-first reuse, randomesque selection (N = 5), exposure summaries. |
 | `storage.py` | SQLite sessions, per-answer response log (with response time) and exposure counts. The email is stored only as an HMAC-SHA256 hash. |
 | `report.py` / `i18n.py` | Result card in TR or EN: headline level, can-do statements, confidence, sub-skills, strengths and focus areas, action plan, missed-item review, disclaimer. |
-| `app.py` | Streamlit UI only. |
+| `web.py` | Stylesheet and pure HTML builders for the landing page, the test screen and the result page (unit-tested). |
+| `app.py` | Streamlit UI only: wires screens to the modules above. Includes resume-after-reload, an "I'm not sure" option (scored as wrong) and a live timer. |
 
 **Test design.**
 - **Routing stage:** 10 items aimed at 1 A1, 2 A2, 3 B1, 3 B2 and 1 C1 anchor.
@@ -189,7 +190,7 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 - **Precision.** 28 four-option items cannot reach 70% exact CEFR agreement even in theory (oracle ceiling 63.9%). About half of all results are flagged as borderline, honestly.
 - **Small bank (72 items).** One item (B1-CLZ-002) was shown to every simulated examinee because few same-kind items sit near the B1 routing target. A user's third attempt repeats about 12 items (logged, oldest-seen first, with a notice on the card). Reaching at least 5 same-kind items per level band (roughly 25 items per level) would fix both.
 - **Vocabulary levels** were judged without access to English Vocabulary Profile data; see [docs/ITEM_AUDIT.md](docs/ITEM_AUDIT.md).
-- **Not measured:** listening, speaking and writing. The timer is soft: it is shown and updates with each question, but nothing is cut off, and speed is not scored.
+- **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. There is no Back button, because the test is adaptive.
 - **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used.
 - **Not an official certificate.** The result is a CEFR-aligned estimate.
 

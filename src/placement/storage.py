@@ -124,15 +124,44 @@ def next_attempt_no(conn: sqlite3.Connection, user_hash: str) -> int:
     return (row[0] or 0) + 1
 
 
-def seen_items(conn: sqlite3.Connection, user_hash: str) -> dict[str, int]:
-    """Items the user has been shown: item id -> latest attempt number."""
+def seen_items(conn: sqlite3.Connection, user_hash: str, before_attempt: int | None = None) -> dict[str, int]:
+    """Items the user has been shown: item id -> latest attempt number.
+
+    With ``before_attempt``, only attempts numbered below it count (used to
+    rebuild a resumed session exactly as it started).
+    """
+    limit = before_attempt if before_attempt is not None else 2**31
     rows = conn.execute(
         """SELECT r.item_id, MAX(s.attempt_no) FROM responses r
            JOIN sessions s ON s.session_id = r.session_id
-           WHERE s.user_hash = ? GROUP BY r.item_id""",
-        (user_hash,),
+           WHERE s.user_hash = ? AND s.attempt_no < ? GROUP BY r.item_id""",
+        (user_hash, limit),
     ).fetchall()
     return {item_id: attempt for item_id, attempt in rows}
+
+
+def latest_in_progress(conn: sqlite3.Connection, user_hash: str) -> sqlite3.Row | None:
+    """The user's most recent unfinished session, if any."""
+    return conn.execute(
+        """SELECT * FROM sessions WHERE user_hash = ? AND status = 'in_progress'
+           ORDER BY attempt_no DESC LIMIT 1""",
+        (user_hash,),
+    ).fetchone()
+
+
+def session_answers(conn: sqlite3.Connection, session_id: str) -> list[tuple[str, str]]:
+    """(item id, chosen option) for every stored answer of a session, in order."""
+    rows = conn.execute(
+        "SELECT item_id, chosen_option FROM responses WHERE session_id = ? ORDER BY position",
+        (session_id,),
+    ).fetchall()
+    return [(item_id, chosen) for item_id, chosen in rows]
+
+
+def session_time_spent(conn: sqlite3.Connection, session_id: str) -> float:
+    """Total seconds spent on a session's answered items."""
+    row = conn.execute("SELECT SUM(response_time_s) FROM responses WHERE session_id = ?", (session_id,)).fetchone()
+    return float(row[0] or 0.0)
 
 
 def create_session(

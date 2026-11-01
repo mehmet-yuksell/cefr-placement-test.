@@ -2,7 +2,7 @@
 
 Run with ``streamlit run app.py``. All test logic lives in ``placement``;
 this file only renders screens and wires user actions to the engine,
-scoring, report and storage modules.
+scoring, report and storage modules. The look comes from ``placement.web``.
 
 Environment overrides (used by the automated run-through):
 ``PLACEMENT_DB`` (SQLite path), ``PLACEMENT_KEY`` (hash-key file) and
@@ -11,26 +11,23 @@ Environment overrides (used by the automated run-through):
 
 from __future__ import annotations
 
-import html
 import os
 import random
-import re
 import secrets
 import time
 import uuid
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
-from placement import engine, storage
+from placement import engine, storage, web
 from placement.bank import ItemBank, load_bank
 from placement.config import MIN_ITEMS_FOR_RESULT, TEST_LENGTH
-from placement.i18n import DEFAULT_LANGUAGE, LANGUAGES, t
-from placement.models import SEGMENT_RE, Item, Response
+from placement.i18n import DEFAULT_LANGUAGE, LANGUAGES, faq, level_group, t
+from placement.models import UNSURE, Item, Response
 from placement.report import ResultCard, build_card, to_markdown
 from placement.scoring import InsufficientDataError, score_responses
-
-BLANK_RE = re.compile(r"_{3,}")
 
 
 @st.cache_resource
@@ -51,27 +48,48 @@ def get_key() -> bytes:
     return storage.load_or_create_key(Path(os.environ.get("PLACEMENT_KEY", storage.DEFAULT_KEY_PATH)))
 
 
-def render_question(text: str) -> str:
-    """HTML-safe Markdown for a stem: [segments] underlined, gaps visible."""
-    safe = html.escape(text, quote=False)
-    safe = SEGMENT_RE.sub(lambda m: f"<u><b>{m.group(1)}</b></u>", safe)
-    return BLANK_RE.sub(r"\\_\\_\\_\\_\\_\\_", safe)
-
-
-def shuffled_options(item: Item, seed: int) -> list[str]:
-    """Options in a per-session random order; the key's position is never stored."""
-    options = list(item.options)
-    random.Random(f"{seed}:{item.id}").shuffle(options)
-    return options
-
-
 def lang() -> str:
     return st.session_state.get("lang", DEFAULT_LANGUAGE)
 
 
-def start_test(email: str, mode: str) -> None:
-    """Create the session record and the engine state, then go to the test."""
-    conn, bank = get_conn(), get_bank()
+def now_ms() -> int:
+    return int(time.time() * 1000)
+
+
+def answer_options(item: Item, seed: int) -> list[str]:
+    """Options in a per-session random order, then "I'm not sure".
+
+    The key's position is never stored.
+    """
+    options = list(item.options)
+    random.Random(f"{seed}:{item.id}").shuffle(options)
+    return [*options, UNSURE]
+
+
+# ---- Session control -------------------------------------------------------------------
+
+
+def begin(state: engine.TestState, *, session_id: str, attempt: int, email: str,
+          answered: list[tuple[str, str]], spent_s: float) -> None:
+    """Put a (new or restored) test into the Streamlit session."""
+    st.session_state.update(
+        phase="test",
+        email_prefill=email,
+        session_id=session_id,
+        attempt=attempt,
+        engine=state,
+        answered=answered,
+        started_ms=now_ms() - int(spent_s * 1000),
+        shown_item=None,
+        result=None,
+        answered_count=len(answered),
+        pending_resume=None,
+    )
+
+
+def start_new_test(email: str, mode: str) -> None:
+    """Create a session record and a fresh engine state."""
+    conn = get_conn()
     user_hash = storage.hash_email(email, get_key())
     storage.mark_abandoned(conn, user_hash)
     attempt = storage.next_attempt_no(conn, user_hash)
@@ -82,18 +100,34 @@ def start_test(email: str, mode: str) -> None:
         conn, session_id=session_id, user_hash=user_hash, attempt_no=attempt, mode=mode, seed=seed,
         test_length=TEST_LENGTH,
     )
-    st.session_state.update(
-        phase="test",
-        email_prefill=email,
-        session_id=session_id,
-        attempt=attempt,
-        engine=engine.new_test(bank, seed=seed, mode=mode, seen=storage.seen_items(conn, user_hash)),
-        answered=[],
-        test_started=time.monotonic(),
-        shown_item=None,
-        result=None,
-        answered_count=0,
-    )
+    state = engine.new_test(get_bank(), seed=seed, mode=mode, seen=storage.seen_items(conn, user_hash))
+    begin(state, session_id=session_id, attempt=attempt, email=email, answered=[], spent_s=0.0)
+
+
+def resume_test(email: str, mode: str) -> None:
+    """Rebuild the user's unfinished session by replaying its stored answers."""
+    conn, bank = get_conn(), get_bank()
+    user_hash = storage.hash_email(email, get_key())
+    row = storage.latest_in_progress(conn, user_hash)
+    answered = storage.session_answers(conn, row["session_id"])
+    known = {item.id for item in bank.items}
+    state = None
+    if all(item_id in known for item_id, _ in answered):
+        state = engine.replay(
+            bank,
+            [(item_id, bank.get(item_id).is_correct(chosen)) for item_id, chosen in answered],
+            seed=row["seed"],
+            mode=row["mode"],
+            length=row["test_length"],
+            seen=storage.seen_items(conn, user_hash, before_attempt=row["attempt_no"]),
+        )
+    if state is None:
+        start_new_test(email, mode)
+        st.session_state.toast = "resume_failed"
+        return
+    begin(state, session_id=row["session_id"], attempt=row["attempt_no"], email=email, answered=answered,
+          spent_s=storage.session_time_spent(conn, row["session_id"]))
+    st.session_state.toast = "resumed_toast"
 
 
 def finish_test(abandoned: bool) -> None:
@@ -112,7 +146,32 @@ def finish_test(abandoned: bool) -> None:
         flags=state.flags,
         engine_state=state.to_dict(),
     )
-    st.session_state.update(phase="result", result=result, answered_count=len(state.answers))
+    st.session_state.update(
+        phase="result",
+        result=result,
+        answered_count=len(state.answers),
+        elapsed_s=(now_ms() - st.session_state.started_ms) // 1000,
+    )
+
+
+def submit_answer(item: Item, chosen: str) -> None:
+    """Record the answer in the engine and the database."""
+    state: engine.TestState = st.session_state.engine
+    position = len(state.answers)
+    elapsed = round(time.monotonic() - st.session_state.shown_at, 2)
+    stage = engine.stage_of(state, position)
+    engine.record_answer(state, get_bank(), item.id, item.is_correct(chosen))
+    storage.record_response(
+        get_conn(),
+        st.session_state.session_id,
+        Response(item.id, chosen, item.is_correct(chosen), elapsed, stage, position),
+        item_version=item.version,
+    )
+    st.session_state.answered.append((item.id, chosen))
+    if state.finished:
+        finish_test(abandoned=False)
+    elif engine.stage_of(state, position + 1) != stage:
+        st.session_state.toast = f"stage_toast_{stage + 1}"
 
 
 def current_card() -> ResultCard | None:
@@ -127,44 +186,52 @@ def current_card() -> ResultCard | None:
     return build_card(result, answers, lang=lang(), test_length=state.length, flags=state.flags, passage_titles=titles)
 
 
-def submit_answer(item: Item, chosen: str) -> None:
-    """Record the answer in the engine and the database."""
-    state: engine.TestState = st.session_state.engine
-    position = len(state.answers)
-    elapsed = round(time.monotonic() - st.session_state.shown_at, 2)
-    engine.record_answer(state, get_bank(), item.id, item.is_correct(chosen))
-    storage.record_response(
-        get_conn(),
-        st.session_state.session_id,
-        Response(item.id, chosen, item.is_correct(chosen), elapsed, engine.stage_of(state, position), position),
-        item_version=item.version,
-    )
-    st.session_state.answered.append((item.id, chosen))
-    if state.finished:
-        finish_test(abandoned=False)
+# ---- Screens ---------------------------------------------------------------------------
 
 
 def screen_start() -> None:
     lg = lang()
-    st.title(t("app_title", lg))
-    st.caption(t("app_subtitle", lg, length=TEST_LENGTH))
-    st.write(t("intro", lg))
-    st.info(t("start_disclaimer", lg))
-    email = st.text_input(t("email_label", lg), value=st.session_state.get("email_prefill", ""),
-                          help=t("email_help", lg), key="email")
-    with st.expander(t("advanced", lg)):
-        mode = st.radio(
-            t("mode_label", lg), ["adaptive", "fixed"], key="mode",
-            format_func=lambda m: t(f"mode_{m}", lg),
+    st.html(web.hero(lg))
+    with st.container(key="start_card"):
+        email = st.text_input(
+            t("email_label", lg), value=st.session_state.get("email_prefill", ""), key="email",
+            placeholder="ornek@eposta.com" if lg == "tr" else "you@example.com", help=t("email_help", lg),
         )
-    if st.button(t("start_button", lg), type="primary", key="start"):
-        try:
-            storage.normalise_email(email)
-        except ValueError:
-            st.error(t("invalid_email", lg))
-            return
-        start_test(email, mode)
-        st.rerun()
+        pending = st.session_state.get("pending_resume")
+        if pending and pending["email"] == email:
+            st.html(web.note(t("resume_found", lg, n=pending["answered"], total=pending["length"])))
+            left, right = st.columns(2)
+            if left.button(t("resume_button", lg), type="primary", key="resume", width="stretch"):
+                resume_test(email, st.session_state.get("mode", "adaptive"))
+                st.rerun()
+            if right.button(t("fresh_button", lg), key="fresh", width="stretch"):
+                start_new_test(email, st.session_state.get("mode", "adaptive"))
+                st.rerun()
+        elif st.button(t("start_button", lg) + "  →", type="primary", key="start", width="stretch"):
+            try:
+                storage.normalise_email(email)
+            except ValueError:
+                st.error(t("invalid_email", lg))
+                return
+            row = storage.latest_in_progress(get_conn(), storage.hash_email(email, get_key()))
+            if row is not None:
+                answered = len(storage.session_answers(get_conn(), row["session_id"]))
+                st.session_state.pending_resume = {"email": email, "answered": answered, "length": row["test_length"]}
+            else:
+                start_new_test(email, st.session_state.get("mode", "adaptive"))
+            st.rerun()
+        st.html(web.note(t("cta_note", lg)))
+    with st.expander(t("advanced", lg)):
+        st.radio(t("mode_label", lg), ["adaptive", "fixed"], key="mode", format_func=lambda m: t(f"mode_{m}", lg))
+    st.html(web.stats(lg, TEST_LENGTH))
+    st.html(web.how_it_works(lg))
+    st.html(web.features(lg))
+    st.html(web.cefr_ladder(lg))
+    st.html(web.section_title(t("faq_title", lg)))
+    for question, answer in faq(lg):
+        with st.expander(question):
+            st.write(answer)
+    st.html(web.footer(lg))
 
 
 def screen_test() -> None:
@@ -180,94 +247,88 @@ def screen_test() -> None:
         st.session_state.shown_item = item.id
         st.session_state.shown_at = time.monotonic()
 
-    n = len(state.answers) + 1
-    st.progress(len(state.answers) / state.length, text=t("progress", lg, n=n, total=state.length))
-    elapsed = int(time.monotonic() - st.session_state.test_started)
-    st.caption(t("elapsed", lg, minutes=elapsed // 60, seconds=elapsed % 60))
-    if st.session_state.attempt > 1 and n == 1:
-        st.caption(t("attempt_info", lg, attempt=st.session_state.attempt))
-
-    if item.passage_id:
-        passage = bank.passage(item.passage_id)
-        with st.container(border=True):
-            st.markdown(f"**{t('passage_label', lg)}: {html.escape(passage.title)}**")
-            for paragraph in passage.text.split("\n"):
-                st.markdown(html.escape(paragraph, quote=False))
-    if item.instruction:
-        st.markdown(f"*{html.escape(item.instruction, quote=False)}*")
-    st.markdown(f"#### {render_question(item.question)}", unsafe_allow_html=True)
-    chosen = st.radio(
-        t("choose_option", lg),
-        shuffled_options(item, state.seed),
-        index=None,
-        key=f"answer_{st.session_state.session_id}_{item.id}",
-        label_visibility="collapsed",
-    )
-    left, right = st.columns([1, 1])
-    if left.button(t("next_button", lg), type="primary", disabled=chosen is None, key="next"):
-        submit_answer(item, chosen)
-        st.rerun()
-    if right.button(t("quit_button", lg), key="quit", help=t("quit_help", lg, min=MIN_ITEMS_FOR_RESULT)):
+    position = len(state.answers)
+    left, right = st.columns([1, 1], vertical_alignment="center")
+    if left.button("← " + t("quit_button", lg), type="tertiary", key="quit",
+                   help=t("quit_help", lg, min=MIN_ITEMS_FOR_RESULT)):
         finish_test(abandoned=True)
         st.rerun()
+    with right:
+        components.html(web.timer_widget(st.session_state.started_ms, t("timer_label", lg)), height=34)
 
-
-def show_card(card: ResultCard) -> None:
-    lg = card.lang
-    st.title(t("card_title", lg))
-    st.header(card.headline)
-    st.subheader(card.scaled_score)
-    for notice in card.notices:
-        st.warning(notice)
-    st.markdown(f"**{t('can_do_title', lg)}**")
-    st.markdown("\n".join(f"- {line}" for line in card.can_do))
-    st.markdown(f"**{t('confidence_title', lg)}**")
-    st.markdown("\n".join(f"- {line}" for line in card.confidence))
-    st.markdown(f"**{t('subskills_title', lg)}**")
-    st.markdown("\n".join(f"- {line}" for line in card.subskills))
-    st.caption(card.subskill_note)
-    left, right = st.columns(2)
-    for column, title, lines in ((left, "strengths_title", card.strengths), (right, "focus_title", card.focus)):
-        column.markdown(f"**{t(title, lg)}**")
-        column.markdown("\n".join(f"- {line}" for line in lines) if lines else t("tags_none", lg))
-    st.caption(card.tags_note)
-    st.markdown(f"**{t('plan_title', lg)}**")
-    st.markdown("\n".join(f"{n}. {step}" for n, step in enumerate(card.action_plan, 1)))
-    with st.expander(f"{t('review_title', lg)} ({len(card.missed)})"):
-        if not card.missed:
-            st.write(t("review_none", lg))
-        else:
-            st.caption(t("review_note", lg))
-        for m in card.missed:
-            context = f" — {html.escape(m.passage_title)}" if m.passage_title else ""
-            st.markdown(f"**{m.item_id}**{context}: {render_question(m.question)}", unsafe_allow_html=True)
-            st.markdown(
-                f"- {t('review_your_answer', lg)}: {html.escape(m.chosen)}\n"
-                f"- {t('review_correct', lg)}: {html.escape(m.correct)}\n"
-                f"- {html.escape(m.explanation)}"
+    with st.container(key="qcard"):
+        st.html(web.test_header(lg, position=position, total=state.length, stage=engine.stage_of(state, position),
+                                stage_sizes=state.stage_sizes, item=item))
+        passage = bank.passage(item.passage_id) if item.passage_id else None
+        st.html(web.question_block(item, passage))
+        with st.container(key="options"):
+            chosen = st.radio(
+                t("choose_option", lg),
+                answer_options(item, state.seed),
+                index=None,
+                key=f"answer_{st.session_state.session_id}_{item.id}",
+                label_visibility="collapsed",
+                format_func=lambda o: t("unsure_label", lg) if o == UNSURE else o,
             )
-    st.info(f"**{t('disclaimer_title', lg)}.** {card.disclaimer}")
-    st.download_button(t("download_button", lg), to_markdown(card), file_name="result-card.md", key="download")
+        note_col, button_col = st.columns([3, 2], vertical_alignment="center")
+        note_col.html(web.note(t("no_back_note", lg)))
+        if button_col.button(t("next_button", lg) + "  →", type="primary", disabled=chosen is None, key="next",
+                             width="stretch"):
+            submit_answer(item, chosen)
+            st.rerun()
 
 
 def screen_result() -> None:
     lg = lang()
     card = current_card()
-    if card is None:
-        st.title(t("card_title", lg))
-        st.warning(t("no_result", lg, n=st.session_state.answered_count, min=MIN_ITEMS_FOR_RESULT))
-    else:
-        show_card(card)
-    if st.button(t("retake_button", lg), key="retake"):
-        st.session_state.phase = "start"
-        st.rerun()
+    result = st.session_state.get("result")
+    if card is None or result is None:
+        with st.container(key="resume_card"):
+            st.html(f"<h3>{t('card_title', lg)}</h3>")
+            st.warning(t("no_result", lg, n=st.session_state.answered_count, min=MIN_ITEMS_FOR_RESULT))
+            if st.button(t("retake_button", lg), type="primary", key="retake"):
+                st.session_state.phase = "start"
+                st.rerun()
+        return
+
+    bank = get_bank()
+    n_correct = sum(1 for item_id, chosen in st.session_state.answered if bank.get(item_id).is_correct(chosen))
+    st.html(web.result_hero(card, result, lg, n_correct=n_correct, elapsed_s=st.session_state.get("elapsed_s", 0)))
+    st.html(web.scale_panel(result, lg))
+    st.html(web.probability_panel(result, card, lg))
+    st.html(web.can_do_panel(card, lg))
+    st.html(web.subskills_panel(result, card, lg))
+    st.html(web.tags_panel(card, lg))
+    st.html(web.plan_panel(card, lg))
+    with st.expander(f"{t('review_title', lg)} ({len(card.missed)})"):
+        st.html(web.review_items(card, lg))
+    st.html(web.section_title(t("copy_title", lg)))
+    st.code(
+        t("copy_text", lg, level=result.level, group=level_group(result.level, lg), score=result.scaled_score),
+        language=None, wrap_lines=True,
+    )
+    with st.container(key="result_actions"):
+        left, right = st.columns(2)
+        if left.button(t("retake_button", lg), type="primary", key="retake", width="stretch"):
+            st.session_state.phase = "start"
+            st.rerun()
+        right.download_button(t("download_button", lg), to_markdown(card), file_name="result-card.md",
+                              key="download", width="stretch")
+    st.info(f"**{t('disclaimer_title', lg)}.** {card.disclaimer}")
+    st.html(web.footer(lg))
 
 
 def main() -> None:
-    st.set_page_config(page_title="English Placement Test", page_icon="📝", layout="centered")
-    st.sidebar.radio(
-        t("language_label", lang()), list(LANGUAGES), key="lang", format_func=LANGUAGES.get
-    )
+    st.set_page_config(page_title=t("app_title", lang()), page_icon="🎯", layout="centered")
+    st.html(web.CSS)
+    brand, switch = st.columns([3, 1], vertical_alignment="center")
+    brand.html(web.topbar(lang()))
+    with switch:
+        st.radio("lang", list(LANGUAGES), key="lang", horizontal=True, label_visibility="collapsed",
+                 format_func=lambda code: code.upper())
+    toast = st.session_state.pop("toast", None)
+    if toast:
+        st.toast(t(toast, lang()))
     phase = st.session_state.setdefault("phase", "start")
     {"start": screen_start, "test": screen_test, "result": screen_result}[phase]()
 

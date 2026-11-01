@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 from placement.config import CEFR_LEVELS, SUBSCORE_MIN_ITEMS
 from placement.i18n import can_do, level_group, t, tag_advice, tag_name
-from placement.models import Item, Result
+from placement.models import UNSURE, Item, Result
 from placement.scoring import DOMAINS, strengths_and_focus
 
 MIN_PROBABILITY_SHOWN = 0.05
@@ -135,7 +135,7 @@ def build_card(
             item_id=item.id,
             passage_title=titles.get(item.passage_id) if item.passage_id else None,
             question=item.question,
-            chosen=chosen,
+            chosen=t("unsure_label", lang) if chosen == UNSURE else chosen,
             correct=item.correct_answer,
             explanation=item.explanation,
         )

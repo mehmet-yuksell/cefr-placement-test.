@@ -358,6 +358,241 @@ TAG_ADVICE: dict[str, dict[str, str]] = {
 }
 
 
+# --- Web interface (landing page, test screen, result screen) -----------------
+
+_WEB_STRINGS: dict[str, dict[str, str]] = {
+    "tr": {
+        "brand": "Seviye",
+        "brand_tag": "CEFR uyumlu İngilizce seviye testi",
+        "hero_badge": "Ücretsiz · Kayıt gerekmez · Reklamsız",
+        "hero_title": "İngilizce seviyenizi <em>15 dakikada</em> öğrenin",
+        "hero_sub": (
+            "Sorular yanıtlarınıza göre uyarlanır. Sonunda yalnızca bir harf değil; seviyenizi, ne kadar emin "
+            "olduğumuzu, güçlü ve zayıf becerilerinizi ve size özel bir çalışma planını görürsünüz."
+        ),
+        "cta_title": "Teste başlayın",
+        "cta_note": "E-postanız saklanmaz; yalnızca şifreli özeti tutulur.",
+        "stat_questions": "{n} soru",
+        "stat_questions_label": "uyarlamalı",
+        "stat_minutes": "~15 dk",
+        "stat_minutes_label": "süre sınırı yok",
+        "stat_levels": "A1–C2",
+        "stat_levels_label": "6 CEFR seviyesi",
+        "stat_skills": "3 beceri",
+        "stat_skills_label": "dilbilgisi · kelime · okuma",
+        "how_title": "Nasıl çalışır?",
+        "how_sub": "Herkese aynı soruları sormak yerine, test sizi tanıdıkça kendini ayarlar.",
+        "step1_title": "Isınma",
+        "step1_text": "İlk 10 soru farklı seviyelerden gelir ve kabaca nerede olduğunuzu belirler.",
+        "step2_title": "Uyarlama",
+        "step2_text": "Sonraki 10 soru tam sizin seviyenize göre seçilir; çok kolay ya da imkânsız sorularla zaman kaybetmezsiniz.",
+        "step3_title": "İnce ayar",
+        "step3_text": "Son 8 soru, iki seviye arasındaki sınırı netleştirmek için seçilir.",
+        "step4_title": "Sonuç ve plan",
+        "step4_text": "Seviyeniz, olasılıklar, alt beceriler ve haftalık süresi belli somut adımlar.",
+        "features_title": "Neden bu test?",
+        "feat1_title": "Dürüst sonuç",
+        "feat1_text": "Tek bir etiket yerine seviye olasılıklarını gösterir ve iki seviye arasındaysanız bunu açıkça söyler.",
+        "feat2_title": "Tanı odaklı sorular",
+        "feat2_text": "Her yanlış seçenek belirli bir hatayı hedefler; hangi konularda takıldığınızı görürsünüz.",
+        "feat3_title": "Kişisel çalışma planı",
+        "feat3_text": "Plan, en zayıf çıktığınız becerilere bağlıdır ve her adımın haftalık süresi yazılıdır.",
+        "feat4_title": "Tekrar çözülebilir",
+        "feat4_text": "Testi yeniden çözdüğünüzde önceki sorular mümkün olduğunca karşınıza çıkmaz.",
+        "feat5_title": "Kaldığınız yerden",
+        "feat5_text": "Sayfayı kapatırsanız aynı e-postayla döndüğünüzde test kaldığı yerden devam eder.",
+        "feat6_title": "Gizlilik",
+        "feat6_text": "Hesap yok, reklam yok, dış servis yok. E-postanız saklanmaz; test tamamen yerelde çalışır.",
+        "cefr_title": "CEFR seviyeleri",
+        "cefr_sub": "Avrupa Ortak Dil Çerçevesi, dil yeterliliğini altı seviyede tanımlar.",
+        "faq_title": "Sık sorulan sorular",
+        "footer": "CEFR uyumlu bir tahmindir; resmi bir sınav veya sertifika değildir.",
+        "resume_found": "Yarım kalan bir testiniz var: {n} / {total} soru yanıtlanmış.",
+        "resume_button": "Kaldığım yerden devam et",
+        "fresh_button": "Yeni test başlat",
+        "resumed_toast": "Testiniz kaldığı yerden geri yüklendi.",
+        "resume_failed": "Yarım kalan test geri yüklenemedi (soru havuzu değişmiş); yeni bir test başlatıldı.",
+        "unsure_label": "Emin değilim",
+        "type_cloze": "Boşluk doldurma",
+        "type_error_id": "Hatayı bulun",
+        "type_reading": "Okuma",
+        "type_lexical_pragmatic": "Kelime ve kullanım",
+        "stage_1": "Isınma",
+        "stage_2": "Uyarlama",
+        "stage_3": "İnce ayar",
+        "stage_toast_2": "Isınma tamamlandı. Sorular artık seviyenize göre seçiliyor.",
+        "stage_toast_3": "Son bölüm: iki seviye arasındaki sınırı netleştiriyoruz.",
+        "timer_label": "Süre",
+        "no_back_note": "Uyarlamalı testte önceki sorulara dönülemez. Bilmiyorsanız «Emin değilim»i seçin.",
+        "result_eyebrow": "Tahmini CEFR seviyeniz",
+        "result_correct": "{c} / {n} doğru",
+        "result_time": "{minutes} dk {seconds} sn",
+        "scale_title": "CEFR ölçeğindeki yeriniz",
+        "prob_title": "Seviye olasılıkları",
+        "copy_title": "Sonucu paylaşın",
+        "copy_text": "İngilizce seviye testi sonucum: {level} · {group} · ölçekli puan {score}/100 (CEFR uyumlu tahmin).",
+        "subskill_band": "{level}",
+        "subskill_hidden": "Yetersiz veri",
+        "subskill_items": "{n} soru · %{pct:.0f} doğru",
+        "you_are_here": "Siz",
+    },
+    "en": {
+        "brand": "Seviye",
+        "brand_tag": "CEFR-aligned English level test",
+        "hero_badge": "Free · No sign-up · No ads",
+        "hero_title": "Find your English level <em>in 15 minutes</em>",
+        "hero_sub": (
+            "Questions adapt to your answers. At the end you get more than a letter: your level, how sure we are, "
+            "your strong and weak skills, and a study plan made for you."
+        ),
+        "cta_title": "Start the test",
+        "cta_note": "Your email is not stored; only a keyed hash is kept.",
+        "stat_questions": "{n} questions",
+        "stat_questions_label": "adaptive",
+        "stat_minutes": "~15 min",
+        "stat_minutes_label": "no time limit",
+        "stat_levels": "A1–C2",
+        "stat_levels_label": "6 CEFR levels",
+        "stat_skills": "3 skills",
+        "stat_skills_label": "grammar · vocabulary · reading",
+        "how_title": "How it works",
+        "how_sub": "Instead of giving everyone the same questions, the test adjusts as it gets to know you.",
+        "step1_title": "Warm-up",
+        "step1_text": "The first 10 questions come from different levels and find roughly where you are.",
+        "step2_title": "Adapt",
+        "step2_text": "The next 10 are chosen for your level, so no time is wasted on questions that are far too easy or too hard.",
+        "step3_title": "Fine-tune",
+        "step3_text": "The last 8 questions sharpen the boundary between two levels.",
+        "step4_title": "Result and plan",
+        "step4_text": "Your level, the probabilities, sub-skills and concrete steps with weekly times.",
+        "features_title": "Why this test?",
+        "feat1_title": "An honest result",
+        "feat1_text": "Shows level probabilities instead of a single label, and says so clearly when you are between two levels.",
+        "feat2_title": "Diagnostic questions",
+        "feat2_text": "Every wrong option targets a specific mistake, so you see exactly where you get stuck.",
+        "feat3_title": "A personal study plan",
+        "feat3_text": "The plan is tied to your weakest skills, and every step has a weekly time.",
+        "feat4_title": "Retake-friendly",
+        "feat4_text": "When you take the test again, questions you have seen are avoided where possible.",
+        "feat5_title": "Pick up where you left off",
+        "feat5_text": "Close the page and come back with the same email: the test continues where you stopped.",
+        "feat6_title": "Private",
+        "feat6_text": "No account, no ads, no external services. Your email is not stored; the test runs entirely locally.",
+        "cefr_title": "The CEFR levels",
+        "cefr_sub": "The Common European Framework describes language ability in six levels.",
+        "faq_title": "Frequently asked questions",
+        "footer": "A CEFR-aligned estimate, not an official exam or certificate.",
+        "resume_found": "You have an unfinished test: {n} of {total} questions answered.",
+        "resume_button": "Continue where I left off",
+        "fresh_button": "Start a new test",
+        "resumed_toast": "Your test has been restored where you left off.",
+        "resume_failed": "The unfinished test could not be restored (the question bank changed); a new test has started.",
+        "unsure_label": "I'm not sure",
+        "type_cloze": "Fill the gap",
+        "type_error_id": "Find the error",
+        "type_reading": "Reading",
+        "type_lexical_pragmatic": "Words and usage",
+        "stage_1": "Warm-up",
+        "stage_2": "Adapt",
+        "stage_3": "Fine-tune",
+        "stage_toast_2": "Warm-up done. Questions are now chosen for your level.",
+        "stage_toast_3": "Last part: sharpening the boundary between two levels.",
+        "timer_label": "Time",
+        "no_back_note": "In an adaptive test you cannot go back. If you don't know, choose “I'm not sure”.",
+        "result_eyebrow": "Your estimated CEFR level",
+        "result_correct": "{c} / {n} correct",
+        "result_time": "{minutes} min {seconds} s",
+        "scale_title": "Where you are on the CEFR scale",
+        "prob_title": "Level probabilities",
+        "copy_title": "Share your result",
+        "copy_text": "My English level test result: {level} · {group} · scaled score {score}/100 (CEFR-aligned estimate).",
+        "subskill_band": "{level}",
+        "subskill_hidden": "Not enough data",
+        "subskill_items": "{n} questions · {pct:.0f}% correct",
+        "you_are_here": "You",
+    },
+}
+for _lang, _table in _WEB_STRINGS.items():
+    STRINGS[_lang].update(_table)
+
+# Original one-line summaries of each level for the landing page.
+CEFR_SHORT: dict[str, dict[str, str]] = {
+    "tr": {
+        "A1": "Tanıdık kelimeler ve çok basit cümlelerle temel ihtiyaçlarını karşılar.",
+        "A2": "Alışveriş, yol tarifi gibi rutin durumlarda kısa ve basit iletişim kurar.",
+        "B1": "Tanıdık konulardaki açık metinleri anlar; seyahatte kendi başının çaresine bakar.",
+        "B2": "Karmaşık metinlerin ana fikrini kavrar; akıcı konuşanlarla rahatça tartışır.",
+        "C1": "Uzun ve zorlu metinlerdeki imaları fark eder; dili esnek ve etkili kullanır.",
+        "C2": "Okuduğu hemen her şeyi rahatça anlar; en ince nüansları bile isabetle aktarır.",
+    },
+    "en": {
+        "A1": "Meets basic needs with familiar words and very simple sentences.",
+        "A2": "Communicates briefly and simply in routine situations such as shopping or directions.",
+        "B1": "Understands clear texts on familiar topics and copes independently when travelling.",
+        "B2": "Grasps the main ideas of complex texts and discusses comfortably with fluent speakers.",
+        "C1": "Notices what long, demanding texts imply and uses the language flexibly and effectively.",
+        "C2": "Understands almost anything read with ease and conveys even fine nuances accurately.",
+    },
+}
+
+FAQ: dict[str, tuple[tuple[str, str], ...]] = {
+    "tr": (
+        ("Test ücretsiz mi, kayıt gerekiyor mu?",
+         ("Evet, ücretsiz ve hesap açmanız gerekmez. E-posta yalnızca testi yeniden çözdüğünüzde farklı sorular "
+         "göstermek ve yarım kalan testi geri yüklemek için kullanılır; kendisi saklanmaz.")),
+        ("Sonuç nasıl hesaplanıyor?",
+         ("Her sorunun zorluğu CEFR seviyelerine göre tahmin edilmiştir. Yanıtlarınızdan madde tepki kuramına "
+         "dayanan bir modelle yetenek tahmini yapılır ve bu tahmin A1–C2 ölçeğine yerleştirilir. Ne kadar emin "
+         "olduğumuz da ayrıca gösterilir.")),
+        ("Neden önceki soruya dönemiyorum?",
+         ("Test uyarlamalıdır: sonraki sorular önceki yanıtlarınıza göre seçilir. Geri dönüp yanıt değiştirmek bu "
+         "seçimi bozar.")),
+        ("Sonuç ne kadar güvenilir?",
+         ("Bu bir tahmindir. Simülasyonlarda sonuç vakaların yaklaşık %99'unda doğru seviyede ya da bir komşu "
+         "seviyede çıkıyor; tam isabet yaklaşık %60. Bu yüzden olasılıkları ve sınırda olup olmadığınızı açıkça "
+         "gösteriyoruz. Soru parametreleri henüz gerçek yanıtlarla kalibre edilmedi.")),
+        ("«Emin değilim» ne işe yarar?",
+         ("Bilmediğiniz bir soruyu tahmin etmeden geçmenizi sağlar ve yanlış sayılır. Tahmin şans eseri doğru "
+         "çıkabilir; «Emin değilim» ise sonucunuzu şansa bırakmaz.")),
+        ("Yarıda bırakırsam ne olur?",
+         ("Yanıtlarınız kaydedilir. Aynı e-postayla döndüğünüzde kaldığınız yerden devam edebilirsiniz. En az 10 "
+         "soru yanıtladıysanız «Testi bitir» ile kısmi bir sonuç da alabilirsiniz.")),
+        ("Hangi beceriler ölçülüyor?",
+         "Dilbilgisi, kelime bilgisi ve okuma. Dinleme, konuşma ve yazma bu sürümde ölçülmez."),
+        ("CEFR nedir?",
+         ("Avrupa Konseyi'nin dil yeterliliğini A1'den C2'ye altı seviyede tanımlayan ortak çerçevesidir. Okullar, "
+         "işverenler ve kurslar seviyeleri çoğunlukla bu ölçekle ifade eder.")),
+    ),
+    "en": (
+        ("Is the test free? Do I need an account?",
+         ("Yes, it is free and needs no account. Your email is only used to show you different questions when you "
+         "retake the test and to restore an unfinished test; the email itself is not stored.")),
+        ("How is the result calculated?",
+         ("Each question's difficulty has been estimated on the CEFR scale. An item response theory model turns "
+         "your answers into an ability estimate, which is placed on the A1–C2 scale. How sure we are is shown "
+         "as well.")),
+        ("Why can't I go back to a previous question?",
+         ("The test is adaptive: each question is chosen from your earlier answers. Going back and changing them "
+         "would break that choice.")),
+        ("How reliable is the result?",
+         ("It is an estimate. In simulations the result is the right level or a neighbouring one in about 99% of "
+         "cases, and exactly right in about 60%. That is why we show the probabilities and tell you when you are "
+         "on a boundary. The question parameters have not yet been calibrated with real answers.")),
+        ("What does “I'm not sure” do?",
+         ("It lets you skip a question you don't know without guessing; it counts as wrong. A guess may be right "
+         "by luck, while “I'm not sure” keeps luck out of your result.")),
+        ("What if I stop halfway?",
+         ("Your answers are saved. Come back with the same email to continue where you stopped. If you have "
+         "answered at least 10 questions, “Finish the test” also gives you a partial result.")),
+        ("Which skills are measured?",
+         "Grammar, vocabulary and reading. Listening, speaking and writing are not measured in this version."),
+        ("What is the CEFR?",
+         ("The Council of Europe's common framework that describes language ability in six levels, A1 to C2. "
+         "Schools, employers and courses usually state levels on this scale.")),
+    ),
+}
+
+
 def t(key: str, lang: str = DEFAULT_LANGUAGE, **kwargs: object) -> str:
     """Return the string ``key`` in ``lang``, formatted with ``kwargs``.
 
@@ -385,3 +620,13 @@ def tag_name(tag: str, lang: str = DEFAULT_LANGUAGE) -> str:
 def tag_advice(tag: str, lang: str = DEFAULT_LANGUAGE) -> str:
     """A concrete practice step for a skill tag."""
     return TAG_ADVICE.get(lang, TAG_ADVICE["en"])[tag]
+
+
+def cefr_short(level: str, lang: str = DEFAULT_LANGUAGE) -> str:
+    """One-line summary of a level for the landing page."""
+    return CEFR_SHORT.get(lang, CEFR_SHORT["en"])[level]
+
+
+def faq(lang: str = DEFAULT_LANGUAGE) -> tuple[tuple[str, str], ...]:
+    """Question/answer pairs for the landing page."""
+    return FAQ.get(lang, FAQ["en"])

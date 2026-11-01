@@ -60,3 +60,17 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - Time estimate wording: "a widely used rough guide is about 200 hours of guided study per level", with no source link. Reason: commonly cited planning figure; the brief forbids fabricated links.
 - Can-do statements are original paraphrases, 2–3 per level, in both languages. Reason: no quoting of Council of Europe text.
 - Persona run-through: personas answer probabilistically at theta -1.5 / 0.5 / 1.5 through the real app (AppTest), with seed 42 fixed before running; variability across seeds 1–10 is reported too. Reason: a single scripted run is a sample, not evidence.
+
+## UI redesign (after product-owner feedback "looks terrible"; reference: fielse.com/tr/level-test)
+
+- Ideas borrowed from the reference page (no content, branding or code copied): a landing page with hero, CTA and facts; one question per screen; an "I'm not sure" option; restoring an unfinished test; a CEFR explainer; an FAQ; copying the result; a retake button.
+- Stayed on Streamlit (brief constraint) and restyled it with CSS plus HTML fragments from a new pure module, `placement/web.py`. Reason: no frontend build step, and the HTML builders stay unit-testable.
+- Answer options are lettered cards (A–D) built by styling `st.radio` with CSS against its react-aria DOM. Reason: one click selects, the existing tests keep working, and there are no rerun-flicker hacks.
+- "I'm not sure" (`models.UNSURE`) is a fifth choice and is scored as incorrect. The FAQ says plainly that a guess can be lucky and this option keeps luck out. Reason: the reference offers it; it is not presented as score-maximising, which would be untrue under 3PL.
+- No "Back" button. Reason: the test is adaptive, so earlier answers drive item selection (the FAQ explains this). The reference's Back/Next pattern would break routing.
+- Resume: on start, an unfinished session for the same email offers "continue" or "start new". Continue rebuilds the engine by replaying the stored answers (`engine.replay`, deterministic from the seed). If the bank changed, the old session is abandoned with a notice. Reason: a browser refresh would otherwise lose the test.
+- A live timer is a tiny JavaScript component (display only). This replaces the per-question elapsed caption.
+- Result page: a level ring, the CEFR scale with a ±1 SE band, probability bars per level, sub-skill tiles, strength/focus chips, numbered plan steps, a copyable result line and a Markdown download. Reason: makes uncertainty visible instead of one label, which is the main improvement over the reference.
+- Theme in `.streamlit/config.toml` (indigo primary, light base). The font stack uses system fonts only. Reason: the app must work offline, so no Google Fonts.
+- Inline SVG icons were replaced by text glyphs. Reason: `st.html` sanitises SVG away.
+- The FAQ quotes simulation figures (about 99% within one level, about 60% exact) rather than a vague "reliable". Reason: honesty requirement.

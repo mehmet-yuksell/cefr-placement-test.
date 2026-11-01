@@ -48,7 +48,7 @@ def run_persona(name: str, theta: float, lang: str, seed: int = 7, timeout: floa
     rng = random.Random(f"{seed}:{name}")
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=timeout)
     at.run()
-    at.sidebar.radio(key="lang").set_value(lang).run()
+    at.radio(key="lang").set_value(lang).run()
     at.text_input(key="email").input(f"{name.lower()}@example.org")
     at.button(key="start").click().run()
     while at.session_state["phase"] == "test":

@@ -19,6 +19,10 @@ ItemStatus = Literal["provisional", "calibrated", "retired"]
 SessionMode = Literal["adaptive", "fixed"]
 SessionStatus = Literal["in_progress", "completed", "abandoned"]
 
+# Stored as the chosen option when the test-taker answers "I'm not sure";
+# it never matches a key, so it is scored as incorrect.
+UNSURE = "__unsure__"
+
 # Error-identification items mark their candidate segments as [segment].
 SEGMENT_RE = re.compile(r"\[([^\[\]]+)\]")
 _WORD_RE = re.compile(r"[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*")

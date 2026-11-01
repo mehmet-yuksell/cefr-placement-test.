@@ -150,3 +150,12 @@ def test_guards(big_bank):
     with pytest.raises(RuntimeError):
         engine.current_item(state, big_bank)
     assert engine.stage_of(engine.new_test(big_bank, seed=1), 27) == 3
+
+
+def test_replay_rebuilds_the_same_test(big_bank):
+    original = run(big_bank, knows_up_to(0.3), seed=21)
+    answers = list(zip(original.selected[:15], original.answers[:15]))
+    rebuilt = engine.replay(big_bank, answers, seed=21, mode="adaptive")
+    assert rebuilt.selected[:15] == original.selected[:15]
+    assert engine.current_item(rebuilt, big_bank).id == original.selected[15]
+    assert engine.replay(big_bank, [("B1-CLZ-999", True)], seed=21, mode="adaptive") is None

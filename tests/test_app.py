@@ -7,6 +7,7 @@ import pytest
 import streamlit as st
 from streamlit.testing.v1 import AppTest
 
+from placement.models import UNSURE
 from tools import run_personas
 
 APP = str(run_personas.ROOT / "app.py")
@@ -25,7 +26,7 @@ def isolated_storage(tmp_path, monkeypatch):
 def start(email="tester@example.org", lang="en"):
     at = AppTest.from_file(APP, default_timeout=30)
     at.run()
-    at.sidebar.radio(key="lang").set_value(lang).run()
+    at.radio(key="lang").set_value(lang).run()
     at.text_input(key="email").input(email)
     at.button(key="start").click().run()
     return at
@@ -91,7 +92,50 @@ def test_partial_result_after_ten_answers_and_language_switch():
     at.button(key="quit").click().run()
     result = at.session_state["result"]
     assert result is not None and not result.complete
-    assert any("Sonuç kartı" in t.value for t in at.title)
-    at.sidebar.radio(key="lang").set_value("en").run()
-    assert any("Result card" in t.value for t in at.title)
+    assert "İngilizce seviye testi sonucum" in at.code[0].value
+    at.radio(key="lang").set_value("en").run()
+    assert "My English level test result" in at.code[0].value
     assert not at.exception
+
+
+def test_unsure_is_stored_and_scored_wrong(isolated_storage):
+    at = start()
+    item_id = at.session_state["shown_item"]
+    radio = next(r for r in at.radio if r.key and r.key.endswith(item_id))
+    radio.set_value(UNSURE).run()
+    at.button(key="next").click().run()
+    assert at.session_state["engine"].answers == [False]
+    with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
+        assert conn.execute("SELECT chosen_option, is_correct FROM responses").fetchone() == (UNSURE, 0)
+
+
+def test_unfinished_test_resumes_after_reload():
+    first = start(email="resume@example.org")
+    for _ in range(3):
+        answer_current(first)
+    expected_next = first.session_state["shown_item"]
+
+    reloaded = AppTest.from_file(APP, default_timeout=30)  # a new browser session
+    reloaded.run()
+    reloaded.text_input(key="email").input("resume@example.org")
+    reloaded.button(key="start").click().run()
+    assert reloaded.session_state["pending_resume"]["answered"] == 3
+    reloaded.button(key="resume").click().run()
+    assert reloaded.session_state["phase"] == "test"
+    assert len(reloaded.session_state["answered"]) == 3
+    assert reloaded.session_state["shown_item"] == expected_next
+    assert reloaded.session_state["attempt"] == 1
+
+
+def test_fresh_start_abandons_the_unfinished_test(isolated_storage):
+    first = start(email="fresh@example.org")
+    answer_current(first)
+    again = AppTest.from_file(APP, default_timeout=30)
+    again.run()
+    again.text_input(key="email").input("fresh@example.org")
+    again.button(key="start").click().run()
+    again.button(key="fresh").click().run()
+    assert again.session_state["attempt"] == 2
+    with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
+        statuses = sorted(r[0] for r in conn.execute("SELECT status FROM sessions"))
+    assert statuses == ["abandoned", "in_progress"]

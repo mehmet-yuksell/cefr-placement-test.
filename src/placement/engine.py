@@ -238,6 +238,31 @@ def record_answer(state: TestState, bank: ItemBank, item_id: str, correct: bool)
         )
 
 
+def replay(
+    bank: ItemBank,
+    answers: list[tuple[str, bool]],
+    *,
+    seed: int,
+    mode: str,
+    length: int = TEST_LENGTH,
+    seen: dict[str, int] | None = None,
+    early_stop: bool = EARLY_STOP_ENABLED,
+) -> TestState | None:
+    """Rebuild a test in progress from its stored answers.
+
+    The engine is deterministic given the seed, the user's earlier exposure
+    and the answers, so replaying them reproduces the same item sequence.
+    Returns None if the stored items no longer match (e.g. the bank changed).
+    """
+    state = new_test(bank, seed=seed, mode=mode, length=length, seen=seen, early_stop=early_stop)
+    for item_id, correct in answers:
+        item = current_item(state, bank)
+        if item is None or item.id != item_id:
+            return None
+        record_answer(state, bank, item_id, correct)
+    return state
+
+
 def scored_responses(state: TestState, bank: ItemBank) -> list[ScoredResponse]:
     """The answered items in a form :mod:`placement.scoring` can use."""
     out = []
