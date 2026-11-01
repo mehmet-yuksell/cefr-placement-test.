@@ -325,3 +325,22 @@ def test_result_uses_the_changed_answers():
     card = build_card(result, answers, lang="en", test_length=28)
     assert [m.item_id for m in card.missed] == [first.id]
     assert sum(at.session_state["engine"].answers) == 9
+
+
+def test_resume_ignores_item_version_changes(isolated_storage):
+    """Replay works by item id, so a later item revision does not break resuming."""
+    first = start(email="version@example.org")
+    for _ in range(3):
+        answer_confirmed(first)
+    expected = first.session_state["shown_item"]
+    with closing(sqlite3.connect(isolated_storage / "app.db")) as conn:
+        conn.execute("UPDATE responses SET item_version = 0")
+        conn.commit()
+    again = AppTest.from_file(APP, default_timeout=30)
+    again.run()
+    again.text_input(key="email").input("version@example.org")
+    again.button(key="start").click().run()
+    again.button(key="resume").click().run()
+    assert again.session_state["shown_item"] == expected
+    assert len(again.session_state["engine"].answers) == 3
+

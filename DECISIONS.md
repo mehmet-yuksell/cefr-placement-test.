@@ -98,3 +98,11 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - Back/Next stay side by side on phones (CSS on the `navbtns` container), as the request put Back on the left and Next on the right.
 - Response time: `shown_at` resets whenever the displayed question changes, so time on an earlier visit to the front question is not added when it is finally answered. Revisit time on an edited answer is added to that answer.
 - The persona tool and the 116 earlier tests pass unchanged. The persona tool now draws a second random answer at each part end (it clicks «Next» twice), so its seed-42 headlines changed; the README reports the new values.
+
+## Phase 2 fixes
+
+- `requirements.txt` now pins `streamlit>=1.66`. Reason: the code uses `st.iframe`, `width="stretch"` and `st.container(horizontal=True)`, which `>=1.40` would not guarantee.
+- Option-length balance: the key was the strictly longest option in 32% of items (46/144) and the strictly shortest in 6% (8/144). Distractors were lengthened, never the key changed, in 27 items (mostly reading and register items, whose options are phrases), giving 24% longest and 23% shortest; the target was 22–27% for both. Keys, meanings, misconceptions and levels are unchanged. Each edited item's `version` went up by 1, and `docs/ITEM_AUDIT.md` notes the change. Reason: with four options an unbiased bank has the key longest about 25% of the time; 32% is a test-wise cue.
+- `validate_bank.py` now prints a warning (not an error) when the key-longest share exceeds 30%; the hard error stays at 40%. Reason: the product owner asked for a warning-level check.
+- Version changes do not break resuming. Replay matches items by id, and `item_version` is only recorded for calibration. This is covered by `test_resume_ignores_item_version_changes`, which rewrites stored versions before resuming.
+- Simulations regenerated on the 144-item bank: 28 items gives 62.5% exact and 99.1% within one level (unchanged, as expected, because option wording does not enter the model); 40 items gives 66.4% exact and 99.6% within one level, against a 65.7% oracle ceiling.

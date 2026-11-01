@@ -20,6 +20,7 @@ from placement.bank import (
     ItemBank,
     build_bank,
     key_length_profile,
+    key_length_warnings,
     read_raw_bank,
     validate_raw,
 )
@@ -92,6 +93,8 @@ def main(argv: list[str] | None = None) -> int:
     for item_id in args.show:
         print()
         print(format_item(bank, item_id))
+    for warning in key_length_warnings([record for _, record in raw.items]):
+        print(f"\nWARNING: {warning}")
     print("\nOK: item bank passed all checks.")
     return 0
 

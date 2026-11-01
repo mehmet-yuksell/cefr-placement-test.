@@ -13,7 +13,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Python 3.11 or newer is required. The app runs fully offline once installed. On first use it creates `data/placement.db` (SQLite) and `data/secret.key` (the email-hashing key); both are gitignored.
+Python 3.11 or newer is required. `requirements.txt` pins Streamlit 1.66 or newer, because the app uses `st.iframe`, `width="stretch"` buttons and horizontal containers, which older versions lack. The app runs fully offline once installed. On first use it creates `data/placement.db` (SQLite) and `data/secret.key` (the email-hashing key); both are gitignored.
 
 ## Development commands
 
@@ -73,14 +73,14 @@ C1             7          7          5          5     24
 C2             7          6          5          6     24
 total  144 items, 14 passages
 domains: grammar=56, reading=36, vocabulary=52
-key is strictly longest option in 32% of items, shortest in 6%
+key is strictly longest option in 24% of items, shortest in 23%
 
 OK: item bank passed all checks.
 ```
 
 ### Gate 2: tests (`pytest --cov=placement`)
 
-116 tests pass. Coverage:
+133 tests pass. Coverage:
 
 ```
 src\placement\bank.py         323      4    99%
@@ -156,7 +156,7 @@ GATE within-one-level >= 95% (ideal): 99.1% -> PASS
 exact agreement 62.5% vs oracle ceiling 63.9%
 ```
 
-A 40-item run on the earlier 72-item bank (`--length 40`, no code change) gave 65.0% exact and 99.3% within one level, against a 65.7% oracle ceiling (`docs/simulation_40.txt`).
+A 40-item run on the same 144-item bank (`--length 40`, no code change) gives 66.4% exact and 99.6% within one level, against a 65.7% oracle ceiling (`docs/simulation_40.txt`).
 
 **Reading the numbers:**
 - **Length, not routing, limits accuracy.** With a = 1 and c = 0.25, 28 items give an SE of about 0.47 even with perfect targeting (the oracle). Each CEFR band is 1.0 wide, so about 40% of results land in a neighbouring band.

@@ -203,9 +203,9 @@
     "question": "What does the text suggest about Daniel's new way of getting to work?",
     "options": [
       "It suits him better than taking the bus.",
-      "He still takes the bus most days.",
+      "He still takes the bus on most days of the week.",
       "He cycles because his company asked him to.",
-      "It takes him longer to get to work now."
+      "It takes him much longer to get to work now."
     ],
     "correct_answer": "It suits him better than taking the bus.",
     "skill_tested": "Inference",
@@ -216,13 +216,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "He still takes the bus most days.": "Misreads or ignores 'four days a week'.",
+      "He still takes the bus on most days of the week.": "Misreads or ignores 'four days a week'.",
       "He cycles because his company asked him to.": "Confuses the company's move with the reason for cycling; a colleague made the suggestion.",
-      "It takes him longer to get to work now.": "Over-uses 'only a little longer' (route distance) and ignores 'arrives earlier'."
+      "It takes him much longer to get to work now.": "Over-uses 'only a little longer' (route distance) and ignores 'arrives earlier'."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: requires combining three details.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B1-CLZ-003",
@@ -287,7 +287,7 @@
     "question": "Why will the library close earlier on Wednesdays?",
     "options": [
       "To pay for opening on Sundays",
-      "Because few people visit then",
+      "Because few people visit on Wednesdays",
       "Because of the new reading club",
       "So staff can empty the book box"
     ],
@@ -300,13 +300,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Because few people visit then": "A sensible guess that the text does not support.",
+      "Because few people visit on Wednesdays": "A sensible guess that the text does not support.",
       "Because of the new reading club": "Links two nearby pieces of news that are not connected.",
       "So staff can empty the book box": "Builds a reason from an unrelated detail."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B1-RDG-005",
@@ -595,9 +595,9 @@
     "question": "Why did Mia start working with animals as a volunteer?",
     "options": [
       "Pets were not allowed in her building.",
-      "She wanted to find a paid job.",
-      "Her friends worked there.",
-      "She needed a dog for her family."
+      "She wanted to find a paid job with animals.",
+      "Her friends already worked there as volunteers.",
+      "She needed a dog for her family at home."
     ],
     "correct_answer": "Pets were not allowed in her building.",
     "skill_tested": "Detail",
@@ -608,13 +608,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "She wanted to find a paid job.": "Misses the meaning of 'volunteer'.",
-      "Her friends worked there.": "A common reason that the text does not give.",
-      "She needed a dog for her family.": "Mixes up her situation with the visitors who take animals home."
+      "She wanted to find a paid job with animals.": "Misses the meaning of 'volunteer'.",
+      "Her friends already worked there as volunteers.": "A common reason that the text does not give.",
+      "She needed a dog for her family at home.": "Mixes up her situation with the visitors who take animals home."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B1-RDG-007",
@@ -623,9 +623,9 @@
     "question": "What can we understand about the staff?",
     "options": [
       "They gave Mia more responsibility over time.",
-      "They did not like Mia at first.",
-      "They asked Mia to wash the dogs.",
-      "They took the animals home themselves."
+      "They did not like Mia when she first arrived.",
+      "They asked Mia to wash all the dogs every day.",
+      "They took the animals home with them at night."
     ],
     "correct_answer": "They gave Mia more responsibility over time.",
     "skill_tested": "Inference",
@@ -636,13 +636,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "They did not like Mia at first.": "Over-reads 'At first, her jobs were simple'.",
-      "They asked Mia to wash the dogs.": "Mixes up 'cleaning cages' with washing dogs.",
-      "They took the animals home themselves.": "Misreads 'visitors who wanted to take an animal home'."
+      "They did not like Mia when she first arrived.": "Over-reads 'At first, her jobs were simple'.",
+      "They asked Mia to wash all the dogs every day.": "Mixes up 'cleaning cages' with washing dogs.",
+      "They took the animals home with them at night.": "Misreads 'visitors who wanted to take an animal home'."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: change over time must be inferred.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B1-RDG-008",
@@ -651,25 +651,25 @@
     "question": "In the text, 'looked after' means ...",
     "options": [
       "taken care of",
-      "searched for",
+      "searched everywhere for",
       "watched from far away",
       "said goodbye to"
     ],
     "correct_answer": "taken care of",
     "skill_tested": "Vocabulary in context",
-    "explanation": "'Look after' means take care of: Mia has cared for the dog. 'Searched for' is the meaning of 'look for'. Watching from far away is much weaker than caring, and saying goodbye happens later.",
+    "explanation": "'Look after' means take care of: Mia has cared for the dog. 'Searched everywhere for' is the meaning of 'look for'. Watching from far away is much weaker than caring, and saying goodbye happens later.",
     "domain": "reading",
     "passage_id": "P-B1-03",
     "difficulty_b": -0.5,
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "searched for": "Confuses 'look after' with 'look for'.",
+      "searched everywhere for": "Confuses 'look after' with 'look for'.",
       "watched from far away": "Takes 'look' literally.",
       "said goodbye to": "Uses the nearby words 'saying goodbye'."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   }
 ]

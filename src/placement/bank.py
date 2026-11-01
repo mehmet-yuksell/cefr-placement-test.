@@ -40,6 +40,9 @@ NAMED_DISTRACTOR_MAX_WORDS = 4
 # most this share of items, checked once the bank has enough items.
 KEY_EXTREME_MAX_SHARE = 0.40
 KEY_EXTREME_MIN_ITEMS = 10
+# Above this share the validator warns (without failing): with four options an
+# unbiased bank has the key longest in about 25% of items.
+KEY_LONGEST_WARN_SHARE = 0.30
 
 _NUMBER = (int, float)
 ITEM_FIELDS: dict[str, tuple[type, ...]] = {
@@ -222,6 +225,19 @@ def key_length_profile(records: Iterable[dict[str, Any]]) -> tuple[float, float]
     if total == 0:
         return 0.0, 0.0
     return longest / total, shortest / total
+
+
+def key_length_warnings(records: list[dict[str, Any]]) -> list[str]:
+    """Non-fatal warnings about option-length cues across the bank."""
+    if len(records) < KEY_EXTREME_MIN_ITEMS:
+        return []
+    longest, _ = key_length_profile(records)
+    if longest > KEY_LONGEST_WARN_SHARE:
+        return [
+            (f"key is the strictly longest option in {longest:.0%} of items "
+            f"(warning above {KEY_LONGEST_WARN_SHARE:.0%}; an unbiased bank is near 25%)")
+        ]
+    return []
 
 
 def _validate_passage(record: dict[str, Any]) -> list[Issue]:

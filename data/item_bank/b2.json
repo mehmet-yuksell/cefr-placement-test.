@@ -259,8 +259,8 @@
     "options": [
       "How expecting to teach can improve learning, within limits",
       "Why teachers understand their subjects better than students",
-      "How students should prepare for difficult tests",
-      "Why teaching others makes most students anxious"
+      "How students should best prepare for very difficult tests",
+      "Why teaching others makes most students feel very anxious"
     ],
     "correct_answer": "How expecting to teach can improve learning, within limits",
     "skill_tested": "Main idea",
@@ -272,12 +272,12 @@
     "guessing_c": 0.25,
     "distractor_rationale": {
       "Why teachers understand their subjects better than students": "Takes the opening joke as the topic.",
-      "How students should prepare for difficult tests": "Builds advice the text never gives from the words 'test' and 'difficult'.",
-      "Why teaching others makes most students anxious": "Overgeneralises the limitation in the last sentence."
+      "How students should best prepare for very difficult tests": "Builds advice the text never gives from the words 'test' and 'difficult'.",
+      "Why teaching others makes most students feel very anxious": "Overgeneralises the limitation in the last sentence."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: clear topic sentence plus a stated limitation.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B2-RDG-004",
@@ -286,8 +286,8 @@
     "question": "According to the text, how did expecting to teach change the way students studied?",
     "options": [
       "They looked for links between ideas.",
-      "They learned more facts by heart.",
-      "They spent more hours studying.",
+      "They learned many more facts by heart.",
+      "They spent more hours studying each day.",
       "They explained the material to classmates."
     ],
     "correct_answer": "They looked for links between ideas.",
@@ -299,13 +299,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "They learned more facts by heart.": "Reverses 'rather than learning isolated facts by heart'.",
-      "They spent more hours studying.": "A plausible assumption the text does not support.",
+      "They learned many more facts by heart.": "Reverses 'rather than learning isolated facts by heart'.",
+      "They spent more hours studying each day.": "A plausible assumption the text does not support.",
       "They explained the material to classmates.": "Misses 'even though neither group actually taught anyone'."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B2-RDG-005",
@@ -567,9 +567,9 @@
     "question": "You need to ask your manager for a day off next week. Which request is most appropriate?",
     "options": [
       "Would it be possible for me to take Friday off?",
-      "I'm taking Friday off, just so you know.",
-      "Give me Friday off, I really need it.",
-      "I demand a day off on Friday."
+      "I'm taking Friday off, just so you know about it.",
+      "Give me Friday off next week, I really need it.",
+      "I am telling you that I demand a day off on Friday."
     ],
     "correct_answer": "Would it be possible for me to take Friday off?",
     "skill_tested": "Register & pragmatics",
@@ -580,13 +580,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "I'm taking Friday off, just so you know.": "Informs instead of asking permission.",
-      "Give me Friday off, I really need it.": "Imperative where a request is needed.",
-      "I demand a day off on Friday.": "Over-strong verb in a request upwards."
+      "I'm taking Friday off, just so you know about it.": "Informs instead of asking permission.",
+      "Give me Friday off next week, I really need it.": "Imperative where a request is needed.",
+      "I am telling you that I demand a day off on Friday.": "Over-strong verb in a request upwards."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: clear politeness contrast.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B2-RDG-006",
@@ -595,9 +595,9 @@
     "question": "What did several studies find about shop owners?",
     "options": [
       "They think more customers drive than really do.",
-      "They prefer customers who walk or cycle.",
+      "They prefer customers who walk or cycle to the shops.",
       "They usually agree with plans to remove parking.",
-      "They spend too much money on advertising."
+      "They spend too much money on advertising their shops."
     ],
     "correct_answer": "They think more customers drive than really do.",
     "skill_tested": "Detail",
@@ -608,13 +608,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "They prefer customers who walk or cycle.": "Mixes up the owners' views with the findings about spending.",
+      "They prefer customers who walk or cycle to the shops.": "Mixes up the owners' views with the findings about spending.",
       "They usually agree with plans to remove parking.": "Contradicts 'often fight plans'.",
-      "They spend too much money on advertising.": "A plausible business topic that the text never raises."
+      "They spend too much money on advertising their shops.": "A plausible business topic that the text never raises."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B2-RDG-007",
@@ -624,8 +624,8 @@
     "options": [
       "Over time, they can be as valuable as drivers.",
       "They always spend more on each visit than drivers.",
-      "They rarely return to the same shops.",
-      "They cause problems on busy streets."
+      "They rarely return to the same shops after one visit.",
+      "They cause problems for drivers on busy streets."
     ],
     "correct_answer": "Over time, they can be as valuable as drivers.",
     "skill_tested": "Inference",
@@ -637,12 +637,12 @@
     "guessing_c": 0.25,
     "distractor_rationale": {
       "They always spend more on each visit than drivers.": "Reverses 'may spend less on each visit'.",
-      "They rarely return to the same shops.": "Reverses 'come back more often'.",
-      "They cause problems on busy streets.": "Imports a common opinion not in the text."
+      "They rarely return to the same shops after one visit.": "Reverses 'come back more often'.",
+      "They cause problems for drivers on busy streets.": "Imports a common opinion not in the text."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B2-RDG-008",
@@ -651,9 +651,9 @@
     "question": "What is the writer's main conclusion?",
     "options": [
       "Decisions about parking should depend on local evidence.",
-      "Shop owners should stop worrying about customers.",
-      "Cities should build more parking for drivers.",
-      "Removing parking always helps local shops."
+      "Shop owners should stop worrying about losing their customers.",
+      "Cities should build more parking spaces for drivers who shop.",
+      "Removing parking spaces always helps the shops on a street."
     ],
     "correct_answer": "Decisions about parking should depend on local evidence.",
     "skill_tested": "Main idea",
@@ -664,12 +664,12 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Shop owners should stop worrying about customers.": "Overgeneralises the finding about overestimation.",
-      "Cities should build more parking for drivers.": "Reverses the direction of the text.",
-      "Removing parking always helps local shops.": "Ignores 'That does not mean every street benefits'."
+      "Shop owners should stop worrying about losing their customers.": "Overgeneralises the finding about overestimation.",
+      "Cities should build more parking spaces for drivers who shop.": "Reverses the direction of the text.",
+      "Removing parking spaces always helps the shops on a street.": "Ignores 'That does not mean every street benefits'."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: the conclusion follows a concession.",
-    "version": 1
+    "version": 2
   }
 ]

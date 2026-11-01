@@ -192,3 +192,25 @@ def test_cli_ok_and_fail(tmp_path, capsys):
     assert "[KEY]" in out and "Passage P-B1-01" in out and "OK:" in out
     assert validate_bank.main(["--bank-dir", str(tmp_path)]) == 1
     assert "FAIL" in capsys.readouterr().out
+
+
+def test_key_length_warning_is_not_an_error(raw, capsys, monkeypatch):
+    from placement.bank import key_length_warnings
+
+    records = [r for _, r in raw.items]
+    assert key_length_warnings(records) == []  # the real bank is balanced
+    skewed = []
+    for record in records[:20]:
+        clone = copy.deepcopy(record)
+        others = [o for o in clone["options"] if o != clone["correct_answer"]]
+        longest = max(len(o) for o in others)
+        if len(clone["correct_answer"]) <= longest:
+            key = clone["correct_answer"] + "." * (longest - len(clone["correct_answer"]) + 1)
+            clone["options"] = [key if o == clone["correct_answer"] else o for o in clone["options"]]
+            clone["correct_answer"] = key
+        skewed.append(clone)
+    assert "warning above 30%" in key_length_warnings(skewed)[0]
+    assert key_length_warnings(skewed[:5]) == []  # too few items to judge
+    monkeypatch.setattr(validate_bank, "key_length_warnings", lambda records: ["key is long"])
+    assert validate_bank.main([]) == 0
+    assert "WARNING: key is long" in capsys.readouterr().out

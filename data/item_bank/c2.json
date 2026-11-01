@@ -147,26 +147,26 @@
     "question": "A colleague asks for your honest opinion of a presentation that went badly. Which reply is both honest and tactful?",
     "options": [
       "Parts of it worked, but the main argument needs tightening.",
-      "It was absolutely brilliant — I wouldn't change a thing.",
-      "Frankly, it was a complete mess from start to finish.",
-      "Does it really matter what I think? It's over now anyway."
+      "It was absolutely brilliant — honestly, I wouldn't change a thing.",
+      "Frankly, it was a complete and total mess from start to finish.",
+      "Does it really matter what I think? It's all over now anyway."
     ],
     "correct_answer": "Parts of it worked, but the main argument needs tightening.",
     "skill_tested": "Register & pragmatics",
-    "explanation": "The best reply is honest about the problem but starts with something positive and gives a specific, useful point. Calling it 'brilliant' is not honest. Calling it 'a complete mess' is honest but not tactful. Asking whether your opinion matters avoids the question.",
+    "explanation": "The best reply is honest about the problem but starts with something positive and gives a specific, useful point. Calling it 'brilliant' is not honest. Calling it 'a complete and total mess' is honest but not tactful. Asking whether your opinion matters avoids the question.",
     "domain": "vocabulary",
     "passage_id": null,
     "difficulty_b": 2.2,
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "It was absolutely brilliant — I wouldn't change a thing.": "Chooses politeness at the cost of honesty.",
-      "Frankly, it was a complete mess from start to finish.": "Chooses honesty at the cost of tact.",
-      "Does it really matter what I think? It's over now anyway.": "Avoids the face-threat by evading, which fails the request for an opinion."
+      "It was absolutely brilliant — honestly, I wouldn't change a thing.": "Chooses politeness at the cost of honesty.",
+      "Frankly, it was a complete and total mess from start to finish.": "Chooses honesty at the cost of tact.",
+      "Does it really matter what I think? It's all over now anyway.": "Avoids the face-threat by evading, which fails the request for an opinion."
     },
     "status": "provisional",
     "author_notes": "b -0.3 from anchor: pragmatic judgement items may be easier than their wording suggests; flagged for calibration.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C2-RDG-001",
@@ -175,9 +175,9 @@
     "question": "Which statement best reflects the writer's view of nostalgia?",
     "options": [
       "It is harmless unless its edited past is taken as fact.",
-      "It is a dishonest habit that should be resisted.",
-      "It is mainly useful in helping people cope with change.",
-      "It gives an accurate picture of how life used to be."
+      "It is a dishonest habit that people should always resist.",
+      "It is mainly useful in helping people cope with sudden change.",
+      "It gives an accurate picture of how life really used to be."
     ],
     "correct_answer": "It is harmless unless its edited past is taken as fact.",
     "skill_tested": "Inference",
@@ -188,13 +188,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "It is a dishonest habit that should be resisted.": "Misses the concession 'This need not make nostalgia dishonest'.",
-      "It is mainly useful in helping people cope with change.": "Attributes a reported view to the writer, ignoring 'Yet'.",
-      "It gives an accurate picture of how life used to be.": "Contradicts the central claim that the remembered past is edited."
+      "It is a dishonest habit that people should always resist.": "Misses the concession 'This need not make nostalgia dishonest'.",
+      "It is mainly useful in helping people cope with sudden change.": "Attributes a reported view to the writer, ignoring 'Yet'.",
+      "It gives an accurate picture of how life really used to be.": "Contradicts the central claim that the remembered past is edited."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: the key paraphrases the final sentence closely.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C2-RDG-002",
@@ -316,26 +316,26 @@
     "question": "Which sentence is most appropriate in a formal letter turning down a job offer?",
     "options": [
       "I am grateful for the offer but have accepted another position.",
-      "I regret that your offer fails to meet my expectations.",
-      "I hereby decline your offer and request no further contact.",
-      "Thanks a lot for the offer, but I'll pass on this one."
+      "I regret to say that your offer simply fails to meet my expectations.",
+      "I hereby decline your offer and request no further contact of any kind.",
+      "Thanks a lot for the kind offer, but I think I'll pass on this one."
     ],
     "correct_answer": "I am grateful for the offer but have accepted another position.",
     "skill_tested": "Register & pragmatics",
-    "explanation": "The key is polite, formal and gives a neutral reason. 'Fails to meet my expectations' is formal but insulting. 'Request no further contact' is formal but hostile. 'Thanks a lot ... I'll pass' is far too informal for a letter to an employer.",
+    "explanation": "The key is polite, formal and gives a neutral reason. 'Fails to meet my expectations' is formal but insulting. 'Request no further contact' is formal but hostile. 'Thanks a lot ... I think I'll pass' is far too informal for a letter to an employer.",
     "domain": "vocabulary",
     "passage_id": null,
     "difficulty_b": 2.3,
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "I regret that your offer fails to meet my expectations.": "Formal register, but the content is face-threatening.",
-      "I hereby decline your offer and request no further contact.": "Over-formal legal register that sounds hostile.",
-      "Thanks a lot for the offer, but I'll pass on this one.": "Informal spoken register in a formal letter."
+      "I regret to say that your offer simply fails to meet my expectations.": "Formal register, but the content is face-threatening.",
+      "I hereby decline your offer and request no further contact of any kind.": "Over-formal legal register that sounds hostile.",
+      "Thanks a lot for the kind offer, but I think I'll pass on this one.": "Informal spoken register in a formal letter."
     },
     "status": "provisional",
     "author_notes": "b -0.2 from anchor: three formal-looking options require fine register judgement.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C2-CLZ-005",
@@ -541,26 +541,26 @@
     "question": "In an academic essay, which sentence best qualifies a claim?",
     "options": [
       "These results suggest, though do not prove, a causal link.",
-      "These results totally prove there is a causal link.",
-      "These results kind of show a causal link, I think.",
-      "These results prove nothing whatsoever about anything."
+      "These results totally and completely prove there is a causal link.",
+      "To be honest, these results kind of show a causal link, I think.",
+      "These results prove nothing whatsoever about anything at all."
     ],
     "correct_answer": "These results suggest, though do not prove, a causal link.",
     "skill_tested": "Register & pragmatics",
-    "explanation": "The key hedges appropriately: it presents the evidence as suggestive without claiming proof. 'Totally prove' overclaims, 'kind of show ..., I think' is too informal for academic writing, and 'prove nothing whatsoever' overstates in the opposite direction.",
+    "explanation": "The key hedges appropriately: it presents the evidence as suggestive without claiming proof. 'Totally and completely prove' overclaims, 'kind of show ..., I think' is too informal for academic writing, and 'prove nothing whatsoever' overstates in the opposite direction.",
     "domain": "vocabulary",
     "passage_id": null,
     "difficulty_b": 2.3,
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "These results totally prove there is a causal link.": "Overclaims in informal register.",
-      "These results kind of show a causal link, I think.": "Hedges, but in a spoken, informal style.",
-      "These results prove nothing whatsoever about anything.": "Overstates the opposite position."
+      "These results totally and completely prove there is a causal link.": "Overclaims in informal register.",
+      "To be honest, these results kind of show a causal link, I think.": "Hedges, but in a spoken, informal style.",
+      "These results prove nothing whatsoever about anything at all.": "Overstates the opposite position."
     },
     "status": "provisional",
     "author_notes": "b -0.2 from anchor: register contrast is fairly clear.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C2-LEX-006",
@@ -653,9 +653,9 @@
     "question": "In the text, 'masquerades as' is closest in meaning to ...",
     "options": [
       "passes itself off as",
-      "turns gradually into",
-      "competes with",
-      "depends on"
+      "gradually turns itself into",
+      "competes directly with",
+      "is entirely dependent on"
     ],
     "correct_answer": "passes itself off as",
     "skill_tested": "Vocabulary in context",
@@ -666,12 +666,12 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "turns gradually into": "Reads the phrase as a change over time.",
-      "competes with": "Reads the two ideas as rivals.",
-      "depends on": "Reads the phrase as a causal link."
+      "gradually turns itself into": "Reads the phrase as a change over time.",
+      "competes directly with": "Reads the two ideas as rivals.",
+      "is entirely dependent on": "Reads the phrase as a causal link."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: idiomatic verb in context.",
-    "version": 1
+    "version": 2
   }
 ]

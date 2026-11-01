@@ -203,7 +203,7 @@
     "question": "The phrase 'quietly squeezed out' suggests that thinking work ...",
     "options": [
       "slowly disappears without anyone choosing to end it",
-      "is openly banned by senior managers in the company",
+      "is openly banned by the senior managers in the company",
       "becomes more efficient when people are under pressure",
       "is done secretly, away from colleagues and the office"
     ],
@@ -216,13 +216,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "is openly banned by senior managers in the company": "Reads 'squeezed out' as an active, deliberate decision.",
+      "is openly banned by the senior managers in the company": "Reads 'squeezed out' as an active, deliberate decision.",
       "becomes more efficient when people are under pressure": "Associates squeezing with pressure that improves output.",
       "is done secretly, away from colleagues and the office": "Reads 'quietly' as 'secretly' and assumes a place."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C1-CLZ-003",
@@ -595,9 +595,9 @@
     "question": "What is the writer's main argument?",
     "options": [
       "Apps reduce the practical need for languages, not their social value.",
-      "Translation apps are still too inaccurate to be useful.",
-      "Learning grammar is the most important part of language study.",
-      "Professionals should rely on apps for important conversations."
+      "Translation apps are still far too inaccurate to be useful in practice.",
+      "Learning grammar is still the most important part of studying a language.",
+      "Professionals should rely on translation apps for their important conversations."
     ],
     "correct_answer": "Apps reduce the practical need for languages, not their social value.",
     "skill_tested": "Main idea",
@@ -608,13 +608,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Translation apps are still too inaccurate to be useful.": "Contradicts 'so accurate'.",
-      "Learning grammar is the most important part of language study.": "Builds a claim from 'mastering grammar'.",
-      "Professionals should rely on apps for important conversations.": "Reverses the point about negotiators and doctors."
+      "Translation apps are still far too inaccurate to be useful in practice.": "Contradicts 'so accurate'.",
+      "Learning grammar is still the most important part of studying a language.": "Builds a claim from 'mastering grammar'.",
+      "Professionals should rely on translation apps for their important conversations.": "Reverses the point about negotiators and doctors."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: the argument is built against an opposing view.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C1-RDG-004",
@@ -623,9 +623,9 @@
     "question": "According to the text, what do negotiators, doctors and teachers report?",
     "options": [
       "A few words in someone's language can change a conversation.",
-      "Translation apps often cause misunderstandings at work.",
-      "They need to speak foreign languages perfectly.",
-      "Their clients prefer to communicate by email."
+      "Translation apps often cause serious misunderstandings at work.",
+      "They need to speak foreign languages perfectly to be trusted.",
+      "Their clients prefer to communicate with them mainly by email."
     ],
     "correct_answer": "A few words in someone's language can change a conversation.",
     "skill_tested": "Detail",
@@ -636,13 +636,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Translation apps often cause misunderstandings at work.": "A plausible claim the text never makes.",
-      "They need to speak foreign languages perfectly.": "Contradicts 'however imperfectly'.",
-      "Their clients prefer to communicate by email.": "Borrows 'email' from an earlier sentence."
+      "Translation apps often cause serious misunderstandings at work.": "A plausible claim the text never makes.",
+      "They need to speak foreign languages perfectly to be trusted.": "Contradicts 'however imperfectly'.",
+      "Their clients prefer to communicate with them mainly by email.": "Borrows 'email' from an earlier sentence."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "C1-RDG-005",

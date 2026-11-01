@@ -147,26 +147,26 @@
     "question": "You are in a clothes shop and want to try on a sweater. What do you say to the shop assistant?",
     "options": [
       "Can I try this on, please?",
-      "I want to try this on now.",
+      "I want to try this on right now.",
       "You must let me try this on.",
-      "Do you try this on?"
+      "Do you try this sweater on?"
     ],
     "correct_answer": "Can I try this on, please?",
     "skill_tested": "Register & pragmatics",
-    "explanation": "'Can I ... please?' is the normal polite way to ask. 'I want ... now' sounds like an order. 'You must' is too strong when you ask for permission. 'Do you try this on?' asks about the assistant, not about you.",
+    "explanation": "'Can I ... please?' is the normal polite way to ask. 'I want ... right now' sounds like an order. 'You must' is too strong when you ask for permission. 'Do you try this sweater on?' asks about the assistant, not about you.",
     "domain": "vocabulary",
     "passage_id": null,
     "difficulty_b": -1.4,
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "I want to try this on now.": "Direct translation of a statement of desire (e.g. Turkish 'Bunu denemek istiyorum'), which sounds demanding in English.",
+      "I want to try this on right now.": "Direct translation of a statement of desire (e.g. Turkish 'Bunu denemek istiyorum'), which sounds demanding in English.",
       "You must let me try this on.": "Uses a strong obligation modal where a request is needed.",
-      "Do you try this on?": "Question form chosen without checking who the subject is."
+      "Do you try this sweater on?": "Question form chosen without checking who the subject is."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: politeness judgement adds a little difficulty.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A2-RDG-001",
@@ -175,9 +175,9 @@
     "question": "Why is Ella writing to Sam?",
     "options": [
       "To say she can't go to his party",
-      "To invite Sam to a wedding",
+      "To invite Sam to her cousin's wedding",
       "To tell Sam about a new restaurant",
-      "To ask Sam to visit her family"
+      "To ask Sam to visit her family soon"
     ],
     "correct_answer": "To say she can't go to his party",
     "skill_tested": "Main idea",
@@ -188,13 +188,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "To invite Sam to a wedding": "Takes a prominent detail (the wedding) and reverses who is invited.",
+      "To invite Sam to her cousin's wedding": "Takes a prominent detail (the wedding) and reverses who is invited.",
       "To tell Sam about a new restaurant": "Picks a secondary detail near the end.",
-      "To ask Sam to visit her family": "Misreads 'the whole family is going'."
+      "To ask Sam to visit her family soon": "Misreads 'the whole family is going'."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A2-RDG-002",
@@ -540,9 +540,9 @@
     "question": "A waiter asks, \"Are you ready to order?\" You need more time. What do you say?",
     "options": [
       "Not yet, could we have a minute?",
-      "Yes, we would like to order now.",
-      "Go away, we are still thinking.",
-      "No, we do not want any food."
+      "Yes, we would like to order right now.",
+      "Go away, we are still thinking about it.",
+      "No, we do not want any food today."
     ],
     "correct_answer": "Not yet, could we have a minute?",
     "skill_tested": "Register & pragmatics",
@@ -553,13 +553,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Yes, we would like to order now.": "Ignores the situation (you need more time).",
-      "Go away, we are still thinking.": "Right meaning, rude register.",
-      "No, we do not want any food.": "Answers the literal question and refuses the meal."
+      "Yes, we would like to order right now.": "Ignores the situation (you need more time).",
+      "Go away, we are still thinking about it.": "Right meaning, rude register.",
+      "No, we do not want any food today.": "Answers the literal question and refuses the meal."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: situation strongly signals the answer.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A2-LEX-006",
@@ -653,9 +653,9 @@
     "question": "What kind of text is this?",
     "options": [
       "An advert for renting bikes",
-      "A letter to a friend",
-      "A news story about a race",
-      "A list of city hotels"
+      "A letter to a friend about a trip",
+      "A news story about a bike race",
+      "A list of hotels in the city"
     ],
     "correct_answer": "An advert for renting bikes",
     "skill_tested": "Main idea",
@@ -666,12 +666,12 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "A letter to a friend": "Misreads the friendly tone.",
-      "A news story about a race": "Builds a topic from the word 'bike'.",
-      "A list of city hotels": "Builds a topic from the word 'city'."
+      "A letter to a friend about a trip": "Misreads the friendly tone.",
+      "A news story about a bike race": "Builds a topic from the word 'bike'.",
+      "A list of hotels in the city": "Builds a topic from the word 'city'."
     },
     "status": "provisional",
     "author_notes": "b -0.1 from anchor: text type is clear from the layout.",
-    "version": 1
+    "version": 2
   }
 ]

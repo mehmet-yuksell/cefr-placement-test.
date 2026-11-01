@@ -175,9 +175,9 @@
     "question": "Why does Lena like her job?",
     "options": [
       "She meets a lot of people.",
-      "She starts work early.",
-      "She works near the sea.",
-      "She can read at work."
+      "She starts work very early.",
+      "She works in a café near the sea.",
+      "She can read books at work."
     ],
     "correct_answer": "She meets a lot of people.",
     "skill_tested": "Detail",
@@ -188,13 +188,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "She starts work early.": "A true detail from the text, but not the reason given.",
-      "She works near the sea.": "Word matching: 'sea' appears in the text, but about the grandmother.",
-      "She can read at work.": "Mixes up her Sunday activity with her job."
+      "She starts work very early.": "A true detail from the text, but not the reason given.",
+      "She works in a café near the sea.": "Word matching: 'sea' appears in the text, but about the grandmother.",
+      "She can read books at work.": "Mixes up her Sunday activity with her job."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A1-RDG-002",
@@ -203,9 +203,9 @@
     "question": "What is the best title for the text?",
     "options": [
       "A week in Lena's life",
-      "Lena's grandmother",
-      "How to work in a café",
-      "A day at the beach"
+      "Lena and her grandmother",
+      "How to get a job in a café",
+      "A day at the beach in summer"
     ],
     "correct_answer": "A week in Lena's life",
     "skill_tested": "Main idea",
@@ -216,13 +216,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "Lena's grandmother": "Too narrow: only the Saturday part.",
-      "How to work in a café": "Too narrow, and changes the purpose: the text does not explain how to do the job.",
-      "A day at the beach": "Too narrow: one activity on one day."
+      "Lena and her grandmother": "Too narrow: only the Saturday part.",
+      "How to get a job in a café": "Too narrow, and changes the purpose: the text does not explain how to do the job.",
+      "A day at the beach in summer": "Too narrow: one activity on one day."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: main idea is slightly harder than detail at A1.",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A1-CLZ-003",
@@ -597,7 +597,7 @@
     "question": "What is Maria's job?",
     "options": [
       "She is a nurse.",
-      "She is a cook.",
+      "She is a cook in a restaurant.",
       "She is a doctor.",
       "She is a student."
     ],
@@ -610,13 +610,13 @@
     "discrimination_a": 1.0,
     "guessing_c": 0.25,
     "distractor_rationale": {
-      "She is a cook.": "That is her husband's job.",
+      "She is a cook in a restaurant.": "That is her husband's job.",
       "She is a doctor.": "Associates 'hospital' with doctors.",
       "She is a student.": "A common guess that the text does not support."
     },
     "status": "provisional",
     "author_notes": "",
-    "version": 1
+    "version": 2
   },
   {
     "id": "A1-RDG-004",
@@ -654,8 +654,8 @@
     "options": [
       "Maria and her family",
       "A day at the hospital",
-      "How to cook pasta",
-      "A football match"
+      "How to cook Italian food",
+      "A football match in the park"
     ],
     "correct_answer": "Maria and her family",
     "skill_tested": "Main idea",
@@ -667,11 +667,11 @@
     "guessing_c": 0.25,
     "distractor_rationale": {
       "A day at the hospital": "Too narrow: one detail about her job.",
-      "How to cook pasta": "Builds a topic from the word 'cook'.",
-      "A football match": "Too narrow: one Sunday activity."
+      "How to cook Italian food": "Builds a topic from the word 'cook'.",
+      "A football match in the park": "Too narrow: one Sunday activity."
     },
     "status": "provisional",
     "author_notes": "b +0.1 from anchor: main idea.",
-    "version": 1
+    "version": 2
   }
 ]
