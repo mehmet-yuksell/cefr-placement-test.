@@ -66,7 +66,7 @@ _Açıklamalar İngilizcedir._
   - Doğru yanıt: 20 euros
   - The text says 'a whole day costs 20 euros'. 5 euros is the price for one hour. 12 is the age in the helmet rule, and 8 is the opening time.
 - **A2-RDG-005** (City Bikes): What kind of text is this?
-  - Yanıtınız: A list of city hotels
+  - Yanıtınız: A list of hotels in the city
   - Doğru yanıt: An advert for renting bikes
   - The text tells readers what the shop offers, the prices and the opening times, so it is an advert. It is not written to a friend, it reports no race, and it lists no hotels.
 - **A2-LEX-001**: It's cold outside, so ___ your jacket before you go.
@@ -157,7 +157,7 @@ _Açıklamalar İngilizcedir._
   - Doğru yanıt: You should have told me you were coming.
   - Criticism of a past action uses 'should have' + past participle: 'should have told'. 'Should told' leaves out 'have', 'should have tell' uses the base form, and 'should had told' puts a past form after the modal.
 - **B2-LEX-004**: You need to ask your manager for a day off next week. Which request is most appropriate?
-  - Yanıtınız: Give me Friday off, I really need it.
+  - Yanıtınız: Give me Friday off next week, I really need it.
   - Doğru yanıt: Would it be possible for me to take Friday off?
   - The key politely asks permission with 'Would it be possible...?'. 'I'm taking Friday off' informs instead of asking. 'Give me Friday off' sounds like an order. 'I demand' is aggressive in a request to a manager.
 - **B2-CLZ-004**: By the time we got to the cinema, the film ___, so we missed the beginning.
