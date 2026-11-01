@@ -38,6 +38,8 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 | `scoring.py` | 3PL with fixed parameters, EAP on an 81-point grid with an N(0, 1) prior, CEFR mapping, level probabilities, borderline rule, sub-scores and tag residuals. Pure functions only. |
 | `exposure.py` | No repeats per user (5 full attempts per email fit in the 144-item bank), oldest-seen-first reuse, randomesque selection (N = 5), exposure summaries. |
 | `storage.py` | SQLite sessions, per-answer response log (with response time and change count) and exposure counts. WAL mode, a busy timeout and one lock around every statement make concurrent sessions safe. The email is stored only as an HMAC-SHA256 hash, and the resume token only as a SHA-256 hash. |
+| `pdf.py` | Result card as a PDF (fpdf2, embedded DejaVu Sans for Turkish characters). |
+| `admin.py` | Admin tables and CSV exports (hashes only, never emails). |
 | `report.py` / `i18n.py` | Result card in TR or EN: headline level, can-do statements, confidence, sub-skills, strengths and focus areas, action plan, missed-item review, disclaimer. |
 | `web.py` | Stylesheet and pure HTML builders for the landing page, the test screen and the result page (unit-tested). |
 | `app.py` | Streamlit UI only: wires screens to the modules above. Includes resume-after-reload, an "I'm not sure" option (scored as wrong) and a live timer. |
@@ -80,7 +82,7 @@ OK: item bank passed all checks.
 
 ### Gate 2: tests (`pytest --cov=placement`)
 
-142 tests pass. Coverage:
+151 tests pass. Coverage:
 
 ```
 src\placement\bank.py         323      4    99%
@@ -185,6 +187,26 @@ These persona runs were made on the earlier 72-item bank. The seed-42 run is one
 
 All 30 runs were within one level, consistent with the simulation. The real server was also started with `streamlit run app.py --server.headless true`; its health endpoint returned `ok` and the page returned HTTP 200.
 
+## Admin screen and debugging switches
+
+- **Admin:** set `PLACEMENT_ADMIN_PASSWORD` and open `/?admin=1`. Without the variable the admin screen does not exist. It shows the session list (shortened email hash, date, attempt, status, level, score), the item exposure table, and CSV exports of sessions and responses (the response log is what calibration needs; see `docs/EXTENSIONS.md` §d). Plain emails are never stored, so they can never be shown.
+- **Fixed form:** the non-adaptive form is hidden from test takers. Set `PLACEMENT_ALLOW_FIXED=1` to show it under "Advanced".
+
+## Deployment
+
+- **Streamlit Community Cloud** runs the app, but its file system is not persistent. `data/placement.db` (sessions, answers) and `data/secret.key` (the email-hashing key) are lost on every restart or redeploy. Losing the key also breaks no-repeat retakes and resuming. Use it only for demos, or point `PLACEMENT_DB` / `PLACEMENT_KEY` at persistent storage.
+- **Docker** (recommended): the image keeps runtime data in `/app/data/runtime`; mount a volume there.
+
+  ```bash
+  docker build -t placement-test .
+  docker run -p 8501:8501 -v placement-data:/app/data/runtime \
+      -e PLACEMENT_ADMIN_PASSWORD=change-me placement-test
+  ```
+
+  The volume is mounted on a sub-folder, not on `data/`, so it cannot hide the item bank in `data/item_bank`.
+- Any VM or PaaS with a persistent disk works the same way: `pip install -r requirements.txt` and then `streamlit run app.py`, with `PLACEMENT_DB` and `PLACEMENT_KEY` on that disk.
+- CI (`.github/workflows/ci.yml`) runs ruff, the bank validator and pytest on Python 3.11 and 3.12.
+
 ## Limitations
 
 - **Provisional parameters.** Every difficulty is an expert estimate (CEFR anchor ± 0.3), and every item uses a = 1.0 and c = 0.25. Nothing has been calibrated against real responses, so the cut scores and level labels are not empirically validated.
@@ -195,6 +217,10 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 - **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. You can go back and change answers within the current part (10 / 10 / 8 questions). When a part ends, its answers lock, because the next part is chosen from the re-estimated ability.
 - **No proctoring or identity checks.** The email is hashed for pseudonymisation only. Anyone with both the database and `data/secret.key` could test whether a given email was used. The email is not verified. An unfinished test can be resumed only in the browser that started it, which holds a random token in the URL (`?resume=...`). Anyone who gets that URL can also resume it, and someone who types another person's email can still start a new test, which ends that person's unfinished one, although they cannot see its answers.
 - **Not an official certificate.** The result is a CEFR-aligned estimate.
+
+## License
+
+MIT; see `LICENSE`. The bundled DejaVu fonts keep their own license (`src/placement/fonts/LICENSE_DEJAVU`).
 
 ## Repository layout
 

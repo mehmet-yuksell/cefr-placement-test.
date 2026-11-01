@@ -11,6 +11,7 @@ Environment overrides (used by the automated run-through):
 
 from __future__ import annotations
 
+import hmac
 import os
 import random
 import secrets
@@ -20,11 +21,12 @@ from pathlib import Path
 
 import streamlit as st
 
-from placement import engine, storage, web
+from placement import admin, engine, storage, web
 from placement.bank import ItemBank, load_bank
 from placement.config import MIN_ITEMS_FOR_RESULT, TEST_LENGTH
 from placement.i18n import DEFAULT_LANGUAGE, LANGUAGES, faq, level_group, t
 from placement.models import UNSURE, Item, Response
+from placement.pdf import card_to_pdf
 from placement.report import ResultCard, build_card, to_markdown
 from placement.scoring import InsufficientDataError, score_responses
 
@@ -261,8 +263,9 @@ def screen_start() -> None:
                 start_new_test(email, st.session_state.get("mode", "adaptive"))
             st.rerun()
         st.html(web.note(t("cta_note", lg)))
-    with st.expander(t("advanced", lg)):
-        st.radio(t("mode_label", lg), ["adaptive", "fixed"], key="mode", format_func=lambda m: t(f"mode_{m}", lg))
+    if os.environ.get("PLACEMENT_ALLOW_FIXED") == "1":  # debugging/comparison only
+        with st.expander(t("advanced", lg)):
+            st.radio(t("mode_label", lg), ["adaptive", "fixed"], key="mode", format_func=lambda m: t(f"mode_{m}", lg))
     st.html(web.stats(lg, TEST_LENGTH))
     st.html(web.how_it_works(lg))
     st.html(web.features(lg))
@@ -410,8 +413,48 @@ def screen_result() -> None:
             st.rerun()
         right.download_button(t("download_button", lg), to_markdown(card), file_name="result-card.md",
                               key="download", width="stretch")
+        st.download_button(t("download_pdf_button", lg), card_to_pdf(card), file_name="result-card.pdf",
+                           mime="application/pdf", key="download_pdf", type="primary", width="stretch")
     st.info(f"**{t('disclaimer_title', lg)}.** {card.disclaimer}")
     st.html(web.footer(lg))
+
+
+def admin_requested() -> bool:
+    """The admin screen exists only when a password is configured and ``?admin=1`` is set."""
+    return bool(os.environ.get("PLACEMENT_ADMIN_PASSWORD")) and st.query_params.get("admin") == "1"
+
+
+def screen_admin() -> None:
+    lg = lang()
+    st.html(f"<h2>{t('admin_title', lg)}</h2>")
+    if not st.session_state.get("admin_ok"):
+        with st.container(key="start_card"):
+            password = st.text_input(t("admin_password", lg), type="password", key="admin_password")
+            if st.button(t("admin_login", lg), type="primary", key="admin_login"):
+                expected = os.environ["PLACEMENT_ADMIN_PASSWORD"]
+                if hmac.compare_digest(password.encode("utf-8"), expected.encode("utf-8")):
+                    st.session_state.admin_ok = True
+                    st.rerun()
+                st.error(t("admin_wrong", lg))
+        return
+    conn = get_conn()
+    sessions = storage.all_sessions(conn)
+    st.caption(t("admin_privacy", lg))
+    st.html(web.section_title(t("admin_sessions", lg, n=len(sessions))))
+    if sessions:
+        st.dataframe(admin.session_table(sessions, lg), hide_index=True, key="admin_sessions")
+    else:
+        st.info(t("admin_no_data", lg))
+    left, right = st.columns(2)
+    left.download_button(t("admin_csv_sessions", lg), admin.to_csv(sessions, admin.SESSION_COLUMNS),
+                         file_name="sessions.csv", mime="text/csv", key="admin_csv_sessions", width="stretch")
+    right.download_button(t("admin_csv_responses", lg),
+                          admin.to_csv(storage.all_responses(conn), admin.RESPONSE_COLUMNS),
+                          file_name="responses.csv", mime="text/csv", key="admin_csv_responses", width="stretch")
+    st.html(web.section_title(t("admin_exposure", lg)))
+    st.dataframe(admin.exposure_table(storage.exposure_counts(conn), len(sessions),
+                                      (item.id for item in get_bank().items), lg),
+                 hide_index=True, key="admin_exposure")
 
 
 def main() -> None:
@@ -426,6 +469,9 @@ def main() -> None:
     if toast:
         key, values = toast if isinstance(toast, tuple) else (toast, {})
         st.toast(t(key, lang(), **values))
+    if admin_requested():
+        screen_admin()
+        return
     phase = st.session_state.setdefault("phase", "start")
     {"start": screen_start, "test": screen_test, "result": screen_result}[phase]()
 

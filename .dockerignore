@@ -1,0 +1,10 @@
+.venv/
+.git/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+data/placement.db*
+data/secret.key
+data/runtime/
+GOREV_PROMPTU.md

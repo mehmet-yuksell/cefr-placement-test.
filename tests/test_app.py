@@ -376,3 +376,70 @@ def test_other_browser_cannot_resume_someone_elses_test():
     stranger.text_input(key="email").input("owner@example.org")
     stranger.button(key="start").click().run()
     assert stranger.session_state["pending_resume"]["can_resume"] is False
+
+
+# ---- Admin screen and hidden fixed form ------------------------------------------------
+
+
+def admin_app(monkeypatch, password="s3cret!"):
+    if password is None:
+        monkeypatch.delenv("PLACEMENT_ADMIN_PASSWORD", raising=False)
+    else:
+        monkeypatch.setenv("PLACEMENT_ADMIN_PASSWORD", password)
+    at = AppTest.from_file(APP, default_timeout=30)
+    at.query_params["admin"] = "1"
+    at.run()
+    return at
+
+
+def test_admin_screen_is_closed_without_a_password(monkeypatch):
+    at = admin_app(monkeypatch, password=None)
+    assert not [w for w in at.text_input if w.key == "admin_password"]
+    assert at.text_input(key="email")  # the normal start page instead
+
+
+def test_admin_screen_requires_the_right_password(monkeypatch):
+    finished = start(email="admin.check@example.org")
+    for _ in range(10):
+        answer_confirmed(finished)
+    finished.button(key="quit").click().run()
+
+    at = admin_app(monkeypatch)
+    at.text_input(key="admin_password").input("wrong").run()
+    at.button(key="admin_login").click().run()
+    assert at.error and not at.dataframe
+    at.text_input(key="admin_password").input("s3cret!").run()
+    at.button(key="admin_login").click().run()
+    sessions, exposure = at.dataframe
+    shown = sessions.value.to_string() + exposure.value.to_string()
+    assert "@" not in shown and "admin.check" not in shown
+    assert len(sessions.value) == 1 and sessions.value.iloc[0, 0].endswith("…")
+    assert len(exposure.value) == 144
+
+
+def test_admin_exports_contain_no_email(isolated_storage):
+    from placement import admin, storage
+
+    at = start(email="csv.user@example.org")
+    answer_confirmed(at)
+    conn = storage.connect(isolated_storage / "app.db")
+    sessions_csv = admin.to_csv(storage.all_sessions(conn), admin.SESSION_COLUMNS)
+    responses_csv = admin.to_csv(storage.all_responses(conn), admin.RESPONSE_COLUMNS)
+    conn.close()
+    assert sessions_csv.splitlines()[0].startswith("session_id,user_hash")
+    assert len(sessions_csv.splitlines()) == 2 and len(responses_csv.splitlines()) == 2
+    assert "csv.user" not in sessions_csv + responses_csv and "@" not in sessions_csv + responses_csv
+
+
+def test_fixed_form_is_hidden_unless_allowed(monkeypatch):
+    monkeypatch.delenv("PLACEMENT_ALLOW_FIXED", raising=False)
+    at = AppTest.from_file(APP, default_timeout=30)
+    at.run()
+    assert not [r for r in at.radio if r.key == "mode"]
+    monkeypatch.setenv("PLACEMENT_ALLOW_FIXED", "1")
+    at = AppTest.from_file(APP, default_timeout=30)
+    at.run()
+    at.radio(key="mode").set_value("fixed").run()
+    at.text_input(key="email").input("fixed@example.org")
+    at.button(key="start").click().run()
+    assert at.session_state["engine"].mode == "fixed"

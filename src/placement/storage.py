@@ -349,3 +349,23 @@ def session_row(conn: sqlite3.Connection, session_id: str) -> sqlite3.Row | None
 def exposure_counts(conn: sqlite3.Connection) -> dict[str, int]:
     """How many times each item has been shown across all sessions."""
     return {row[0]: row[1] for row in conn.execute("SELECT item_id, count FROM item_exposure")}
+
+
+@_locked
+def all_sessions(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    """Every session, newest first (for the admin screen and exports)."""
+    return conn.execute(
+        """SELECT session_id, user_hash, attempt_no, mode, status, started_at, completed_at,
+                  level, scaled_score, theta, se, test_length
+           FROM sessions ORDER BY started_at DESC, session_id"""
+    ).fetchall()
+
+
+@_locked
+def all_responses(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    """Every stored answer, for calibration exports."""
+    return conn.execute(
+        """SELECT session_id, position, item_id, item_version, stage, chosen_option, is_correct,
+                  response_time_s, changes, answered_at
+           FROM responses ORDER BY session_id, position"""
+    ).fetchall()

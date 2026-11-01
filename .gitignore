@@ -8,3 +8,4 @@ htmlcov/
 data/placement.db
 data/placement.db-*
 data/secret.key
+data/runtime/
