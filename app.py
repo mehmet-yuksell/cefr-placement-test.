@@ -313,6 +313,7 @@ def screen_test() -> None:
                 format_func=lambda o: t("unsure_label", lg) if o == UNSURE else o,
                 **radio_kwargs,
             )
+        st.html(web.note(t("unsure_note", lg)))
         if confirming:
             last = frontier + 1 == state.length
             text = t("confirm_test", lg) if last else t(

@@ -140,6 +140,7 @@ def new_test(
     length: int = TEST_LENGTH,
     seen: dict[str, int] | None = None,
     early_stop: bool = EARLY_STOP_ENABLED,
+    routing_weights: dict[str, int] | None = None,
 ) -> TestState:
     """Plan a new test.
 
@@ -150,6 +151,7 @@ def new_test(
         length: Number of items; stages and quotas scale with it.
         seen: Item id -> attempt number for the user's earlier attempts.
         early_stop: Enable the optional posterior-probability stopping rule.
+        routing_weights: Override the routing-stage level mix (experiments only).
     """
     if mode not in ("adaptive", "fixed"):
         raise ValueError(f"unknown mode {mode!r}")
@@ -159,7 +161,7 @@ def new_test(
     if mode == "fixed":
         targets: list[float | None] = [ANCHOR_B[lvl] for lvl in fixed_form_levels(length)]
     else:
-        targets = [ANCHOR_B[lvl] for lvl in routing_levels(sizes[0])]
+        targets = [ANCHOR_B[lvl] for lvl in routing_levels(sizes[0], routing_weights)]
         targets += [None] * (length - sizes[0])
     quotas = {f"{t}/{d}": n for (t, d), n in slot_quotas(length).items()}
     return TestState(

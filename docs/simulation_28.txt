@@ -8,7 +8,7 @@ within one level         99.1%
 mean SE                  0.483
 RMSE of theta            0.512
 mean bias of theta       +0.003
-labelled borderline      48.9%
+labelled borderline      28.6%
 confusion matrix (rows = true level, columns = estimated level):
             A1    A2    B1    B2    C1    C2   exact
   A1        38    50     6     0     0     0   40.4%
@@ -26,7 +26,7 @@ within one level         98.7%
 mean SE                  0.483
 RMSE of theta            0.541
 mean bias of theta       -0.072
-labelled borderline      47.5%
+labelled borderline      27.7%
 confusion matrix (rows = true level, columns = estimated level):
             A1    A2    B1    B2    C1    C2   exact
   A1        41    46     7     0     0     0   43.6%
@@ -44,7 +44,7 @@ within one level         99.4%
 mean SE                  0.468
 RMSE of theta            0.517
 mean bias of theta       -0.017
-labelled borderline      45.8%
+labelled borderline      27.5%
 confusion matrix (rows = true level, columns = estimated level):
             A1    A2    B1    B2    C1    C2   exact
   A1        52    35     7     0     0     0   55.3%

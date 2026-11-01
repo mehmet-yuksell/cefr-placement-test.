@@ -33,7 +33,9 @@ PRIOR_SD = 1.0
 SCALED_THETA_RANGE = (-3.0, 3.0)
 
 # A result is "borderline" when theta is within this many SEs of a cut score.
-BORDERLINE_SE_FACTOR = 0.5
+# 0.30 was chosen by simulation (DECISIONS.md, Phase 3): about 29% of results
+# are flagged instead of 49% at 0.5, and the headline accuracy is unchanged.
+BORDERLINE_SE_FACTOR = 0.30
 
 # --- Test assembly -----------------------------------------------------------
 
@@ -144,9 +146,12 @@ def slot_quotas(length: int = TEST_LENGTH) -> dict[tuple[str, str], int]:
     return apportion(length, SLOT_SHARES)
 
 
-def routing_levels(n_items: int) -> list[str]:
-    """Return the target CEFR level for each routing position, easiest first."""
-    split = apportion(n_items, ROUTING_LEVEL_WEIGHTS)
+def routing_levels(n_items: int, weights: Mapping[str, int] | None = None) -> list[str]:
+    """Return the target CEFR level for each routing position, easiest first.
+
+    ``weights`` overrides ROUTING_LEVEL_WEIGHTS (used by simulation experiments).
+    """
+    split = apportion(n_items, weights or ROUTING_LEVEL_WEIGHTS)
     return [level for level in CEFR_LEVELS for _ in range(split.get(level, 0))]
 
 

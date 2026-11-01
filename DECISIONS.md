@@ -106,3 +106,30 @@ Judgement calls made without asking, each with a one-line reason. Newest last.
 - `validate_bank.py` now prints a warning (not an error) when the key-longest share exceeds 30%; the hard error stays at 40%. Reason: the product owner asked for a warning-level check.
 - Version changes do not break resuming. Replay matches items by id, and `item_version` is only recorded for calibration. This is covered by `test_resume_ignores_item_version_changes`, which rewrites stored versions before resuming.
 - Simulations regenerated on the 144-item bank: 28 items gives 62.5% exact and 99.1% within one level (unchanged, as expected, because option wording does not enter the model); 40 items gives 66.4% exact and 99.6% within one level, against a 65.7% oracle ceiling.
+
+## Phase 3: measurement quality (simulation first, n = 2000, seed 42, 28 items, 144-item bank)
+
+**Borderline zone.** The factor is now a parameter of `scoring.borderline_with` (default `config.BORDERLINE_SE_FACTOR`). The headline level is the most likely level whatever the factor, so headline accuracy cannot change. The factor only decides how often the card adds "you are near the X/Y boundary". So accuracy was judged on the clear results and on coverage (true level = headline, or = the named neighbour when flagged):
+
+| factor | flagged borderline | exact (headline) | exact among clear results | coverage |
+|---|---|---|---|---|
+| 0.50 (old) | 48.9% | 62.5% | 69.7% | 82.2% |
+| 0.40 | 38.2% | 62.5% | 69.2% | 79.1% |
+| 0.35 | 33.7% | 62.5% | 68.1% | 77.3% |
+| **0.30 (chosen)** | **28.6%** | **62.5%** | **67.3%** | **75.3%** |
+| 0.25 | 23.2% | 62.5% | 66.7% | 73.4% |
+
+- Decision: 0.30. Reason: it is the only tested value inside the requested 25–30% band, and headline accuracy is unchanged. The price is that results shown as clear are exact 67.3% instead of 69.7% (−2.4 points), and coverage falls from 82.2% to 75.3%: fewer warnings means some near-boundary results are no longer flagged. 0.25 overshoots the band and costs more; 0.35 stays above it.
+
+**Routing mix with a C2 anchor (not adopted).**
+
+| routing (10 items) | exact | within one | A1 exact | C2 exact |
+|---|---|---|---|---|
+| 1 A1, 2 A2, 3 B1, 3 B2, 1 C1 (current) | 62.5% | 99.1% | 40.4% | 42.7% |
+| 1 A1, 2 A2, 2 B1, 3 B2, 1 C1, 1 C2 | 62.6% | 99.1% | 42.6% | 38.8% |
+| 1 A1, 2 A2, 2 B1, 2 B2, 2 C1, 1 C2 | 62.0% | 99.0% | 41.5% | 38.8% |
+| 2 A1, 2 A2, 2 B1, 2 B2, 1 C1, 1 C2 | 61.8% | 99.0% | 40.4% | 40.8% |
+
+- Decision: keep the current routing. Reason: no variant improves C2 (all are lower), the A1 gains are within sampling noise (about 94 true-A1 and 103 true-C2 examinees, so ±5 points), and overall exact agreement does not improve. The extremes are limited by the N(0, 1) prior shrinking extreme estimates and by test length, not by where routing starts. The targeted and refinement stages already move to the extremes after 10 items.
+
+**"I'm not sure".** It is still scored as wrong. A short note now appears under the options on every question ("«Emin değilim» yanlış sayılır; tahmin etmek şans eseri doğru çıkabilir." / "“I'm not sure” counts as wrong; a guess might be right by luck."), and the existing FAQ entry already says the same. Reason: users should know the consequence before choosing it.

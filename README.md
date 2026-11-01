@@ -51,7 +51,7 @@ python tools/run_personas.py --lang en --seed 42   # scripted A2/B2/C1 run-throu
 
 **Scoring.**
 - **Headline level:** the level with the highest posterior probability. The level probabilities and any borderline note appear beneath it.
-- **Borderline:** a result is borderline when theta is within 0.5 × SE of a cut score.
+- **Borderline:** a result is borderline when theta is within 0.30 × SE of a cut score (`config.BORDERLINE_SE_FACTOR`, chosen by simulation; see DECISIONS.md).
 - **Sub-skill bands:** shown only when at least 5 items back them.
 - **Strengths and focus areas:** skill tags are ranked by observed minus model-expected correct answers, using tags with at least 2 items.
 
@@ -80,7 +80,7 @@ OK: item bank passed all checks.
 
 ### Gate 2: tests (`pytest --cov=placement`)
 
-133 tests pass. Coverage:
+137 tests pass. Coverage:
 
 ```
 src\placement\bank.py         323      4    99%
@@ -118,7 +118,7 @@ within one level         99.1%
 mean SE                  0.483
 RMSE of theta            0.512
 mean bias of theta       +0.003
-labelled borderline      48.9%
+labelled borderline      28.6%
 confusion matrix (rows = true level, columns = estimated level):
             A1    A2    B1    B2    C1    C2   exact
   A1        38    50     6     0     0     0   40.4%
@@ -189,7 +189,7 @@ All 30 runs were within one level, consistent with the simulation. The real serv
 
 - **Provisional parameters.** Every difficulty is an expert estimate (CEFR anchor ± 0.3), and every item uses a = 1.0 and c = 0.25. Nothing has been calibrated against real responses, so the cut scores and level labels are not empirically validated.
 - **Simulation-only evidence.** The accuracy figures come from simulated examinees who answer according to the same model used for scoring. This is the best case; real examinees, real item behaviour and testlet effects will lower agreement.
-- **Precision.** 28 four-option items cannot reach 70% exact CEFR agreement even in theory (oracle ceiling 63.9%). About half of all results are flagged as borderline, honestly.
+- **Precision.** 28 four-option items cannot reach 70% exact CEFR agreement even in theory (oracle ceiling 63.9%). About 28.6% of results are flagged as borderline (was 49% with a 0.5 × SE zone).
 - **Bank size (144 items).** A user who retakes with the same email gets entirely new questions for 5 attempts: verified through the real app, and covered by regression tests. From the 6th attempt on, items are reused (oldest-seen first, logged, with a notice on the card). The most-used item still appears in about 62% of first attempts, because B1-centred routing draws on few items per kind.
 - **Vocabulary levels** were judged without access to English Vocabulary Profile data; see [docs/ITEM_AUDIT.md](docs/ITEM_AUDIT.md).
 - **Not measured:** listening, speaking and writing. The timer is soft: a live clock is shown, but nothing is cut off, and speed is not scored. You can go back and change answers within the current part (10 / 10 / 8 questions). When a part ends, its answers lock, because the next part is chosen from the re-estimated ability.

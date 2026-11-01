@@ -136,20 +136,21 @@ def most_likely_level(probs: dict[str, float]) -> str:
     return max(CEFR_LEVELS, key=lambda lvl: (probs[lvl], -CEFR_LEVELS.index(lvl)))
 
 
-def borderline_with(theta: float, se: float, level: str) -> str | None:
-    """Return the neighbouring level if theta is within 0.5 x SE of a cut.
+def borderline_with(theta: float, se: float, level: str, factor: float = BORDERLINE_SE_FACTOR) -> str | None:
+    """Return the neighbouring level if theta is within ``factor`` x SE of a cut.
 
     Args:
         theta: The EAP estimate.
         se: Its standard error.
         level: The headline level; the neighbour is on the other side of the
             nearest cut from it.
+        factor: Width of the borderline zone in SE units (config default).
 
     Returns:
         The neighbouring level, or None when the result is not borderline.
     """
     index = min(range(len(CUT_SCORES)), key=lambda i: abs(theta - CUT_SCORES[i]))
-    if abs(theta - CUT_SCORES[index]) >= BORDERLINE_SE_FACTOR * se:
+    if abs(theta - CUT_SCORES[index]) >= factor * se:
         return None
     lower, upper = CEFR_LEVELS[index], CEFR_LEVELS[index + 1]
     if level == lower:

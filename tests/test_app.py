@@ -344,3 +344,10 @@ def test_resume_ignores_item_version_changes(isolated_storage):
     assert again.session_state["shown_item"] == expected
     assert len(again.session_state["engine"].answers) == 3
 
+
+
+def test_unsure_note_is_shown_in_both_languages():
+    for lang, text in (("tr", "«Emin değilim» yanlış sayılır"), ("en", "“I'm not sure” counts as wrong")):
+        at = start(email=f"note-{lang}@example.org", lang=lang)
+        bodies = [h.proto.body for h in at.get("html")]
+        assert any(text in body or text.replace("'", "&#x27;") in body for body in bodies)

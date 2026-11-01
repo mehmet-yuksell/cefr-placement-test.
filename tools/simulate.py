@@ -62,6 +62,8 @@ class ScenarioStats:
     borderline: int = 0
     exposure: Counter[str] = field(default_factory=Counter)
     flags: Counter[str] = field(default_factory=Counter)
+    # (true theta, theta estimate, SE, headline level) per examinee
+    records: list[tuple[float, float, float, str]] = field(default_factory=list)
 
     def add(self, true_theta: float, responses: list[ScoredResponse]) -> None:
         """Score one simulated test and accumulate its statistics."""
@@ -72,6 +74,31 @@ class ScenarioStats:
         self.errors.append(est.theta - true_theta)
         self.confusion[(level_for_theta(true_theta), level)] += 1
         self.borderline += borderline_with(est.theta, est.se, level) is not None
+        self.records.append((true_theta, est.theta, est.se, level))
+
+    def borderline_profile(self, factor: float) -> tuple[float, float, float]:
+        """For a borderline factor: (borderline rate, exact rate of clear results, coverage).
+
+        Coverage counts a result as right when the true level is the headline,
+        or, for borderline results, the named neighbouring level.
+        """
+        flagged = clear_hits = clear = covered = 0
+        for true_theta, theta, se, level in self.records:
+            truth = level_for_theta(true_theta)
+            neighbour = borderline_with(theta, se, level, factor)
+            if neighbour is None:
+                clear += 1
+                clear_hits += truth == level
+                covered += truth == level
+            else:
+                flagged += 1
+                covered += truth in (level, neighbour)
+        return flagged / self.n, clear_hits / clear if clear else 0.0, covered / self.n
+
+    def level_exact(self, level: str) -> float:
+        """Exact agreement among examinees whose true level is ``level``."""
+        row = [self.confusion[(level, est)] for est in CEFR_LEVELS]
+        return self.confusion[(level, level)] / sum(row) if sum(row) else 0.0
 
     @property
     def n(self) -> int:
@@ -102,9 +129,10 @@ def run_engine(
     mode: str,
     length: int,
     seen: dict[str, int] | None = None,
+    routing: dict[str, int] | None = None,
 ) -> engine.TestState:
     """Administer one test to a simulated examinee with ability ``theta``."""
-    state = engine.new_test(bank, seed=seed, mode=mode, length=length, seen=seen)
+    state = engine.new_test(bank, seed=seed, mode=mode, length=length, seen=seen, routing_weights=routing)
     while (item := engine.current_item(state, bank)) is not None:
         correct = rng.random() < answer_probability(theta, true_params[item.id])
         engine.record_answer(state, bank, item.id, correct)
@@ -119,11 +147,12 @@ def simulate_bank_scenario(
     rng: random.Random,
     mode: str,
     length: int,
+    routing: dict[str, int] | None = None,
 ) -> ScenarioStats:
     """Run every examinee through the engine with the given true parameters."""
     stats = ScenarioStats(name)
     for index, theta in enumerate(thetas):
-        state = run_engine(bank, theta, true_params, rng, seed=index, mode=mode, length=length)
+        state = run_engine(bank, theta, true_params, rng, seed=index, mode=mode, length=length, routing=routing)
         stats.add(theta, engine.scored_responses(state, bank))
         stats.exposure.update(state.selected)
         stats.flags.update(state.flags)
@@ -188,6 +217,19 @@ def format_stats(stats: ScenarioStats) -> list[str]:
     return lines
 
 
+def parse_routing(text: str) -> dict[str, int] | None:
+    """Parse ``A1:1,A2:2,...`` into routing weights (None when empty)."""
+    if not text.strip():
+        return None
+    weights = {}
+    for part in text.split(","):
+        level, _, weight = part.partition(":")
+        if level.strip() not in CEFR_LEVELS:
+            raise SystemExit(f"unknown level in --routing: {level!r}")
+        weights[level.strip()] = int(weight)
+    return weights
+
+
 def main(argv: list[str] | None = None) -> int:
     """Run all scenarios, print the report and return the exit status."""
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -198,7 +240,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--theta-sd", type=float, default=1.2)
     parser.add_argument("--retakes", type=int, default=200, help="examinees in the 3-attempt study (0 = skip)")
     parser.add_argument("--bank-dir", type=Path, default=DEFAULT_BANK_DIR)
+    parser.add_argument("--borderline-factors", default="",
+                        help="comma-separated SE factors to compare for the borderline label, e.g. 0.5,0.35,0.25")
+    parser.add_argument("--routing", default="",
+                        help="routing-stage level weights to try, e.g. A1:1,A2:2,B1:2,B2:3,C1:1,C2:1")
     args = parser.parse_args(argv)
+    routing = parse_routing(args.routing)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
@@ -212,18 +259,28 @@ def main(argv: list[str] | None = None) -> int:
     }
 
     ideal = simulate_bank_scenario(
-        "ideal", bank, thetas, nominal, random.Random(f"{args.seed}:ideal"), args.mode, args.length
+        "ideal", bank, thetas, nominal, random.Random(f"{args.seed}:ideal"), args.mode, args.length, routing
     )
     misspecified = simulate_bank_scenario(
-        "misspecified", bank, thetas, shifted, random.Random(f"{args.seed}:mis"), args.mode, args.length
+        "misspecified", bank, thetas, shifted, random.Random(f"{args.seed}:mis"), args.mode, args.length, routing
     )
     oracle = simulate_oracle(thetas, random.Random(f"{args.seed}:oracle"), args.length)
 
     print(f"# Simulation: n={args.n}, seed={args.seed}, length={args.length}, mode={args.mode}, "
           f"true theta ~ N(0, {args.theta_sd}), bank={len(bank)} items / {len(bank.passages)} passages")
+    if routing:
+        print(f"routing weights: {routing}")
     print("These figures describe the algorithm under idealised assumptions, not real-world validity.\n")
     for stats in (ideal, misspecified, oracle):
         print("\n".join(format_stats(stats)))
+        print()
+    factors = [float(f) for f in args.borderline_factors.split(",") if f.strip()]
+    if factors:
+        print("## borderline factor comparison (ideal scenario)")
+        print("factor  borderline  exact(all)  exact(clear results)  coverage")
+        for factor in factors:
+            rate, clear_exact, coverage = ideal.borderline_profile(factor)
+            print(f"{factor:<6.2f}  {rate:>10.1%}  {ideal.agreement(0):>10.1%}  {clear_exact:>20.1%}  {coverage:>8.1%}")
         print()
 
     summary = summarise_exposure(ideal.exposure, (i.id for i in bank.items), ideal.n)
